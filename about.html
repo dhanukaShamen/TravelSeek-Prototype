@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelSeek | Our Story</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="antialiased bg-stone-50 text-stone-800 flex flex-col min-h-screen">
+<!-- ══ TOPNAV ══════════════════════════════════════════════ -->
+<nav id="main-nav" class="ts-nav z-50 py-7 px-6 md:px-10" data-page="about">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="home.html" class="ts-logo-wrap hover:opacity-75 transition-opacity flex-shrink-0" data-logo aria-label="TravelSeek Home"></a>
+
+    <!-- Desktop links -->
+    <div class="hidden md:flex items-center gap-9 text-[13px] tracking-wide font-light">
+      <a href="home.html"         data-nav="home"        class="ts-navlink">Home</a>
+      <a href="about.html"        data-nav="about"       class="ts-navlink">About</a>
+      <a href="destinations.html" data-nav="destinations" class="ts-navlink">Destinations</a>
+      <a href="packages.html"     data-nav="packages"    class="ts-navlink">Experiences</a>
+      <a href="blog.html"         data-nav="blog"        class="ts-navlink">Journal</a>
+      <a href="gallery.html"      data-nav="gallery"     class="ts-navlink">Gallery</a>
+    </div>
+
+    <!-- Right side -->
+    <div class="flex items-center gap-3">
+      <a href="contact.html"
+         class="hidden md:flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-stone-900 text-[11px] font-medium uppercase tracking-[0.15em] rounded-full px-5 py-3 transition-all duration-300 shadow-lg hover:shadow-amber-500/40 hover:scale-105 whitespace-nowrap">
+        Let's Talk Travel
+        <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+      </a>
+      <!-- Hamburger -->
+      <button id="ts-menu-btn" class="md:hidden ts-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="ts-sidebar">
+        <span class="ts-ham-bar ts-ham-top"></span>
+        <span class="ts-ham-bar ts-ham-mid"></span>
+        <span class="ts-ham-bar ts-ham-bot"></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ MOBILE SIDEBAR ═══════════════════════════════════════ -->
+<div id="ts-overlay" class="ts-overlay" aria-hidden="true"></div>
+
+<aside id="ts-sidebar" class="ts-sidebar" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="ts-sidebar-inner">
+
+    <!-- Sidebar Header -->
+    <div class="ts-sidebar-head">
+      <a href="home.html" class="ts-sidebar-logo" data-logo="dark" aria-label="TravelSeek Home"></a>
+      <button id="ts-close-btn" class="ts-close-btn" aria-label="Close menu">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <!-- Sidebar Links -->
+    <nav class="ts-sidebar-nav" aria-label="Mobile navigation">
+      <a href="home.html"         data-nav="home"         class="ts-mob-link" style="--i:0">
+        <span class="ts-mob-num">01</span>
+        <span class="ts-mob-label">Home</span>
+        <i data-lucide="arrow-right" class="ts-mob-arrow w-4 h-4"></i>
+      </a>
+      <a href="about.html"        data-nav="about"        class="ts-mob-link" style="--i:1">
+        <span class="ts-mob-num">02</span>
+        <span class="ts-mob-label">About</span>
+        <i data-lucide="arrow-right" class="ts-mob-arrow w-4 h-4"></i>
+      </a>
+      <a href="destinations.html" data-nav="destinations" class="ts-mob-link" style="--i:2">
+        <span class="ts-mob-num">03</span>
+        <span class="ts-mob-label">Destinations</span>
+        <i data-lucide="arrow-right" class="ts-mob-arrow w-4 h-4"></i>
+      </a>
+      <a href="packages.html"     data-nav="packages"     class="ts-mob-link" style="--i:3">
+        <span class="ts-mob-num">04</span>
+        <span class="ts-mob-label">Experiences</span>
+        <i data-lucide="arrow-right" class="ts-mob-arrow w-4 h-4"></i>
+      </a>
+      <a href="blog.html"         data-nav="blog"         class="ts-mob-link" style="--i:4">
+        <span class="ts-mob-num">05</span>
+        <span class="ts-mob-label">Journal</span>
+        <i data-lucide="arrow-right" class="ts-mob-arrow w-4 h-4"></i>
+      </a>
+      <a href="gallery.html"      data-nav="gallery"      class="ts-mob-link" style="--i:5">
+        <span class="ts-mob-num">06</span>
+        <span class="ts-mob-label">Gallery</span>
+        <i data-lucide="arrow-right" class="ts-mob-arrow w-4 h-4"></i>
+      </a>
+    </nav>
+
+    <!-- Sidebar Footer -->
+    <div class="ts-sidebar-foot">
+      <a href="contact.html" class="ts-mob-cta">
+        Let's Talk Travel
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+      <p class="ts-mob-tagline">Sri Lanka &amp; Beyond</p>
+    </div>
+  </div>
+</aside>
+<!-- ══════════════════════════════════════════════════════════ -->
+
+<main class="flex-grow">
+
+    <!-- ── HERO ── -->
+    <header class="relative h-[92vh] min-h-[620px] overflow-hidden flex flex-col" data-hero>
+
+        <!-- BG Photo -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1533484482814-3fe2d922be89?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                 alt="Sri Lanka highlands tea estate at dawn"
+                 class="hero-img w-full h-full object-cover object-center">
+            <!-- Multi-layer gradient: strong left fade + dark base + warm amber glow -->
+            <div class="absolute inset-0" style="background:linear-gradient(105deg,rgba(12,10,8,0.88) 0%,rgba(12,10,8,0.60) 45%,rgba(12,10,8,0.25) 100%);"></div>
+            <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(12,10,8,0.85) 0%,transparent 52%);"></div>
+            <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse at 18% 60%,rgba(237,174,73,0.10) 0%,transparent 55%);"></div>
+        </div>
+
+        <!-- Vertical rotated chapter label — left rail -->
+        <div class="absolute left-6 md:left-10 top-1/2 -translate-y-1/2 z-20 hidden md:flex items-center gap-3" style="transform:translateY(-50%) rotate(-90deg);transform-origin:center;">
+            <div class="w-8 h-px bg-amber-500/50"></div>
+            <span class="text-white/35 text-[9px] font-light uppercase tracking-[0.35em] whitespace-nowrap">Our Story · Est. 2016</span>
+            <div class="w-8 h-px bg-white/20"></div>
+        </div>
+
+        <!-- Giant watermark numeral -->
+        <div class="absolute right-8 top-1/2 -translate-y-1/2 z-10 hidden lg:block select-none pointer-events-none"
+             style="font-family:'Playfair Display',serif;font-size:clamp(14rem,22vw,22rem);line-height:1;color:rgba(255,255,255,0.04);font-weight:500;letter-spacing:-0.04em;">01</div>
+
+        <!-- Main content -->
+        <div class="relative z-20 flex flex-col justify-center flex-1 px-10 md:px-20 lg:px-28 pt-28 pb-10 max-w-[720px]">
+
+            <!-- Eyebrow badge -->
+            <div class="fu1 flex items-center gap-3 mb-7">
+                <div class="w-5 h-px bg-amber-500"></div>
+                <span class="text-amber-400/80 text-[10px] font-medium uppercase tracking-[0.32em]">About TravelSeek</span>
+            </div>
+
+            <!-- H1 -->
+            <h1 class="fu2 font-serif font-normal tracking-tight leading-[1.02] text-white mb-6"
+                style="font-size:clamp(3rem,6.5vw,5.4rem);">
+                We See the Island<br>
+                <em class="font-light italic" style="color:rgba(237,174,73,0.92);">Others Miss</em>
+            </h1>
+
+            <!-- Lead -->
+            <p class="fu3 font-light leading-relaxed max-w-md mb-10" style="color:rgba(255,255,255,0.52);font-size:0.92rem;">
+                Born from a deep love of Sri Lanka — local guides who believe authentic travel is a slow, unhurried art woven from hidden paths and rare encounters.
+            </p>
+
+            <!-- CTAs -->
+            <div class="fu4 flex flex-wrap items-center gap-4">
+                <a href="#our-story"
+                   class="flex items-center gap-2.5 bg-amber-500 hover:bg-amber-400 text-stone-900 text-[11px] font-medium uppercase tracking-[0.18em] rounded-full px-7 py-3.5 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-amber-500/30">
+                    Our Story
+                    <i data-lucide="arrow-down" class="w-3.5 h-3.5"></i>
+                </a>
+                <a href="contact.html"
+                   class="flex items-center gap-2 text-white/55 hover:text-white text-[11px] uppercase tracking-widest transition-colors duration-300 group">
+                    <span>Start a Journey</span>
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Bottom stats strip -->
+        <div class="relative z-20 w-full" style="border-top:1px solid rgba(255,255,255,0.08);">
+            <div class="px-10 md:px-20 lg:px-28 py-6 flex flex-wrap gap-10 md:gap-16">
+                <div>
+                    <p class="font-serif text-white leading-none mb-1" style="font-size:1.9rem;">14<span style="color:#f59e0b;">+</span></p>
+                    <p class="text-white/35 text-[9px] uppercase tracking-[0.25em]">Years Active</p>
+                </div>
+                <div>
+                    <p class="font-serif text-white leading-none mb-1" style="font-size:1.9rem;">4,217<span style="color:#f59e0b;">+</span></p>
+                    <p class="text-white/35 text-[9px] uppercase tracking-[0.25em]">Journeys Crafted</p>
+                </div>
+                <div>
+                    <p class="font-serif text-white leading-none mb-1" style="font-size:1.9rem;">97<span style="color:#f59e0b;">%</span></p>
+                    <p class="text-white/35 text-[9px] uppercase tracking-[0.25em]">Return Guests</p>
+                </div>
+                <div class="ml-auto hidden md:flex items-center gap-2 self-center">
+                    <div class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></div>
+                    <span class="text-white/30 text-[9px] uppercase tracking-[0.25em]">6.9271° N, 79.8612° E</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll hint -->
+        <div class="absolute bottom-24 right-10 z-20 hidden md:flex flex-col items-center gap-2">
+            <div class="w-px h-10 bg-gradient-to-b from-white/30 to-transparent"></div>
+        </div>
+
+    </header>
+
+    <!-- ── OUR STORY ── -->
+    <section class="py-28 px-6 bg-stone-50">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+            <div class="relative">
+                <div class="aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1622061662418-fc6887d7915d?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Galle Fort coastline" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                </div>
+                <div class="absolute -bottom-6 -right-4 md:-right-10 w-44 h-44 rounded-xl overflow-hidden shadow-xl border-4 border-stone-50">
+                    <img src="https://images.unsplash.com/photo-1726403364416-f1b0735f8c2c?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Local culture" class="w-full h-full object-cover">
+                </div>
+                <div class="absolute top-6 -left-4 md:-left-8 bg-amber-500 text-white rounded-xl px-5 py-4 shadow-lg">
+                    <p class="text-2xl font-serif font-medium">2016</p>
+                    <p class="text-[10px] uppercase tracking-widest text-amber-100 mt-0.5">Founded</p>
+                </div>
+            </div>
+            <div class="space-y-8">
+                <div>
+                    <span class="text-[11px] font-semibold uppercase tracking-[0.25em] text-amber-600 mb-4 block">Our Story</span>
+                    <h2 class="text-3xl md:text-5xl text-stone-900 tracking-tight leading-tight">
+                        A journey that began<br>
+                        <span class="italic font-light text-stone-400">on a rainy afternoon in Ella.</span>
+                    </h2>
+                </div>
+                <div class="space-y-5 text-stone-600 font-light leading-relaxed text-[15px]">
+                    <p>In 2016, Rohan and Priya — two old friends with careers in hospitality and photography — found themselves sharing a cup of Ceylon tea, watching mist roll over the Nine Arch Bridge. The travellers around them had itineraries, but they didn't have experiences.</p>
+                    <p>That conversation became a plan, and that plan became TravelSeek. A company built on the conviction that Sri Lanka is not a destination to be ticked off a list — it's a feeling, a layered, living world that takes time, local knowledge, and genuine curiosity to truly understand.</p>
+                    <p>Today, every journey we design carries that original spirit: unhurried, personal, and deeply rooted in the places we love.</p>
+                </div>
+                <a href="contact.html" class="inline-flex items-center gap-2 text-stone-900 text-sm font-medium ul-link">
+                    Begin your story with us
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── VISION & MISSION ── -->
+    <section class="py-28 px-6 bg-stone-100 border-t border-stone-200">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20 space-y-3">
+                <span class="text-[11px] font-semibold uppercase tracking-[0.25em] text-amber-600">What Drives Us</span>
+                <h2 class="text-3xl md:text-5xl text-stone-900 tracking-tight">Vision &amp; Mission</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="relative bg-white rounded-3xl p-10 md:p-14 shadow-sm border border-stone-100 overflow-hidden value-card">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-amber-50 rounded-bl-full opacity-60"></div>
+                    <div class="relative z-10 space-y-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-amber-500 flex items-center justify-center shadow-md">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            </div>
+                            <div>
+                                <p class="text-[10px] font-semibold uppercase tracking-[0.25em] text-amber-600">Our Vision</p>
+                                <h3 class="text-xl font-serif text-stone-900 mt-0.5">To See the World Differently</h3>
+                            </div>
+                        </div>
+                        <p class="text-stone-600 font-light leading-relaxed text-[15px]">We envision a world where travel is a force for connection — between people, cultures, and the natural world. TravelSeek aspires to be the most trusted name in experiential travel across South Asia, setting the standard for journeys that are as meaningful as they are memorable.</p>
+                        <div class="pt-4 border-t border-stone-100 space-y-3">
+                            <div class="flex items-start gap-3 text-sm text-stone-600 font-light"><div class="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 shrink-0"></div>Travel that enriches both traveller and destination</div>
+                            <div class="flex items-start gap-3 text-sm text-stone-600 font-light"><div class="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 shrink-0"></div>Authentic encounters beyond the tourist trail</div>
+                            <div class="flex items-start gap-3 text-sm text-stone-600 font-light"><div class="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 shrink-0"></div>A legacy of responsible, conscious luxury</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative bg-stone-900 rounded-3xl p-10 md:p-14 shadow-sm overflow-hidden value-card">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-amber-900/40 rounded-bl-full"></div>
+                    <div class="absolute bottom-0 left-0 w-24 h-24 bg-stone-800 rounded-tr-full"></div>
+                    <div class="relative z-10 space-y-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-amber-500 flex items-center justify-center shadow-md">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+                            </div>
+                            <div>
+                                <p class="text-[10px] font-semibold uppercase tracking-[0.25em] text-amber-400">Our Mission</p>
+                                <h3 class="text-xl font-serif text-white mt-0.5">To Move You, Truly</h3>
+                            </div>
+                        </div>
+                        <p class="text-stone-400 font-light leading-relaxed text-[15px]">Our mission is to craft bespoke Sri Lankan journeys that transcend sightseeing — creating genuine emotional connections between our guests and the island's landscapes, people, and culture. We do this through meticulous curation, deep local relationships, and an unwavering commitment to excellence at every step.</p>
+                        <div class="pt-4 border-t border-stone-800 space-y-3">
+                            <div class="flex items-start gap-3 text-sm text-stone-400 font-light"><div class="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0"></div>Every itinerary handcrafted, never templated</div>
+                            <div class="flex items-start gap-3 text-sm text-stone-400 font-light"><div class="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0"></div>Local guides, not tour operators — community first</div>
+                            <div class="flex items-start gap-3 text-sm text-stone-400 font-light"><div class="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 shrink-0"></div>Seamless service from enquiry to farewell</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── VALUES ── -->
+    <section class="py-24 px-6 bg-stone-50 border-t border-stone-200">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 space-y-3">
+                <span class="text-[11px] font-semibold uppercase tracking-[0.25em] text-amber-600">The Principles We Live By</span>
+                <h2 class="text-3xl md:text-4xl text-stone-900 tracking-tight">Our Core Values</h2>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="value-card bg-white border border-stone-100 rounded-2xl p-8 space-y-4">
+                    <div class="w-11 h-11 rounded-full bg-amber-50 border border-amber-100 flex items-center justify-center">
+                        <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+                    </div>
+                    <h4 class="font-serif text-lg text-stone-900">Authenticity</h4>
+                    <p class="text-sm text-stone-500 font-light leading-relaxed">We go where the guidebooks don't. Every recommendation is earned through personal experience and local trust.</p>
+                </div>
+                <div class="value-card bg-white border border-stone-100 rounded-2xl p-8 space-y-4">
+                    <div class="w-11 h-11 rounded-full bg-amber-50 border border-amber-100 flex items-center justify-center">
+                        <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/></svg>
+                    </div>
+                    <h4 class="font-serif text-lg text-stone-900">Excellence</h4>
+                    <p class="text-sm text-stone-500 font-light leading-relaxed">From the first email to the farewell transfer, every touchpoint is considered and executed with care.</p>
+                </div>
+                <div class="value-card bg-white border border-stone-100 rounded-2xl p-8 space-y-4">
+                    <div class="w-11 h-11 rounded-full bg-green-50 border border-green-100 flex items-center justify-center">
+                        <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3c4.5 3.5 7.5 8.5 7.5 13.5H4.5C4.5 11.5 7.5 6.5 12 3z"/></svg>
+                    </div>
+                    <h4 class="font-serif text-lg text-stone-900">Sustainability</h4>
+                    <p class="text-sm text-stone-500 font-light leading-relaxed">We partner with conservation projects and eco-lodges, ensuring your journey gives back to the landscapes you love.</p>
+                </div>
+                <div class="value-card bg-white border border-stone-100 rounded-2xl p-8 space-y-4">
+                    <div class="w-11 h-11 rounded-full bg-rose-50 border border-rose-100 flex items-center justify-center">
+                        <svg class="w-5 h-5 text-rose-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>
+                    </div>
+                    <h4 class="font-serif text-lg text-stone-900">Empathy</h4>
+                    <p class="text-sm text-stone-500 font-light leading-relaxed">We listen deeply. Your journey is shaped around your rhythm, your interests, and what genuinely moves you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FOUNDERS ── -->
+    <section class="py-28 px-6 bg-white border-t border-stone-200">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20 space-y-3">
+                <span class="text-[11px] font-semibold uppercase tracking-[0.25em] text-amber-600">The People Behind TravelSeek</span>
+                <h2 class="text-3xl md:text-5xl text-stone-900 tracking-tight">Meet the Founders</h2>
+                <p class="text-stone-500 font-light max-w-lg mx-auto text-sm leading-relaxed">Two friends united by a shared love for this extraordinary island and a desire to share it the right way.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 lg:gap-20">
+                <div class="founder-card group">
+                    <div class="founder-img-wrap aspect-[4/5] mb-8 shadow-xl relative">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1400&auto=format&fit=crop&facepad=3&faces=1" alt="Rohan Fernando, Co-Founder" class="w-full h-full object-cover object-top">
+                        <div class="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="absolute bottom-0 left-0 w-full h-1 bg-amber-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                    </div>
+                    <div class="space-y-5">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <h3 class="text-2xl font-serif text-stone-900">Rohan Fernando</h3>
+                                <p class="text-amber-600 text-xs font-medium uppercase tracking-widest mt-1">Co-Founder &amp; Chief Experience Officer</p>
+                            </div>
+                        </div>
+                        <p class="text-stone-600 font-light leading-relaxed text-sm">With over 15 years in luxury hospitality across Asia, Rohan brings an encyclopaedic knowledge of Sri Lanka's hidden corners — from the mist-wrapped estates of Nuwara Eliya to the ancient temples of the Cultural Triangle.</p>
+                        <div class="border-l-2 border-amber-400 pl-5 mt-6">
+                            <p class="text-stone-700 font-serif text-base italic leading-relaxed">"Sri Lanka is not one island. It's a thousand different islands depending on how you choose to arrive."</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-3 py-1 bg-stone-100 text-stone-600 text-[10px] font-medium uppercase tracking-wide rounded-full">Luxury Hospitality</span>
+                            <span class="px-3 py-1 bg-stone-100 text-stone-600 text-[10px] font-medium uppercase tracking-wide rounded-full">Wildlife Expert</span>
+                            <span class="px-3 py-1 bg-stone-100 text-stone-600 text-[10px] font-medium uppercase tracking-wide rounded-full">Tea Country</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="founder-card group">
+                    <div class="founder-img-wrap aspect-[4/5] mb-8 shadow-xl relative">
+                        <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=1400&auto=format&fit=crop&facepad=3&faces=1" alt="Priya Mendis, Co-Founder" class="w-full h-full object-cover object-top">
+                        <div class="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="absolute bottom-0 left-0 w-full h-1 bg-amber-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                    </div>
+                    <div class="space-y-5">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <h3 class="text-2xl font-serif text-stone-900">Priya Mendis</h3>
+                                <p class="text-amber-600 text-xs font-medium uppercase tracking-widest mt-1">Co-Founder &amp; Creative Director</p>
+                            </div>
+                        </div>
+                        <p class="text-stone-600 font-light leading-relaxed text-sm">A former travel photographer and visual storyteller, Priya spent a decade documenting communities across Southeast Asia before co-founding TravelSeek. Her lens trained her to see what most visitors miss — the quiet details, the unrepeatable moments, the soul of a place.</p>
+                        <div class="border-l-2 border-amber-400 pl-5 mt-6">
+                            <p class="text-stone-700 font-serif text-base italic leading-relaxed">"A great trip isn't about where you go. It's about what you notice when you get there."</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-3 py-1 bg-stone-100 text-stone-600 text-[10px] font-medium uppercase tracking-wide rounded-full">Photography</span>
+                            <span class="px-3 py-1 bg-stone-100 text-stone-600 text-[10px] font-medium uppercase tracking-wide rounded-full">Cultural Experiences</span>
+                            <span class="px-3 py-1 bg-stone-100 text-stone-600 text-[10px] font-medium uppercase tracking-wide rounded-full">Wellness Travel</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── TIMELINE ── -->
+    <section class="py-24 px-6 bg-stone-900 text-white">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16 space-y-3">
+                <span class="text-[11px] font-semibold uppercase tracking-[0.25em] text-amber-400">Our Journey</span>
+                <h2 class="text-3xl md:text-4xl tracking-tight">Eight Years of Milestones</h2>
+            </div>
+            <div class="relative">
+                <div class="absolute left-1/2 top-0 bottom-0 w-px bg-stone-700 -translate-x-1/2 hidden md:block"></div>
+                <div class="space-y-12">
+                    <div class="grid md:grid-cols-2 gap-6 md:gap-16 items-center">
+                        <div class="md:text-right space-y-2">
+                            <p class="text-amber-400 text-xs uppercase tracking-widest font-medium">2016</p>
+                            <h4 class="text-xl font-serif">TravelSeek is Founded</h4>
+                            <p class="text-stone-400 text-sm font-light leading-relaxed">Rohan and Priya launch TravelSeek from a small office in Colombo with their first two bespoke journeys and a shared dream.</p>
+                        </div>
+                        <div class="hidden md:flex items-center justify-start pl-10 relative">
+                            <div class="absolute -left-[5px] w-3 h-3 rounded-full bg-amber-500 ring-4 ring-stone-900 dot-pulse"></div>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6 md:gap-16 items-center">
+                        <div class="hidden md:flex items-center justify-end pr-10 relative">
+                            <div class="absolute -right-[5px] w-3 h-3 rounded-full bg-stone-600 ring-4 ring-stone-900"></div>
+                        </div>
+                        <div class="space-y-2">
+                            <p class="text-amber-400 text-xs uppercase tracking-widest font-medium">2018</p>
+                            <h4 class="text-xl font-serif">100 Journeys Milestone</h4>
+                            <p class="text-stone-400 text-sm font-light leading-relaxed">We celebrate our 100th curated journey and open our team to include a network of specialist local guides across all provinces.</p>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6 md:gap-16 items-center">
+                        <div class="md:text-right space-y-2">
+                            <p class="text-amber-400 text-xs uppercase tracking-widest font-medium">2020</p>
+                            <h4 class="text-xl font-serif">Conservation Fund</h4>
+                            <p class="text-stone-400 text-sm font-light leading-relaxed">We launch our conservation initiative, pledging 3% of every journey's revenue to wildlife and marine preservation across Sri Lanka.</p>
+                        </div>
+                        <div class="hidden md:flex items-center justify-start pl-10 relative">
+                            <div class="absolute -left-[5px] w-3 h-3 rounded-full bg-stone-600 ring-4 ring-stone-900"></div>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6 md:gap-16 items-center">
+                        <div class="hidden md:flex items-center justify-end pr-10 relative">
+                            <div class="absolute -right-[5px] w-3 h-3 rounded-full bg-stone-600 ring-4 ring-stone-900"></div>
+                        </div>
+                        <div class="space-y-2">
+                            <p class="text-amber-400 text-xs uppercase tracking-widest font-medium">2022</p>
+                            <h4 class="text-xl font-serif">Condé Nast Recognition</h4>
+                            <p class="text-stone-400 text-sm font-light leading-relaxed">TravelSeek is named among Condé Nast Traveller's top boutique operators in South Asia.</p>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6 md:gap-16 items-center">
+                        <div class="md:text-right space-y-2">
+                            <p class="text-amber-400 text-xs uppercase tracking-widest font-medium">2024</p>
+                            <h4 class="text-xl font-serif">800+ Journeys &amp; Counting</h4>
+                            <p class="text-stone-400 text-sm font-light leading-relaxed">With travellers from over 42 countries and a 9.8/10 guest rating, we look ahead to the next chapter — and the next horizon.</p>
+                        </div>
+                        <div class="hidden md:flex items-center justify-start pl-10 relative">
+                            <div class="absolute -left-[5px] w-3 h-3 rounded-full bg-amber-500 ring-4 ring-stone-900"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── CTA ── -->
+    <section class="py-24 px-6 bg-stone-50 border-t border-stone-200">
+        <div class="max-w-3xl mx-auto text-center space-y-7">
+            <span class="text-[11px] font-semibold uppercase tracking-[0.25em] text-amber-600">Ready to Begin?</span>
+            <h2 class="text-3xl md:text-5xl text-stone-900 font-serif tracking-tight leading-snug">
+                Your story in Sri Lanka<br>
+                <span class="italic font-light text-stone-400">is waiting to be written.</span>
+            </h2>
+            <p class="text-stone-500 font-light leading-relaxed">Tell us what moves you and we'll shape the rest.</p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-5 pt-4">
+                <a href="contact.html" class="flex items-center gap-2.5 bg-amber-500 hover:bg-amber-400 text-stone-900 text-[11px] font-medium uppercase tracking-widest rounded-full px-9 py-4 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-amber-500/30">
+                    Let's Talk Travel
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <a href="packages.html" class="text-stone-900 text-[11px] font-light uppercase tracking-widest ul-link">Explore Our Journeys</a>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- ── FOOTER ── -->
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-stone-200 pt-20 pb-10 px-6 mt-auto">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+                <div class="md:col-span-1 space-y-6">
+                    <a href="home.html" data-logo="dark"></a>
+                    <p class="text-stone-500 text-xs font-light leading-relaxed max-w-xs">Crafting authentic, luxury travel experiences in Sri Lanka and beyond. We invite you to see the world differently.</p>
+                </div>
+                <div class="md:col-span-2 grid grid-cols-2 sm:grid-cols-3 gap-8">
+                    <div class="space-y-4">
+                        <h5 class="text-xs font-semibold uppercase tracking-widest text-stone-900">Discover</h5>
+                        <ul class="space-y-3 text-sm text-stone-500 font-light">
+                            <li><a href="destinations.html" class="hover:text-stone-900 transition-colors">Destinations</a></li>
+                            <li><a href="packages.html" class="hover:text-stone-900 transition-colors">Experiences</a></li>
+                            <li><a href="#" class="hover:text-stone-900 transition-colors">Villas &amp; Hotels</a></li>
+                        </ul>
+                    </div>
+                    <div class="space-y-4">
+                        <h5 class="text-xs font-semibold uppercase tracking-widest text-stone-900">Company</h5>
+                        <ul class="space-y-3 text-sm text-stone-500 font-light">
+                            <li><a href="about.html" class="hover:text-stone-900 transition-colors">About Us</a></li>
+                            <li><a href="#" class="hover:text-stone-900 transition-colors">Sustainability</a></li>
+                            <li><a href="#" class="hover:text-stone-900 transition-colors">Press</a></li>
+                        </ul>
+                    </div>
+                    <div class="space-y-4">
+                        <h5 class="text-xs font-semibold uppercase tracking-widest text-stone-900">Support</h5>
+                        <ul class="space-y-3 text-sm text-stone-500 font-light">
+                            <li><a href="contact.html" class="hover:text-stone-900 transition-colors">Contact</a></li>
+                            <li><a href="#" class="hover:text-stone-900 transition-colors">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="md:col-span-1 space-y-4">
+                    <h5 class="text-xs font-semibold uppercase tracking-widest text-stone-900">Newsletter</h5>
+                    <div class="flex flex-col gap-2">
+                        <input type="email" placeholder="Email address" class="bg-stone-50 border border-stone-200 text-stone-900 text-sm rounded-lg px-4 py-3 focus:outline-none placeholder:text-stone-400">
+                        <button type="button" class="bg-stone-900 text-white text-sm font-medium px-4 py-3 rounded-lg hover:bg-stone-800 transition-colors">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-stone-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-[10px] text-stone-400 uppercase tracking-widest">&copy; 2025 TravelSeek. All rights reserved.</p>
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                    <span class="text-xs text-stone-500 font-medium">Systems Operational</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+<script>
+    // ── Scroll reveal ──
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.01, rootMargin: '0px 0px -10px 0px' });
+    revealEls.forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight) {
+            el.classList.add('visible');
+        } else {
+            observer.observe(el);
+        }
+    });
+
+    // ── Nav scroll: colour switch ──
+    const nav   = document.getElementById('main-nav');
+    const links = document.getElementById('nav-links');
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY > 70;
+        nav.classList.toggle('nav-solid', scrolled);
+        links.querySelectorAll('a').forEach(a => {
+            a.classList.toggle('text-white/70',   !scrolled);
+            a.classList.toggle('hover:text-white', !scrolled);
+            a.classList.toggle('text-stone-600',   scrolled);
+            a.classList.toggle('hover:text-stone-900', scrolled);
+        });
+    });
+</script>
+
+<!-- ✅ Logo module — injects SVG into [data-logo] elements -->
+
+
+<script>
+(function () {
+  /* ─── Init Lucide ─── */
+  if (typeof lucide !== 'undefined') lucide.createIcons({ attrs: { strokeWidth: 1.5 } });
+
+  /* ─── Active link detection ─── */
+  const page  = document.getElementById('main-nav')?.dataset.page || '';
+  document.querySelectorAll('[data-nav]').forEach(a => {
+    if (a.dataset.nav === page || (page === 'blog-post' && a.dataset.nav === 'blog')) {
+      a.classList.add('ts-navlink--active');
+    }
+  });
+
+  /* ─── Desktop nav: transparent → solid on scroll ─── */
+  const nav  = document.getElementById('main-nav');
+  if (nav) {
+    const heroPx = () => {
+      const h = document.querySelector('[data-hero]') || document.querySelector('header.ts-hero');
+      return h ? h.offsetHeight * 0.72 : 90;
+    };
+    const tick = () => nav.classList.toggle('ts-nav--scrolled', window.scrollY > heroPx());
+    window.addEventListener('scroll', tick, { passive: true });
+    tick();
+  }
+
+  /* ─── Mobile sidebar ─── */
+  const btn     = document.getElementById('ts-menu-btn');
+  const closeBtn= document.getElementById('ts-close-btn');
+  const sidebar = document.getElementById('ts-sidebar');
+  const overlay = document.getElementById('ts-overlay');
+  if (!btn || !sidebar) return;
+
+  function openSidebar() {
+    sidebar.classList.add('ts-sidebar--open');
+    overlay.classList.add('ts-overlay--open');
+    btn.classList.add('ts-hamburger--open');
+    btn.setAttribute('aria-expanded', 'true');
+    sidebar.setAttribute('aria-hidden', 'false');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    /* stagger links */
+    sidebar.querySelectorAll('.ts-mob-link').forEach((el, i) => {
+      el.style.transitionDelay = (i * 55 + 80) + 'ms';
+      el.classList.add('ts-mob-link--visible');
+    });
+    /* stagger footer */
+    sidebar.querySelectorAll('.ts-sidebar-foot > *').forEach((el, i) => {
+      el.style.transitionDelay = (350 + i * 60) + 'ms';
+      el.classList.add('ts-mob-link--visible');
+    });
+  }
+
+  function closeSidebar() {
+    sidebar.querySelectorAll('.ts-mob-link, .ts-sidebar-foot > *').forEach(el => {
+      el.style.transitionDelay = '0ms';
+      el.classList.remove('ts-mob-link--visible');
+    });
+    sidebar.classList.remove('ts-sidebar--open');
+    overlay.classList.remove('ts-overlay--open');
+    btn.classList.remove('ts-hamburger--open');
+    btn.setAttribute('aria-expanded', 'false');
+    sidebar.setAttribute('aria-hidden', 'true');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  btn.addEventListener('click', openSidebar);
+  closeBtn?.addEventListener('click', closeSidebar);
+  overlay.addEventListener('click', closeSidebar);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
+  sidebar.querySelectorAll('a').forEach(a => a.addEventListener('click', closeSidebar));
+})();
+</script>
+<script src="travelseek-logo.js"></script>
+
+</body>
+</html>

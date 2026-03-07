@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelSeek | Destination Sri Lanka</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-stone-50 text-stone-800 antialiased flex flex-col min-h-screen">
+<!-- ══ TOPNAV ══════════════════════════════════════════════ -->
+<nav id="main-nav" class="ts-nav z-50 py-7 px-6 md:px-10" data-page="destinations">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="home.html" class="ts-logo-wrap hover:opacity-75 transition-opacity flex-shrink-0" data-logo aria-label="TravelSeek Home"></a>
+
+    <!-- Desktop links -->
+    <div class="hidden md:flex items-center gap-9 text-[13px] tracking-wide font-light">
+      <a href="home.html"         data-nav="home"        class="ts-navlink">Home</a>
+      <a href="about.html"        data-nav="about"       class="ts-navlink">About</a>
+      <a href="destinations.html" data-nav="destinations" class="ts-navlink">Destinations</a>
+      <a href="packages.html"     data-nav="packages"    class="ts-navlink">Experiences</a>
+      <a href="blog.html"         data-nav="blog"        class="ts-navlink">Journal</a>
+      <a href="gallery.html"      data-nav="gallery"     class="ts-navlink">Gallery</a>
+    </div>
+
+    <!-- Right side -->
+    <div class="flex items-center gap-3">
+      <a href="contact.html"
+         class="hidden md:flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-stone-900 text-[11px] font-medium uppercase tracking-[0.15em] rounded-full px-5 py-3 transition-all duration-300 shadow-lg hover:shadow-amber-500/40 hover:scale-105 whitespace-nowrap">
+        Let's Talk Travel
+        <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+      </a>
+      <!-- Hamburger -->
+      <button id="ts-menu-btn" class="md:hidden ts-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="ts-sidebar">
+        <span class="ts-ham-bar ts-ham-top"></span>
+        <span class="ts-ham-bar ts-ham-mid"></span>
+        <span class="ts-ham-bar ts-ham-bot"></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ MOBILE SIDEBAR ═══════════════════════════════════════ -->
+<div id="ts-overlay" class="ts-overlay" aria-hidden="true"></div>
+
+<aside id="ts-sidebar" class="ts-sidebar" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="ts-sidebar-inner">
+
+    <!-- Sidebar Header -->
+    <div class="ts-sidebar-head">
+      <a href="home.html" class="ts-sidebar-logo" data-logo="dark" aria-label="TravelSeek Home"></a>
+      <button id="ts-close-btn" class="ts-close-btn" aria-label="Close menu">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <!-- Sidebar Links -->
+    <nav class="ts-sidebar-nav" aria-label="Mobile navigation">
+      <a href="home.html"         data-nav="home"         class="ts-mob-link" style="--i:0">
+        <span class="ts-mob-num">01</span>
+        <span class="ts-mob-label">Home</span>
+        <i data-lucide="arrow-right" class="ts-mob-arrow w-4 h-4"></i>
+      </a>
+      <a href="about.html"        data-nav="about"        class="ts-mob-link" style="--i:1">
+        <span class="ts-mob-num">02</span>
+        <span class="ts-mob-label">About</span>
+        <i data-lucide="arrow-right" class="ts-mob-arrow w-4 h-4"></i>
+      </a>
+      <a href="destinations.html" data-nav="destinations" class="ts-mob-link" style="--i:2">
+        <span class="ts-mob-num">03</span>
+        <span class="ts-mob-label">Destinations</span>
+        <i data-lucide="arrow-right" class="ts-mob-arrow w-4 h-4"></i>
+      </a>
+      <a href="packages.html"     data-nav="packages"     class="ts-mob-link" style="--i:3">
+        <span class="ts-mob-num">04</span>
+        <span class="ts-mob-label">Experiences</span>
+        <i data-lucide="arrow-right" class="ts-mob-arrow w-4 h-4"></i>
+      </a>
+      <a href="blog.html"         data-nav="blog"         class="ts-mob-link" style="--i:4">
+        <span class="ts-mob-num">05</span>
+        <span class="ts-mob-label">Journal</span>
+        <i data-lucide="arrow-right" class="ts-mob-arrow w-4 h-4"></i>
+      </a>
+      <a href="gallery.html"      data-nav="gallery"      class="ts-mob-link" style="--i:5">
+        <span class="ts-mob-num">06</span>
+        <span class="ts-mob-label">Gallery</span>
+        <i data-lucide="arrow-right" class="ts-mob-arrow w-4 h-4"></i>
+      </a>
+    </nav>
+
+    <!-- Sidebar Footer -->
+    <div class="ts-sidebar-foot">
+      <a href="contact.html" class="ts-mob-cta">
+        Let's Talk Travel
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+      <p class="ts-mob-tagline">Sri Lanka &amp; Beyond</p>
+    </div>
+  </div>
+</aside>
+<!-- ══════════════════════════════════════════════════════════ -->
+
+<main class="flex-grow page-fade">
+        <!-- HERO: DESTINATIONS -->
+        <header class="relative h-[88vh] min-h-[580px] overflow-hidden flex flex-col" data-hero>
+
+            <!-- BG Photo -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1607143456645-1fce62071f15?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                     alt="Sigiriya rock fortress aerial view, Sri Lanka"
+                     class="hero-img w-full h-full object-cover object-center">
+                <!-- Dark base + top vignette + bottom gradient -->
+                <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(10,8,6,0.72) 0%,rgba(10,8,6,0.20) 40%,rgba(10,8,6,0.82) 100%);"></div>
+                <div class="absolute inset-0" style="background:radial-gradient(ellipse at 50% 30%,transparent 30%,rgba(10,8,6,0.45) 100%);"></div>
+            </div>
+
+            <!-- Oversized page number watermark -->
+            <div class="absolute inset-0 flex items-center justify-center z-10 select-none pointer-events-none">
+                <span style="font-family:'Playfair Display',serif;font-size:clamp(16rem,32vw,30rem);line-height:1;color:rgba(255,255,255,0.03);font-weight:500;letter-spacing:-0.05em;">05</span>
+            </div>
+
+            <!-- Top-left chapter label -->
+            <div class="relative z-20 pt-28 px-8 md:px-14 lg:px-20 flex items-center gap-3">
+                <div class="w-6 h-px bg-amber-400/60"></div>
+                <span class="text-amber-400/70 text-[9px] font-medium uppercase tracking-[0.38em]">Explore Sri Lanka</span>
+            </div>
+
+            <!-- Centered main content -->
+            <div class="relative z-20 flex-1 flex flex-col items-center justify-center text-center px-6">
+                <h1 class="fu2 font-serif font-normal tracking-tight leading-[1.0] text-white mb-6"
+                    style="font-size:clamp(3.2rem,7.5vw,6.4rem);">
+                    Where Will<br>
+                    <em class="font-light italic" style="color:rgba(237,174,73,0.90);">You Wander?</em>
+                </h1>
+                <p class="fu3 font-light text-center max-w-sm leading-relaxed mb-8" style="color:rgba(255,255,255,0.45);font-size:0.9rem;">
+                    Five iconic Sri Lankan destinations — from ancient rock fortresses to whale-watching shores.
+                </p>
+                <!-- Scroll anchor -->
+                <a href="#destinations-grid" class="fu4 flex items-center gap-2 text-white/40 hover:text-white/75 transition-colors text-[10px] uppercase tracking-widest group">
+                    <span>Explore Below</span>
+                    <i data-lucide="arrow-down" class="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform"></i>
+                </a>
+            </div>
+
+            <!-- Bottom destination chip strip -->
+            <div class="relative z-20 w-full" style="border-top:1px solid rgba(255,255,255,0.07);">
+                <div class="px-8 md:px-14 lg:px-20 py-5 flex items-center gap-3 overflow-x-auto" style="scrollbar-width:none;">
+                    <span class="text-white/20 text-[9px] uppercase tracking-widest shrink-0 mr-2">Destinations</span>
+                    <a href="#sigiriya" class="shrink-0 px-4 py-1.5 rounded-full text-[10px] font-medium uppercase tracking-widest text-white/55 hover:text-white border border-white/12 hover:border-white/35 transition-all duration-300">Sigiriya</a>
+                    <a href="#ella" class="shrink-0 px-4 py-1.5 rounded-full text-[10px] font-medium uppercase tracking-widest text-white/55 hover:text-white border border-white/12 hover:border-white/35 transition-all duration-300">Ella &amp; Highlands</a>
+                    <a href="#galle" class="shrink-0 px-4 py-1.5 rounded-full text-[10px] font-medium uppercase tracking-widest text-white/55 hover:text-white border border-white/12 hover:border-white/35 transition-all duration-300">Galle &amp; South Coast</a>
+                    <a href="#yala" class="shrink-0 px-4 py-1.5 rounded-full text-[10px] font-medium uppercase tracking-widest text-white/55 hover:text-white border border-white/12 hover:border-white/35 transition-all duration-300">Yala</a>
+                    <a href="#trinco" class="shrink-0 px-4 py-1.5 rounded-full text-[10px] font-medium uppercase tracking-widest text-white/55 hover:text-white border border-white/12 hover:border-white/35 transition-all duration-300">Trincomalee</a>
+                    <div class="ml-auto shrink-0 hidden md:block">
+                        <span class="text-white/20 text-[9px] uppercase tracking-widest">7.8731° N, 80.6517° E</span>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+
+        <!-- Destinations Grid anchor -->
+        <div id="destinations-grid"></div>
+
+        <!-- HERO: DESTINATIONS (accordion below) -->
+        <section class="relative min-h-[72vh] overflow-hidden flex flex-col" style="background:#f8f6f3;">
+
+            <!-- Section header -->
+            <div class="relative z-10 px-6 md:px-16 pt-16 pb-10 max-w-7xl mx-auto w-full reveal">
+                <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+                    <h2 class="text-4xl md:text-[2.8rem] text-stone-900 font-serif tracking-tight leading-none">
+                        Choose Your<br><em class="text-amber-600 not-italic">Destination</em>
+                    </h2>
+                    <p class="text-stone-400 font-light text-sm max-w-xs leading-relaxed">
+                        Hover each destination to reveal its story.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Accordion strips -->
+            <div class="acc-row flex flex-1 min-h-[58vh] px-6 md:px-16 pb-16 gap-3 max-w-7xl mx-auto w-full">
+
+                <!-- 1: Sigiriya -->
+                <div class="acc-strip" style="background:url('https://picsum.photos/seed/sigiriya-rock-ancient/800/1200') center/cover no-repeat;">
+                    <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,0.78) 0%,transparent 55%);"></div>
+                    <div class="strip-vert absolute inset-0 flex items-center justify-center">
+                        <span class="text-white/80 text-xs uppercase tracking-widest">Sigiriya</span>
+                    </div>
+                    <div class="strip-label absolute bottom-0 left-0 right-0 p-6">
+                        <span class="text-amber-400 text-[10px] uppercase tracking-widest">Cultural Triangle</span>
+                        <h3 class="text-white text-2xl font-serif mt-1 mb-2 leading-tight">Sigiriya</h3>
+                        <p class="text-stone-300 text-xs leading-relaxed font-light mb-4 max-w-[220px]">
+                            An ancient palace atop a 200 m volcanic column, crowned with 5th-century frescoes and mirror walls.
+                        </p>
+                        <button class="text-white text-[10px] uppercase tracking-widest flex items-center gap-2 hover:text-amber-400 transition-colors">
+                            Explore <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2: Ella -->
+                <div class="acc-strip" style="background:url('https://picsum.photos/seed/ella-hills-teafields/800/1200') center/cover no-repeat;">
+                    <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,0.78) 0%,transparent 55%);"></div>
+                    <div class="strip-vert absolute inset-0 flex items-center justify-center">
+                        <span class="text-white/80 text-xs uppercase tracking-widest">Ella</span>
+                    </div>
+                    <div class="strip-label absolute bottom-0 left-0 right-0 p-6">
+                        <span class="text-amber-400 text-[10px] uppercase tracking-widest">Highlands</span>
+                        <h3 class="text-white text-2xl font-serif mt-1 mb-2 leading-tight">Ella</h3>
+                        <p class="text-stone-300 text-xs leading-relaxed font-light mb-4 max-w-[220px]">
+                            Rolling tea estates, the famous nine-arch bridge, and misty valleys at 1,000 m elevation.
+                        </p>
+                        <button class="text-white text-[10px] uppercase tracking-widest flex items-center gap-2 hover:text-amber-400 transition-colors">
+                            Explore <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3: Mirissa -->
+                <div class="acc-strip" style="background:url('https://picsum.photos/seed/mirissa-shore-palms/800/1200') center/cover no-repeat;">
+                    <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,0.78) 0%,transparent 55%);"></div>
+                    <div class="strip-vert absolute inset-0 flex items-center justify-center">
+                        <span class="text-white/80 text-xs uppercase tracking-widest">Mirissa</span>
+                    </div>
+                    <div class="strip-label absolute bottom-0 left-0 right-0 p-6">
+                        <span class="text-amber-400 text-[10px] uppercase tracking-widest">Southern Coast</span>
+                        <h3 class="text-white text-2xl font-serif mt-1 mb-2 leading-tight">Mirissa</h3>
+                        <p class="text-stone-300 text-xs leading-relaxed font-light mb-4 max-w-[220px]">
+                            Blue whale sightings from November to April, palm-curved beaches, and slow sunset evenings.
+                        </p>
+                        <button class="text-white text-[10px] uppercase tracking-widest flex items-center gap-2 hover:text-amber-400 transition-colors">
+                            Explore <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 4: Yala -->
+                <div class="acc-strip" style="background:url('https://picsum.photos/seed/yala-wildlife-safari/800/1200') center/cover no-repeat;">
+                    <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,0.78) 0%,transparent 55%);"></div>
+                    <div class="strip-vert absolute inset-0 flex items-center justify-center">
+                        <span class="text-white/80 text-xs uppercase tracking-widest">Yala</span>
+                    </div>
+                    <div class="strip-label absolute bottom-0 left-0 right-0 p-6">
+                        <span class="text-amber-400 text-[10px] uppercase tracking-widest">Wildlife</span>
+                        <h3 class="text-white text-2xl font-serif mt-1 mb-2 leading-tight">Yala</h3>
+                        <p class="text-stone-300 text-xs leading-relaxed font-light mb-4 max-w-[220px]">
+                            World's highest density of wild leopards, plus elephants, crocodiles, and painted storks.
+                        </p>
+                        <button class="text-white text-[10px] uppercase tracking-widest flex items-center gap-2 hover:text-amber-400 transition-colors">
+                            Explore <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 5: Galle -->
+                <div class="acc-strip" style="background:url('https://picsum.photos/seed/galle-fort-heritage/800/1200') center/cover no-repeat;">
+                    <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(0,0,0,0.78) 0%,transparent 55%);"></div>
+                    <div class="strip-vert absolute inset-0 flex items-center justify-center">
+                        <span class="text-white/80 text-xs uppercase tracking-widest">Galle</span>
+                    </div>
+                    <div class="strip-label absolute bottom-0 left-0 right-0 p-6">
+                        <span class="text-amber-400 text-[10px] uppercase tracking-widest">Heritage City</span>
+                        <h3 class="text-white text-2xl font-serif mt-1 mb-2 leading-tight">Galle</h3>
+                        <p class="text-stone-300 text-xs leading-relaxed font-light mb-4 max-w-[220px]">
+                            A UNESCO fort where Dutch colonial ramparts meet boutique hotels and artisan street life.
+                        </p>
+                        <button class="text-white text-[10px] uppercase tracking-widest flex items-center gap-2 hover:text-amber-400 transition-colors">
+                            Explore <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Filters -->
+        <div class="py-12 px-6 bg-stone-50 border-b border-stone-200">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-6 items-center justify-between">
+                <div class="flex gap-4 overflow-x-auto hide-scrollbar w-full md:w-auto">
+                    <button class="px-4 py-2 rounded-full bg-stone-900 text-white text-xs font-medium whitespace-nowrap">All Regions</button>
+                    <button class="px-4 py-2 rounded-full border border-stone-200 text-stone-600 hover:border-stone-900 hover:text-stone-900 transition-colors text-xs font-medium whitespace-nowrap">Central Highlands</button>
+                    <button class="px-4 py-2 rounded-full border border-stone-200 text-stone-600 hover:border-stone-900 hover:text-stone-900 transition-colors text-xs font-medium whitespace-nowrap">Southern Coast</button>
+                    <button class="px-4 py-2 rounded-full border border-stone-200 text-stone-600 hover:border-stone-900 hover:text-stone-900 transition-colors text-xs font-medium whitespace-nowrap">Cultural Triangle</button>
+                </div>
+                <div class="flex items-center gap-2 text-stone-500 text-xs">
+                    <span>Showing 6 destinations</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Destination Grid -->
+        <section class="py-16 px-6">
+            <div class="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Ella -->
+                <a href="destination-detail.html" class="group cursor-pointer">
+                    <div class="aspect-[4/3] rounded-xl overflow-hidden mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1582650625119-3a31f8fa2699?q=80&w=2536&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Ella">
+                        <div class="absolute inset-0 bg-stone-900/10 group-hover:bg-stone-900/0 transition-all"></div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-serif text-stone-900 mb-1 group-hover:text-stone-600 transition-colors">Ella &amp; The Hills</h3>
+                            <p class="text-xs text-stone-500 uppercase tracking-wider">Central Province</p>
+                        </div>
+                        <svg class="w-5 h-5 text-stone-300 group-hover:text-stone-900 transition-colors mt-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/>
+                        </svg>
+                    </div>
+                </a>
+
+                <!-- Galle -->
+                <a href="destination-detail.html" class="group cursor-pointer">
+                    <div class="aspect-[4/3] rounded-xl overflow-hidden mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=2679&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Galle">
+                        <div class="absolute inset-0 bg-stone-900/10 group-hover:bg-stone-900/0 transition-all"></div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-serif text-stone-900 mb-1 group-hover:text-stone-600 transition-colors">Galle Fort</h3>
+                            <p class="text-xs text-stone-500 uppercase tracking-wider">Southern Province</p>
+                        </div>
+                        <svg class="w-5 h-5 text-stone-300 group-hover:text-stone-900 transition-colors mt-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/>
+                        </svg>
+                    </div>
+                </a>
+
+                <!-- Sigiriya -->
+                <a href="destination-detail.html" class="group cursor-pointer">
+                    <div class="aspect-[4/3] rounded-xl overflow-hidden mb-4 relative">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5bab247f-35d9-400d-a82b-fd87cfe913d2_1600w.webp" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Sigiriya">
+                        <div class="absolute inset-0 bg-stone-900/10 group-hover:bg-stone-900/0 transition-all"></div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-serif text-stone-900 mb-1 group-hover:text-stone-600 transition-colors">Sigiriya</h3>
+                            <p class="text-xs text-stone-500 uppercase tracking-wider">Cultural Triangle</p>
+                        </div>
+                        <svg class="w-5 h-5 text-stone-300 group-hover:text-stone-900 transition-colors mt-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/>
+                        </svg>
+                    </div>
+                </a>
+
+                <!-- Trincomalee -->
+                <a href="destination-detail.html" class="group cursor-pointer">
+                    <div class="aspect-[4/3] rounded-xl overflow-hidden mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?q=80&w=2670&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Trincomalee">
+                        <div class="absolute inset-0 bg-stone-900/10 group-hover:bg-stone-900/0 transition-all"></div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-serif text-stone-900 mb-1 group-hover:text-stone-600 transition-colors">Trincomalee</h3>
+                            <p class="text-xs text-stone-500 uppercase tracking-wider">Eastern Province</p>
+                        </div>
+                        <svg class="w-5 h-5 text-stone-300 group-hover:text-stone-900 transition-colors mt-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/>
+                        </svg>
+                    </div>
+                </a>
+
+                <!-- Kandy -->
+                <a href="destination-detail.html" class="group cursor-pointer">
+                    <div class="aspect-[4/3] rounded-xl overflow-hidden mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1620619767323-b95a89183081?q=80&w=2670&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Kandy">
+                        <div class="absolute inset-0 bg-stone-900/10 group-hover:bg-stone-900/0 transition-all"></div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-serif text-stone-900 mb-1 group-hover:text-stone-600 transition-colors">Kandy</h3>
+                            <p class="text-xs text-stone-500 uppercase tracking-wider">Central Province</p>
+                        </div>
+                        <svg class="w-5 h-5 text-stone-300 group-hover:text-stone-900 transition-colors mt-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/>
+                        </svg>
+                    </div>
+                </a>
+
+                <!-- Yala -->
+                <a href="destination-detail.html" class="group cursor-pointer">
+                    <div class="aspect-[4/3] rounded-xl overflow-hidden mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=2694&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Yala">
+                        <div class="absolute inset-0 bg-stone-900/10 group-hover:bg-stone-900/0 transition-all"></div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-serif text-stone-900 mb-1 group-hover:text-stone-600 transition-colors">Yala National Park</h3>
+                            <p class="text-xs text-stone-500 uppercase tracking-wider">Southern Province</p>
+                        </div>
+                        <svg class="w-5 h-5 text-stone-300 group-hover:text-stone-900 transition-colors mt-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/>
+                        </svg>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+    <!-- FOOTER -->
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-stone-200 pt-20 pb-10 px-6 mt-auto">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+                <div class="md:col-span-1 space-y-6">
+                    <a href="home.html" data-logo="dark"></a>
+                    <p class="text-stone-500 text-xs font-light leading-relaxed max-w-xs">Crafting authentic, luxury travel experiences in Sri Lanka and beyond. We invite you to see the world differently.</p>
+                </div>
+                <div class="md:col-span-2 grid grid-cols-2 sm:grid-cols-3 gap-8">
+                    <div class="space-y-4">
+                        <h5 class="text-xs font-semibold uppercase tracking-widest text-stone-900">Discover</h5>
+                        <ul class="space-y-3 text-sm text-stone-500 font-light">
+                            <li><a href="destinations.html" class="hover:text-stone-900 transition-colors">Destinations</a></li>
+                            <li><a href="packages.html" class="hover:text-stone-900 transition-colors">Experiences</a></li>
+                            <li><a href="#" class="hover:text-stone-900 transition-colors">Villas &amp; Hotels</a></li>
+                        </ul>
+                    </div>
+                    <div class="space-y-4">
+                        <h5 class="text-xs font-semibold uppercase tracking-widest text-stone-900">Company</h5>
+                        <ul class="space-y-3 text-sm text-stone-500 font-light">
+                            <li><a href="about.html" class="hover:text-stone-900 transition-colors">About Us</a></li>
+                            <li><a href="#" class="hover:text-stone-900 transition-colors">Sustainability</a></li>
+                            <li><a href="#" class="hover:text-stone-900 transition-colors">Press</a></li>
+                        </ul>
+                    </div>
+                    <div class="space-y-4">
+                        <h5 class="text-xs font-semibold uppercase tracking-widest text-stone-900">Support</h5>
+                        <ul class="space-y-3 text-sm text-stone-500 font-light">
+                            <li><a href="contact.html" class="hover:text-stone-900 transition-colors">Contact</a></li>
+                            <li><a href="#" class="hover:text-stone-900 transition-colors">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="md:col-span-1 space-y-4">
+                    <h5 class="text-xs font-semibold uppercase tracking-widest text-stone-900">Newsletter</h5>
+                    <div class="flex flex-col gap-2">
+                        <input type="email" placeholder="Email address" class="bg-stone-50 border border-stone-200 text-stone-900 text-sm rounded-lg px-4 py-3 focus:outline-none placeholder:text-stone-400">
+                        <button type="button" class="bg-stone-900 text-white text-sm font-medium px-4 py-3 rounded-lg hover:bg-stone-800 transition-colors">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-stone-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-[10px] text-stone-400 uppercase tracking-widest">&copy; 2025 TravelSeek. All rights reserved.</p>
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                    <span class="text-xs text-stone-500 font-medium">Systems Operational</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const revealEls = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+        }, { threshold: 0.08 });
+        revealEls.forEach(el => observer.observe(el));
+    </script>
+
+<script>
+(function () {
+  /* ─── Init Lucide ─── */
+  if (typeof lucide !== 'undefined') lucide.createIcons({ attrs: { strokeWidth: 1.5 } });
+
+  /* ─── Active link detection ─── */
+  const page  = document.getElementById('main-nav')?.dataset.page || '';
+  document.querySelectorAll('[data-nav]').forEach(a => {
+    if (a.dataset.nav === page || (page === 'blog-post' && a.dataset.nav === 'blog')) {
+      a.classList.add('ts-navlink--active');
+    }
+  });
+
+  /* ─── Desktop nav: transparent → solid on scroll ─── */
+  const nav  = document.getElementById('main-nav');
+  if (nav) {
+    const heroPx = () => {
+      const h = document.querySelector('[data-hero]') || document.querySelector('header.ts-hero');
+      return h ? h.offsetHeight * 0.72 : 90;
+    };
+    const tick = () => nav.classList.toggle('ts-nav--scrolled', window.scrollY > heroPx());
+    window.addEventListener('scroll', tick, { passive: true });
+    tick();
+  }
+
+  /* ─── Mobile sidebar ─── */
+  const btn     = document.getElementById('ts-menu-btn');
+  const closeBtn= document.getElementById('ts-close-btn');
+  const sidebar = document.getElementById('ts-sidebar');
+  const overlay = document.getElementById('ts-overlay');
+  if (!btn || !sidebar) return;
+
+  function openSidebar() {
+    sidebar.classList.add('ts-sidebar--open');
+    overlay.classList.add('ts-overlay--open');
+    btn.classList.add('ts-hamburger--open');
+    btn.setAttribute('aria-expanded', 'true');
+    sidebar.setAttribute('aria-hidden', 'false');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    /* stagger links */
+    sidebar.querySelectorAll('.ts-mob-link').forEach((el, i) => {
+      el.style.transitionDelay = (i * 55 + 80) + 'ms';
+      el.classList.add('ts-mob-link--visible');
+    });
+    /* stagger footer */
+    sidebar.querySelectorAll('.ts-sidebar-foot > *').forEach((el, i) => {
+      el.style.transitionDelay = (350 + i * 60) + 'ms';
+      el.classList.add('ts-mob-link--visible');
+    });
+  }
+
+  function closeSidebar() {
+    sidebar.querySelectorAll('.ts-mob-link, .ts-sidebar-foot > *').forEach(el => {
+      el.style.transitionDelay = '0ms';
+      el.classList.remove('ts-mob-link--visible');
+    });
+    sidebar.classList.remove('ts-sidebar--open');
+    overlay.classList.remove('ts-overlay--open');
+    btn.classList.remove('ts-hamburger--open');
+    btn.setAttribute('aria-expanded', 'false');
+    sidebar.setAttribute('aria-hidden', 'true');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  btn.addEventListener('click', openSidebar);
+  closeBtn?.addEventListener('click', closeSidebar);
+  overlay.addEventListener('click', closeSidebar);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
+  sidebar.querySelectorAll('a').forEach(a => a.addEventListener('click', closeSidebar));
+})();
+</script>
+<script src="travelseek-logo.js"></script>
+
+</body>
+</html>

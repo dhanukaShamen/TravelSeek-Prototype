@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelSeek Journal | Tracing the Shadows</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-stone-50 text-stone-800 antialiased">
+<!-- ══ TOPNAV ══════════════════════════════════════════════ -->
+<nav id="main-nav" class="ts-nav z-50 py-7 px-6 md:px-10" data-page="blog-post">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="home.html" class="ts-logo-wrap hover:opacity-75 transition-opacity flex-shrink-0" data-logo aria-label="TravelSeek Home"></a>
+
+    <!-- Desktop links -->
+    <div class="hidden md:flex items-center gap-9 text-[13px] tracking-wide font-light">
+      <a href="home.html"         data-nav="home"        class="ts-navlink">Home</a>
+      <a href="about.html"        data-nav="about"       class="ts-navlink">About</a>
+      <a href="destinations.html" data-nav="destinations" class="ts-navlink">Destinations</a>
+      <a href="packages.html"     data-nav="packages"    class="ts-navlink">Experiences</a>
+      <a href="blog.html"         data-nav="blog"        class="ts-navlink">Journal</a>
+      <a href="gallery.html"      data-nav="gallery"     class="ts-navlink">Gallery</a>
+    </div>
+
+    <!-- Right side -->
+    <div class="flex items-center gap-3">
+      <a href="contact.html"
+         class="hidden md:flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-stone-900 text-[11px] font-medium uppercase tracking-[0.15em] rounded-full px-5 py-3 transition-all duration-300 shadow-lg hover:shadow-amber-500/40 hover:scale-105 whitespace-nowrap">
+        Let's Talk Travel
+        <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+      </a>
+      <!-- Hamburger -->
+      <button id="ts-menu-btn" class="md:hidden ts-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="ts-sidebar">
+        <span class="ts-ham-bar ts-ham-top"></span>
+        <span class="ts-ham-bar ts-ham-mid"></span>
+        <span class="ts-ham-bar ts-ham-bot"></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ MOBILE SIDEBAR ═══════════════════════════════════════ -->
+<div id="ts-overlay" class="ts-overlay" aria-hidden="true"></div>
+
+<aside id="ts-sidebar" class="ts-sidebar" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="ts-sidebar-inner">
+
+    <!-- Sidebar Header -->
+    <div class="ts-sidebar-head">
+      <a href="home.html" class="ts-sidebar-logo" data-logo="dark" aria-label="TravelSeek Home"></a>
+      <button id="ts-close-btn" class="ts-close-btn" aria-label="Close menu">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <!-- Sidebar Links -->
+    <nav class="ts-sidebar-nav" aria-label="Mobile navigation">
+      <a href="home.html"         data-nav="home"         class="ts-mob-link" style="--i:0">
+        <span class="ts-mob-num">01</span>
+        <span class="ts-mob-label">Home</span>
+        <i data-lucide="arrow-right" class="ts-mob-arrow w-4 h-4"></i>
+      </a>
+      <a href="about.html"        data-nav="about"        class="ts-mob-link" style="--i:1">
+        <span class="ts-mob-num">02</span>
+        <span class="ts-mob-label">About</span>
+        <i data-lucide="arrow-right" class="ts-mob-arrow w-4 h-4"></i>
+      </a>
+      <a href="destinations.html" data-nav="destinations" class="ts-mob-link" style="--i:2">
+        <span class="ts-mob-num">03</span>
+        <span class="ts-mob-label">Destinations</span>
+        <i data-lucide="arrow-right" class="ts-mob-arrow w-4 h-4"></i>
+      </a>
+      <a href="packages.html"     data-nav="packages"     class="ts-mob-link" style="--i:3">
+        <span class="ts-mob-num">04</span>
+        <span class="ts-mob-label">Experiences</span>
+        <i data-lucide="arrow-right" class="ts-mob-arrow w-4 h-4"></i>
+      </a>
+      <a href="blog.html"         data-nav="blog"         class="ts-mob-link" style="--i:4">
+        <span class="ts-mob-num">05</span>
+        <span class="ts-mob-label">Journal</span>
+        <i data-lucide="arrow-right" class="ts-mob-arrow w-4 h-4"></i>
+      </a>
+      <a href="gallery.html"      data-nav="gallery"      class="ts-mob-link" style="--i:5">
+        <span class="ts-mob-num">06</span>
+        <span class="ts-mob-label">Gallery</span>
+        <i data-lucide="arrow-right" class="ts-mob-arrow w-4 h-4"></i>
+      </a>
+    </nav>
+
+    <!-- Sidebar Footer -->
+    <div class="ts-sidebar-foot">
+      <a href="contact.html" class="ts-mob-cta">
+        Let's Talk Travel
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+      <p class="ts-mob-tagline">Sri Lanka &amp; Beyond</p>
+    </div>
+  </div>
+</aside>
+<!-- ══════════════════════════════════════════════════════════ -->
+
+<!-- Reading progress -->
+    <div id="progress-bar"></div>
+
+    <!-- ═══════════════════════════════════════
+         NAV
+    ═══════════════════════════════════════ -->
+<main>
+
+        <!-- ═══════════════════════════════════════
+             HERO — full bleed cover image
+        ═══════════════════════════════════════ -->
+        <header class="relative h-[88vh] min-h-[560px] flex items-end overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg"
+                     alt="Sri Lankan Leopard in Yala"
+                     class="hero-img w-full h-full object-cover object-center">
+                <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/85"></div>
+                <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(100,50,10,0.18) 0%,transparent 55%)"></div>
+            </div>
+
+            <!-- Article meta + title -->
+            <div class="relative z-10 w-full pb-16 px-6 md:px-16">
+                <div class="max-w-4xl mx-auto space-y-6">
+
+                    <!-- Breadcrumb -->
+                    <div class="fu1 flex items-center gap-2 text-white/40 text-[10px] uppercase tracking-widest">
+                        <a href="blog.html" class="hover:text-white/70 transition-colors">Journal</a>
+                        <span>/</span>
+                        <span class="text-white/60">Wildlife</span>
+                    </div>
+
+                    <!-- Category + reading time -->
+                    <div class="fu2 flex items-center gap-3 flex-wrap">
+                        <span class="bg-amber-500 text-white text-[10px] font-semibold uppercase tracking-widest px-3.5 py-1.5 rounded-full">Wildlife</span>
+                        <span class="text-white/45 text-[11px] uppercase tracking-widest">8 min read</span>
+                        <span class="text-white/25 text-[11px]">·</span>
+                        <span class="text-white/45 text-[11px] uppercase tracking-widest">15 March 2024</span>
+                    </div>
+
+                    <!-- Headline -->
+                    <h1 class="fu2 text-4xl md:text-6xl lg:text-7xl text-white font-serif font-medium tracking-tight leading-[1.0]">
+                        Tracing the Shadows:<br>
+                        <span class="italic font-light text-white/80">A Quest for the<br class="hidden md:block"> Sri Lankan Leopard</span>
+                    </h1>
+
+                    <!-- Subheading -->
+                    <p class="fu3 text-white/55 text-base font-light leading-relaxed max-w-xl">
+                        In the dense scrub forests of Yala, patience is the only currency that matters. A naturalist's account of tracking the world's most elusive spotted cat.
+                    </p>
+
+                    <!-- Author strip -->
+                    <div class="fu3 flex items-center gap-4 pt-4 border-t border-white/15">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200&auto=format&fit=crop"
+                             class="w-11 h-11 rounded-full object-cover object-top ring-2 ring-white/20" alt="Rohan Fernando">
+                        <div>
+                            <p class="text-white text-sm font-medium">Rohan Fernando</p>
+                            <p class="text-white/45 text-[11px] font-light">Co-Founder · Field &amp; Wildlife Expert</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll cue -->
+            <div class="absolute bottom-7 left-1/2 -translate-x-1/2 z-10 hidden md:flex flex-col items-center gap-2">
+                <svg class="w-5 h-7 text-white/25" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 18 28">
+                    <rect x="1" y="1" width="16" height="26" rx="8"/>
+                    <circle class="dot-bounce" cx="9" cy="9" r="2.5" fill="currentColor" stroke="none"/>
+                </svg>
+            </div>
+        </header>
+
+
+        <!-- ═══════════════════════════════════════
+             ARTICLE BODY + SIDEBAR
+        ═══════════════════════════════════════ -->
+        <div class="max-w-7xl mx-auto px-6 md:px-10 py-16 lg:py-24">
+            <div class="grid lg:grid-cols-[1fr_300px] gap-16 xl:gap-24 items-start">
+
+                <!-- ── MAIN ARTICLE ── -->
+                <article id="article-body" class="max-w-2xl prose-body">
+
+                    <!-- Drop cap opener -->
+                    <p class="drop-cap">
+                        It is 5:12 in the morning and the light at Yala's Block One entrance is the colour of old brass. A convoy of jeeps idles in the dust, each one loaded with cameras and expectation. We slip past them all and take the back track — a rutted path my guide Suresh has walked for twenty-seven years, and which most visitors never know exists.
+                    </p>
+
+                    <p>
+                        The Sri Lankan leopard (<em>Panthera pardus kotiya</em>) is one of the largest leopard subspecies on the planet, and Yala National Park holds one of the world's highest leopard densities. Yet for every traveller who leaves with a frame they'll treasure for life, three more depart having glimpsed nothing but a flicker of spots dissolving into the scrub. The difference, almost always, comes down to knowledge — and time.
+                    </p>
+
+                    <blockquote>
+                        <p>"The jungle doesn't reveal itself on demand. You have to earn the silence first."</p>
+                    </blockquote>
+
+                    <h2 id="s1">Understanding the Territory</h2>
+
+                    <p>
+                        Yala's Block One covers roughly 141 square kilometres of coastal dry-zone forest — a mosaic of thorny scrub, ancient granite outcrops, ephemeral tanks (man-made reservoirs dating back 2,000 years), and open grassland known locally as <em>talawa</em>. It is a landscape that rewards careful reading.
+                    </p>
+                    <p>
+                        Leopards are territorial but not static. A dominant male may patrol a range of 30–60 square kilometres, overlapping with the smaller territories of several females. Understanding which tanks are currently holding water, which tree lines offer shade during the afternoon heat, and which rocky ridges a particular animal likes to use for scent-marking — this is the intelligence that separates a sighting from an encounter.
+                    </p>
+
+                    <!-- Inline image -->
+                    <div class="my-10 rounded-2xl overflow-hidden img-zoom">
+                        <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=1600&auto=format&fit=crop"
+                             alt="Dry scrub forest at Yala National Park"
+                             class="w-full h-72 object-cover">
+                    </div>
+                    <p class="img-caption">Yala Block One — the golden-hour light that separates the patient from the lucky.</p>
+
+                    <h2 id="s2">The Art of the Wait</h2>
+
+                    <p>
+                        At 6:40 a.m. Suresh raises a fist. The jeep stops. Fifty metres ahead, a grey langur drops from a fever tree and disappears into the undergrowth in one silent bound. Suresh watches the tree line for thirty seconds, then slowly reverses the jeep behind a screen of lantana.
+                    </p>
+                    <p>
+                        "Langurs always see them first," he says, cutting the engine. "Now we wait."
+                    </p>
+                    <p>
+                        We wait for forty-one minutes. Most visitors would have moved on after ten. In that time, a pair of painted storks pass overhead in slow spirals, a mugger crocodile inches toward the far bank of a muddy tank, and the light changes from brass to pure gold.
+                    </p>
+
+                    <!-- Fact box -->
+                    <div class="fact-box">
+                        <h3 class="text-stone-900 font-serif text-xl mb-4">Quick Field Notes</h3>
+                        <ul class="space-y-0">
+                            <li><strong class="text-stone-800 font-medium">Best time to visit:</strong> February–June (dry season, animals congregate near water)</li>
+                            <li><strong class="text-stone-800 font-medium">Best hours:</strong> 6:00–9:30 a.m. and 3:30–6:00 p.m.</li>
+                            <li><strong class="text-stone-800 font-medium">Block to request:</strong> Block One for leopards; Block Five for elephants</li>
+                            <li><strong class="text-stone-800 font-medium">What to bring:</strong> A 100–400mm lens, patience, and a thermos of black tea</li>
+                            <li><strong class="text-stone-800 font-medium">What to leave behind:</strong> Expectations of a schedule</li>
+                        </ul>
+                    </div>
+
+                    <p>
+                        Then she materialises. A female, perhaps four years old, moving along the boulders with the unhurried confidence of an apex predator that has never needed to hurry. She pauses on a flat granite ledge, surveys the tank below, and yawns — exposing canines the length of my thumb. She knows we are here. She simply does not care.
+                    </p>
+
+                    <h2 id="s3">Beyond the Sighting</h2>
+
+                    <p>
+                        What stays with me is not the photograph, though it is the finest wildlife image I have ever taken. It is the forty-one minutes of stillness that preceded it. The way the silence rebuilt itself after the langurs left. The particular quality of early Yala light on thorn bush. The realisation that to see something wild, you must first learn to stop moving.
+                    </p>
+
+                    <!-- Second image -->
+                    <div class="my-10 rounded-2xl overflow-hidden img-zoom">
+                        <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=1600&auto=format&fit=crop"
+                             alt="Southern Sri Lanka coastline at sunrise"
+                             class="w-full h-64 object-cover">
+                    </div>
+                    <p class="img-caption">The southern coast at first light — Yala borders one of Sri Lanka's most pristine shorelines.</p>
+
+                    <p>
+                        Sri Lanka offers one of the most extraordinary concentrations of large-mammal wildlife on earth — elephants, leopards, sloth bears, sambar deer, and a coastal margin where blue whales pass within sight of the shore. But what it offers above all else is intimacy. This is not the Serengeti, with its vast distances and orchestrated circuits. Yala asks you to lean in, to trust your guide's instincts, to park the jeep and listen.
+                    </p>
+
+                    <blockquote>
+                        <p>"She knows we are here. She simply does not care."</p>
+                    </blockquote>
+
+                    <p>
+                        That morning, in forty-one minutes of absolute stillness, I understood something about slow travel that no itinerary had ever taught me. The best encounters are not planned — they are earned through presence.
+                    </p>
+
+                    <!-- Author note -->
+                    <div class="mt-14 pt-10 border-t border-stone-200 flex items-start gap-5">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200&auto=format&fit=crop"
+                             class="w-14 h-14 rounded-full object-cover object-top ring-2 ring-stone-100 shrink-0" alt="Rohan">
+                        <div class="space-y-1.5">
+                            <p class="text-stone-900 font-medium text-sm">Rohan Fernando</p>
+                            <p class="text-stone-400 text-[11px] font-light uppercase tracking-widest">Co-Founder · Field &amp; Wildlife Expert</p>
+                            <p class="text-stone-500 font-light text-sm leading-relaxed">
+                                Rohan has guided over 300 wildlife experiences across Sri Lanka's national parks. He personally scouts every animal encounter that carries the TravelSeek name.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Tags -->
+                    <div class="mt-8 flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 bg-stone-100 text-stone-600 text-[10px] font-medium uppercase tracking-wide rounded-full">Wildlife</span>
+                        <span class="px-3 py-1.5 bg-stone-100 text-stone-600 text-[10px] font-medium uppercase tracking-wide rounded-full">Yala</span>
+                        <span class="px-3 py-1.5 bg-stone-100 text-stone-600 text-[10px] font-medium uppercase tracking-wide rounded-full">Leopard</span>
+                        <span class="px-3 py-1.5 bg-stone-100 text-stone-600 text-[10px] font-medium uppercase tracking-wide rounded-full">Safari</span>
+                        <span class="px-3 py-1.5 bg-stone-100 text-stone-600 text-[10px] font-medium uppercase tracking-wide rounded-full">Southern Sri Lanka</span>
+                    </div>
+
+                </article>
+
+
+                <!-- ── STICKY SIDEBAR ── -->
+                <aside class="hidden lg:block space-y-10 sticky top-28">
+
+                    <!-- Table of contents -->
+                    <div class="space-y-3">
+                        <p class="text-[10px] font-semibold uppercase tracking-[0.25em] text-stone-400">In This Story</p>
+                        <nav class="space-y-1">
+                            <a href="#s1" class="toc-link active">Understanding the Territory</a>
+                            <a href="#s2" class="toc-link">The Art of the Wait</a>
+                            <a href="#s3" class="toc-link">Beyond the Sighting</a>
+                        </nav>
+                    </div>
+
+                    <!-- Share -->
+                    <div class="space-y-3">
+                        <p class="text-[10px] font-semibold uppercase tracking-[0.25em] text-stone-400">Share This Story</p>
+                        <div class="flex gap-2">
+                            <button class="share-btn" title="Share on X / Twitter">
+                                <svg class="w-3.5 h-3.5 text-stone-500" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                </svg>
+                            </button>
+                            <button class="share-btn" title="Share on Facebook">
+                                <svg class="w-3.5 h-3.5 text-stone-500" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                </svg>
+                            </button>
+                            <button class="share-btn" title="Copy link" onclick="copyLink(this)">
+                                <svg class="w-3.5 h-3.5 text-stone-500" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Reading time pill -->
+                    <div class="flex items-center gap-3 p-4 bg-stone-100 rounded-xl border border-stone-200">
+                        <svg class="w-4 h-4 text-stone-400 shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span class="text-xs text-stone-500 font-light">8 minute read</span>
+                    </div>
+
+                    <!-- Related journey CTA -->
+                    <div class="bg-stone-900 rounded-2xl p-6 space-y-5 text-white">
+                        <p class="text-[10px] font-semibold uppercase tracking-[0.25em] text-amber-400">Live This Story</p>
+                        <h4 class="font-serif text-xl leading-snug">Experience Yala with an expert guide.</h4>
+                        <p class="text-stone-400 text-xs font-light leading-relaxed">Our Southern Coast journey includes two full days with Suresh and a private dawn safari in Block One.</p>
+                        <a href="package-detail.html"
+                           class="flex items-center justify-center gap-2 w-full bg-amber-500 hover:bg-amber-400 text-stone-900 text-[11px] font-medium uppercase tracking-widest rounded-xl py-3.5 transition-all duration-300 hover:scale-[1.02]">
+                            View Journey
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                </aside>
+
+            </div>
+        </div>
+
+
+        <!-- ═══════════════════════════════════════
+             MORE STORIES (Related articles)
+        ═══════════════════════════════════════ -->
+        <section class="bg-stone-100 border-t border-stone-200 py-20 px-6">
+            <div class="max-w-7xl mx-auto">
+
+                <div class="flex items-end justify-between mb-12">
+                    <div class="space-y-2">
+                        <span class="text-[11px] font-semibold uppercase tracking-[0.25em] text-amber-600">Continue Reading</span>
+                        <h2 class="text-3xl font-serif text-stone-900 tracking-tight">More from the Journal</h2>
+                    </div>
+                    <a href="blog.html" class="hidden md:inline-flex items-center gap-2 text-stone-900 text-sm font-medium border-b border-stone-300 pb-0.5 hover:border-stone-900 transition-all">
+                        All stories
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-7">
+
+                    <!-- Related 1 -->
+                    <a href="blog-post.html" class="group bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100 card-lift flex flex-col">
+                        <div class="img-zoom h-48 overflow-hidden relative">
+                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4734259a-bad7-422f-981e-ce01e79184f2_1600w.jpg"
+                                 alt="Ceylon Tea" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                            <div class="absolute top-4 left-4">
+                                <span class="bg-white/15 backdrop-blur-sm border border-white/25 text-white text-[10px] font-semibold uppercase tracking-widest px-3 py-1 rounded-full">Culture</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex flex-col flex-1 space-y-3">
+                            <div class="flex items-center gap-2 text-[11px] text-stone-400 uppercase tracking-widest">
+                                <span>2 March 2024</span>
+                                <span class="w-1 h-1 rounded-full bg-stone-300"></span>
+                                <span>5 min</span>
+                            </div>
+                            <h3 class="font-serif text-xl text-stone-900 leading-snug group-hover:text-amber-700 transition-colors flex-1">The Art of the Perfect Cup: Ceylon Tea Explained</h3>
+                            <div class="flex items-center justify-between pt-3 border-t border-stone-100">
+                                <div class="flex items-center gap-2">
+                                    <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=100&auto=format&fit=crop"
+                                         class="w-6 h-6 rounded-full object-cover object-top" alt="Priya">
+                                    <span class="text-xs text-stone-400 font-light">Priya Mendis</span>
+                                </div>
+                                <span class="flex items-center gap-1 text-amber-600 text-xs font-medium group-hover:gap-2.5 transition-all duration-300">
+                                    Read <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Related 2 -->
+                    <a href="blog-post.html" class="group bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100 card-lift flex flex-col">
+                        <div class="img-zoom h-48 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1570701564993-e00652af8aa7?q=80&w=1600&auto=format&fit=crop"
+                                 alt="Ayurveda" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                            <div class="absolute top-4 left-4">
+                                <span class="bg-white/15 backdrop-blur-sm border border-white/25 text-white text-[10px] font-semibold uppercase tracking-widest px-3 py-1 rounded-full">Wellness</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex flex-col flex-1 space-y-3">
+                            <div class="flex items-center gap-2 text-[11px] text-stone-400 uppercase tracking-widest">
+                                <span>5 Feb 2024</span>
+                                <span class="w-1 h-1 rounded-full bg-stone-300"></span>
+                                <span>7 min</span>
+                            </div>
+                            <h3 class="font-serif text-xl text-stone-900 leading-snug group-hover:text-amber-700 transition-colors flex-1">Ayurveda: Ancient Wisdom for Modern Life</h3>
+                            <div class="flex items-center justify-between pt-3 border-t border-stone-100">
+                                <div class="flex items-center gap-2">
+                                    <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=100&auto=format&fit=crop"
+                                         class="w-6 h-6 rounded-full object-cover object-top" alt="Priya">
+                                    <span class="text-xs text-stone-400 font-light">Priya Mendis</span>
+                                </div>
+                                <span class="flex items-center gap-1 text-amber-600 text-xs font-medium group-hover:gap-2.5 transition-all duration-300">
+                                    Read <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Related 3 -->
+                    <a href="blog-post.html" class="group bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-100 card-lift flex flex-col">
+                        <div class="img-zoom h-48 overflow-hidden relative">
+                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/30104e3c-5eea-4b93-93e9-5313698a7156_1600w.webp"
+                                 alt="Scenic Train" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                            <div class="absolute top-4 left-4">
+                                <span class="bg-white/15 backdrop-blur-sm border border-white/25 text-white text-[10px] font-semibold uppercase tracking-widest px-3 py-1 rounded-full">Guides</span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex flex-col flex-1 space-y-3">
+                            <div class="flex items-center gap-2 text-[11px] text-stone-400 uppercase tracking-widest">
+                                <span>22 Dec 2023</span>
+                                <span class="w-1 h-1 rounded-full bg-stone-300"></span>
+                                <span>9 min</span>
+                            </div>
+                            <h3 class="font-serif text-xl text-stone-900 leading-snug group-hover:text-amber-700 transition-colors flex-1">The Kandy–Ella Train: Everything You Need to Know</h3>
+                            <div class="flex items-center justify-between pt-3 border-t border-stone-100">
+                                <div class="flex items-center gap-2">
+                                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=100&auto=format&fit=crop"
+                                         class="w-6 h-6 rounded-full object-cover object-top" alt="Rohan">
+                                    <span class="text-xs text-stone-400 font-light">Rohan Fernando</span>
+                                </div>
+                                <span class="flex items-center gap-1 text-amber-600 text-xs font-medium group-hover:gap-2.5 transition-all duration-300">
+                                    Read <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ═══════════════════════════════════════
+             NEWSLETTER STRIP
+        ═══════════════════════════════════════ -->
+        <section class="py-20 px-6 bg-stone-900 text-white">
+            <div class="max-w-3xl mx-auto text-center space-y-7">
+                <span class="text-[11px] font-semibold uppercase tracking-[0.3em] text-amber-400">The TravelSeek Dispatch</span>
+                <h2 class="text-3xl md:text-4xl font-serif tracking-tight leading-tight">
+                    Stories like this one,<br>
+                    <span class="italic font-light text-white/65">every month.</span>
+                </h2>
+                <p class="text-stone-400 font-light text-sm max-w-sm mx-auto leading-relaxed">
+                    Seasonal guides, intimate essays, and first-look destination notes — delivered quietly to your inbox.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto pt-2">
+                    <input type="email" placeholder="Your email address"
+                           class="flex-1 bg-stone-800 border border-stone-700 text-white text-sm rounded-full px-6 py-4 placeholder:text-stone-500 focus:outline-none focus:border-amber-500">
+                    <button class="flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-stone-900 text-[11px] font-medium uppercase tracking-widest rounded-full px-7 py-4 transition-all duration-300 hover:scale-105 whitespace-nowrap">
+                        Subscribe
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </button>
+                </div>
+                <p class="text-stone-600 text-[10px] uppercase tracking-widest">No spam · Unsubscribe anytime</p>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- ═══════════════════════════════════════
+         FOOTER
+    ═══════════════════════════════════════ -->
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-stone-200 pt-20 pb-10 px-6 mt-auto">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+                <div class="md:col-span-1 space-y-6">
+                    <a href="home.html" data-logo="dark"></a>
+                    <p class="text-stone-500 text-xs font-light leading-relaxed max-w-xs">Crafting authentic, luxury travel experiences in Sri Lanka and beyond. We invite you to see the world differently.</p>
+                </div>
+                <div class="md:col-span-2 grid grid-cols-2 sm:grid-cols-3 gap-8">
+                    <div class="space-y-4">
+                        <h5 class="text-xs font-semibold uppercase tracking-widest text-stone-900">Discover</h5>
+                        <ul class="space-y-3 text-sm text-stone-500 font-light">
+                            <li><a href="destinations.html" class="hover:text-stone-900 transition-colors">Destinations</a></li>
+                            <li><a href="packages.html" class="hover:text-stone-900 transition-colors">Experiences</a></li>
+                            <li><a href="#" class="hover:text-stone-900 transition-colors">Villas &amp; Hotels</a></li>
+                        </ul>
+                    </div>
+                    <div class="space-y-4">
+                        <h5 class="text-xs font-semibold uppercase tracking-widest text-stone-900">Company</h5>
+                        <ul class="space-y-3 text-sm text-stone-500 font-light">
+                            <li><a href="about.html" class="hover:text-stone-900 transition-colors">About Us</a></li>
+                            <li><a href="#" class="hover:text-stone-900 transition-colors">Sustainability</a></li>
+                            <li><a href="#" class="hover:text-stone-900 transition-colors">Press</a></li>
+                        </ul>
+                    </div>
+                    <div class="space-y-4">
+                        <h5 class="text-xs font-semibold uppercase tracking-widest text-stone-900">Support</h5>
+                        <ul class="space-y-3 text-sm text-stone-500 font-light">
+                            <li><a href="contact.html" class="hover:text-stone-900 transition-colors">Contact</a></li>
+                            <li><a href="#" class="hover:text-stone-900 transition-colors">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="md:col-span-1 space-y-4">
+                    <h5 class="text-xs font-semibold uppercase tracking-widest text-stone-900">Newsletter</h5>
+                    <div class="flex flex-col gap-2">
+                        <input type="email" placeholder="Email address" class="bg-stone-50 border border-stone-200 text-stone-900 text-sm rounded-lg px-4 py-3 focus:outline-none placeholder:text-stone-400">
+                        <button type="button" class="bg-stone-900 text-white text-sm font-medium px-4 py-3 rounded-lg hover:bg-stone-800 transition-colors">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-stone-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-[10px] text-stone-400 uppercase tracking-widest">&copy; 2025 TravelSeek. All rights reserved.</p>
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                    <span class="text-xs text-stone-500 font-medium">Systems Operational</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        // ── Reading progress ──────────────────────────────
+        const bar = document.getElementById('progress-bar');
+        window.addEventListener('scroll', () => {
+            const d   = document.documentElement;
+            const pct = (d.scrollTop / (d.scrollHeight - d.clientHeight)) * 100;
+            bar.style.width = pct + '%';
+        }, { passive: true });
+
+        // ── Sticky nav ────────────────────────────────────
+        const nav  = document.getElementById('main-nav');
+        const hero = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            const threshold = hero ? hero.offsetHeight * 0.65 : 400;
+            if (window.scrollY > threshold) {
+                nav.classList.add('nav-solid');
+                nav.style.paddingTop    = '1.1rem';
+                nav.style.paddingBottom = '1.1rem';
+                nav.querySelector('.logo-text').style.color = '#1c1917';
+                nav.querySelectorAll('.nav-link').forEach(a => a.style.color = '#57534e');
+            } else {
+                nav.classList.remove('nav-solid');
+                nav.style.background    = 'transparent';
+                nav.style.paddingTop    = '1.75rem';
+                nav.style.paddingBottom = '1.75rem';
+                nav.querySelector('.logo-text').style.color = 'white';
+                nav.querySelectorAll('.nav-link').forEach(a => a.style.color = 'rgba(255,255,255,0.70)');
+            }
+        }, { passive: true });
+
+        // ── TOC active state on scroll ────────────────────
+        const sections  = ['s1','s2','s3'].map(id => document.getElementById(id));
+        const tocLinks  = document.querySelectorAll('.toc-link');
+
+        window.addEventListener('scroll', () => {
+            let current = 0;
+            sections.forEach((sec, i) => {
+                if (sec && window.scrollY >= sec.offsetTop - 140) current = i;
+            });
+            tocLinks.forEach((l, i) => {
+                l.classList.toggle('active', i === current);
+            });
+        }, { passive: true });
+
+        // ── Copy link ─────────────────────────────────────
+        function copyLink(btn) {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                const orig = btn.innerHTML;
+                btn.innerHTML = `<svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>`;
+                btn.style.background = '#f59e0b';
+                btn.style.borderColor = '#f59e0b';
+                setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.style.borderColor = ''; }, 2000);
+            });
+        }
+    </script>
+
+
+<script>
+(function () {
+  /* ─── Init Lucide ─── */
+  if (typeof lucide !== 'undefined') lucide.createIcons({ attrs: { strokeWidth: 1.5 } });
+
+  /* ─── Active link detection ─── */
+  const page  = document.getElementById('main-nav')?.dataset.page || '';
+  document.querySelectorAll('[data-nav]').forEach(a => {
+    if (a.dataset.nav === page || (page === 'blog-post' && a.dataset.nav === 'blog')) {
+      a.classList.add('ts-navlink--active');
+    }
+  });
+
+  /* ─── Desktop nav: transparent → solid on scroll ─── */
+  const nav  = document.getElementById('main-nav');
+  if (nav) {
+    const heroPx = () => {
+      const h = document.querySelector('[data-hero]') || document.querySelector('header.ts-hero');
+      return h ? h.offsetHeight * 0.72 : 90;
+    };
+    const tick = () => nav.classList.toggle('ts-nav--scrolled', window.scrollY > heroPx());
+    window.addEventListener('scroll', tick, { passive: true });
+    tick();
+  }
+
+  /* ─── Mobile sidebar ─── */
+  const btn     = document.getElementById('ts-menu-btn');
+  const closeBtn= document.getElementById('ts-close-btn');
+  const sidebar = document.getElementById('ts-sidebar');
+  const overlay = document.getElementById('ts-overlay');
+  if (!btn || !sidebar) return;
+
+  function openSidebar() {
+    sidebar.classList.add('ts-sidebar--open');
+    overlay.classList.add('ts-overlay--open');
+    btn.classList.add('ts-hamburger--open');
+    btn.setAttribute('aria-expanded', 'true');
+    sidebar.setAttribute('aria-hidden', 'false');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    /* stagger links */
+    sidebar.querySelectorAll('.ts-mob-link').forEach((el, i) => {
+      el.style.transitionDelay = (i * 55 + 80) + 'ms';
+      el.classList.add('ts-mob-link--visible');
+    });
+    /* stagger footer */
+    sidebar.querySelectorAll('.ts-sidebar-foot > *').forEach((el, i) => {
+      el.style.transitionDelay = (350 + i * 60) + 'ms';
+      el.classList.add('ts-mob-link--visible');
+    });
+  }
+
+  function closeSidebar() {
+    sidebar.querySelectorAll('.ts-mob-link, .ts-sidebar-foot > *').forEach(el => {
+      el.style.transitionDelay = '0ms';
+      el.classList.remove('ts-mob-link--visible');
+    });
+    sidebar.classList.remove('ts-sidebar--open');
+    overlay.classList.remove('ts-overlay--open');
+    btn.classList.remove('ts-hamburger--open');
+    btn.setAttribute('aria-expanded', 'false');
+    sidebar.setAttribute('aria-hidden', 'true');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  btn.addEventListener('click', openSidebar);
+  closeBtn?.addEventListener('click', closeSidebar);
+  overlay.addEventListener('click', closeSidebar);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
+  sidebar.querySelectorAll('a').forEach(a => a.addEventListener('click', closeSidebar));
+})();
+</script>
+<script src="travelseek-logo.js"></script>
+
+</body>
+</html>

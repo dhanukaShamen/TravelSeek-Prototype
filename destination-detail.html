@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelSeek | Ella & The Highlands</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-stone-50 text-stone-800 antialiased flex flex-col min-h-screen">
+<!-- ══ TOPNAV ══════════════════════════════════════════════ -->
+<nav id="main-nav" class="ts-nav z-50 py-7 px-6 md:px-10" data-page="destinations">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="home.html" class="ts-logo-wrap hover:opacity-75 transition-opacity flex-shrink-0" data-logo aria-label="TravelSeek Home"></a>
+
+    <!-- Desktop links -->
+    <div class="hidden md:flex items-center gap-9 text-[13px] tracking-wide font-light">
+      <a href="home.html"         data-nav="home"        class="ts-navlink">Home</a>
+      <a href="about.html"        data-nav="about"       class="ts-navlink">About</a>
+      <a href="destinations.html" data-nav="destinations" class="ts-navlink">Destinations</a>
+      <a href="packages.html"     data-nav="packages"    class="ts-navlink">Experiences</a>
+      <a href="blog.html"         data-nav="blog"        class="ts-navlink">Journal</a>
+      <a href="gallery.html"      data-nav="gallery"     class="ts-navlink">Gallery</a>
+    </div>
+
+    <!-- Right side -->
+    <div class="flex items-center gap-3">
+      <a href="contact.html"
+         class="hidden md:flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-stone-900 text-[11px] font-medium uppercase tracking-[0.15em] rounded-full px-5 py-3 transition-all duration-300 shadow-lg hover:shadow-amber-500/40 hover:scale-105 whitespace-nowrap">
+        Let's Talk Travel
+        <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+      </a>
+      <!-- Hamburger -->
+      <button id="ts-menu-btn" class="md:hidden ts-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="ts-sidebar">
+        <span class="ts-ham-bar ts-ham-top"></span>
+        <span class="ts-ham-bar ts-ham-mid"></span>
+        <span class="ts-ham-bar ts-ham-bot"></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ MOBILE SIDEBAR ═══════════════════════════════════════ -->
+<div id="ts-overlay" class="ts-overlay" aria-hidden="true"></div>
+
+<aside id="ts-sidebar" class="ts-sidebar" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="ts-sidebar-inner">
+
+    <!-- Sidebar Header -->
+    <div class="ts-sidebar-head">
+      <a href="home.html" class="ts-sidebar-logo" data-logo="dark" aria-label="TravelSeek Home"></a>
+      <button id="ts-close-btn" class="ts-close-btn" aria-label="Close menu">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <!-- Sidebar Links -->
+    <nav class="ts-sidebar-nav" aria-label="Mobile navigation">
+      <a href="home.html"         data-nav="home"         class="ts-mob-link" style="--i:0">
+        <span class="ts-mob-num">01</span>
+        <span class="ts-mob-label">Home</span>
+        <i data-lucide="arrow-right" class="ts-mob-arrow w-4 h-4"></i>
+      </a>
+      <a href="about.html"        data-nav="about"        class="ts-mob-link" style="--i:1">
+        <span class="ts-mob-num">02</span>
+        <span class="ts-mob-label">About</span>
+        <i data-lucide="arrow-right" class="ts-mob-arrow w-4 h-4"></i>
+      </a>
+      <a href="destinations.html" data-nav="destinations" class="ts-mob-link" style="--i:2">
+        <span class="ts-mob-num">03</span>
+        <span class="ts-mob-label">Destinations</span>
+        <i data-lucide="arrow-right" class="ts-mob-arrow w-4 h-4"></i>
+      </a>
+      <a href="packages.html"     data-nav="packages"     class="ts-mob-link" style="--i:3">
+        <span class="ts-mob-num">04</span>
+        <span class="ts-mob-label">Experiences</span>
+        <i data-lucide="arrow-right" class="ts-mob-arrow w-4 h-4"></i>
+      </a>
+      <a href="blog.html"         data-nav="blog"         class="ts-mob-link" style="--i:4">
+        <span class="ts-mob-num">05</span>
+        <span class="ts-mob-label">Journal</span>
+        <i data-lucide="arrow-right" class="ts-mob-arrow w-4 h-4"></i>
+      </a>
+      <a href="gallery.html"      data-nav="gallery"      class="ts-mob-link" style="--i:5">
+        <span class="ts-mob-num">06</span>
+        <span class="ts-mob-label">Gallery</span>
+        <i data-lucide="arrow-right" class="ts-mob-arrow w-4 h-4"></i>
+      </a>
+    </nav>
+
+    <!-- Sidebar Footer -->
+    <div class="ts-sidebar-foot">
+      <a href="contact.html" class="ts-mob-cta">
+        Let's Talk Travel
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+      <p class="ts-mob-tagline">Sri Lanka &amp; Beyond</p>
+    </div>
+  </div>
+</aside>
+<!-- ══════════════════════════════════════════════════════════ -->
+
+<main class="flex-grow page-fade">
+
+        <!-- Destination Hero Image -->
+        <div class="relative h-[70vh] w-full" data-hero>
+            <img src="https://images.unsplash.com/photo-1582650625119-3a31f8fa2699?q=80&w=2536&auto=format&fit=crop" class="w-full h-full object-cover" alt="Ella Main">
+            <div class="absolute inset-0 bg-stone-900/30"></div>
+            <div class="absolute bottom-0 left-0 w-full p-6 md:p-12 bg-gradient-to-t from-stone-900/80 to-transparent">
+                <div class="max-w-7xl mx-auto">
+                    <!-- Breadcrumb -->
+                    <div class="flex items-center gap-2 text-white/50 text-xs uppercase tracking-widest mb-4">
+                        <a href="destinations.html" class="hover:text-white/80 transition-colors">Destinations</a>
+                        <span>/</span>
+                        <span class="text-white/70">Central Province</span>
+                    </div>
+                    <span class="text-stone-200 text-xs font-semibold uppercase tracking-widest mb-4 block">Central Province</span>
+                    <h1 class="text-5xl md:text-7xl text-white font-serif tracking-tight mb-6">Ella &amp; The Highlands</h1>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-3 gap-16">
+            <!-- Main Text -->
+            <div class="md:col-span-2 space-y-8">
+                <h2 class="text-3xl text-stone-900 font-serif leading-tight">Where the clouds descend to touch the tea leaves.</h2>
+                <div class="text-stone-600 font-light leading-relaxed space-y-6 text-lg">
+                    <p>Nestled in a valley surrounded by cloud forests and tea plantations, Ella is the heart of Sri Lanka's hill country. It is a place where time slows down, governed only by the rolling mists and the distant whistle of the train.</p>
+                    <p>Beyond the famous Nine Arch Bridge, we guide you to hidden waterfalls and private estates where the legacy of Ceylon Tea is preserved in every cup.</p>
+                </div>
+
+                <div class="pt-10">
+                    <h3 class="text-xl font-medium text-stone-900 mb-6">Curated Experiences in Ella</h3>
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div class="border border-stone-200 p-4 rounded-xl hover:border-amber-400 transition-colors cursor-pointer group">
+                            <h4 class="font-serif text-lg mb-2 group-hover:text-amber-700 transition-colors">The Pekoe Trail</h4>
+                            <p class="text-xs text-stone-500">Guided hiking through historic tea trails.</p>
+                        </div>
+                        <div class="border border-stone-200 p-4 rounded-xl hover:border-amber-400 transition-colors cursor-pointer group">
+                            <h4 class="font-serif text-lg mb-2 group-hover:text-amber-700 transition-colors">Cooking with Locals</h4>
+                            <p class="text-xs text-stone-500">Farm-to-table culinary workshop.</p>
+                        </div>
+                        <div class="border border-stone-200 p-4 rounded-xl hover:border-amber-400 transition-colors cursor-pointer group">
+                            <h4 class="font-serif text-lg mb-2 group-hover:text-amber-700 transition-colors">Sunrise at Lipton's Seat</h4>
+                            <p class="text-xs text-stone-500">Private picnic above the clouds.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar / Quick Facts -->
+            <div class="md:col-span-1 space-y-8">
+                <div class="bg-stone-50 p-6 rounded-xl border border-stone-200 space-y-6">
+                    <div class="flex items-start gap-4">
+                        <svg class="w-5 h-5 text-stone-400 mt-1 shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/>
+                        </svg>
+                        <div>
+                            <h4 class="text-sm font-medium text-stone-900">Best Time to Visit</h4>
+                            <p class="text-xs text-stone-500 mt-1">January to March is driest. August offers pleasant breezes.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <svg class="w-5 h-5 text-stone-400 mt-1 shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/>
+                        </svg>
+                        <div>
+                            <h4 class="text-sm font-medium text-stone-900">Climate</h4>
+                            <p class="text-xs text-stone-500 mt-1">Cool &amp; Temperate. Average 20°C (68°F).</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <svg class="w-5 h-5 text-stone-400 mt-1 shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
+                        </svg>
+                        <div>
+                            <h4 class="text-sm font-medium text-stone-900">Getting There</h4>
+                            <p class="text-xs text-stone-500 mt-1">6-hour scenic train from Kandy or 5-hour drive from Colombo.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-xs font-semibold uppercase tracking-widest text-stone-900">Where to Stay</h4>
+                    <div class="group flex gap-4 items-center cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2670&auto=format&fit=crop" class="w-16 h-16 object-cover rounded-lg" alt="Hotel">
+                        <div>
+                            <h5 class="text-sm font-medium text-stone-900 group-hover:underline">98 Acres Resort</h5>
+                            <p class="text-[10px] text-stone-500">Luxury Boutique</p>
+                        </div>
+                    </div>
+                    <div class="group flex gap-4 items-center cursor-pointer">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2670&auto=format&fit=crop" class="w-16 h-16 object-cover rounded-lg" alt="Hotel">
+                        <div>
+                            <h5 class="text-sm font-medium text-stone-900 group-hover:underline">The Secret Ella</h5>
+                            <p class="text-[10px] text-stone-500">Heritage Bungalow</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Book CTA -->
+                <a href="package-detail.html"
+                   class="flex items-center justify-center gap-2 w-full bg-amber-500 hover:bg-amber-400 text-stone-900 text-[11px] font-medium uppercase tracking-widest rounded-xl py-4 transition-all duration-300 hover:scale-105 shadow-md">
+                    Plan This Trip
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <!-- ═══════════════════════════════════════════
+             RELATED TRAVEL PACKAGES
+        ═══════════════════════════════════════════ -->
+        <section class="bg-stone-100 border-t border-stone-200 py-20 px-6">
+            <div class="max-w-7xl mx-auto">
+
+                <!-- Section header -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+                    <div class="space-y-2">
+                        <span class="text-[11px] font-semibold uppercase tracking-[0.25em] text-amber-600">Journeys Through This Region</span>
+                        <h2 class="text-3xl md:text-4xl text-stone-900 font-serif tracking-tight">Related Travel Packages</h2>
+                        <p class="text-stone-500 font-light text-sm max-w-md">Hand-picked itineraries that weave through Ella and the central highlands — each one a different way to experience the same magic.</p>
+                    </div>
+                    <a href="packages.html" class="inline-flex items-center gap-2 text-stone-900 text-sm font-medium border-b border-stone-300 pb-0.5 hover:border-stone-900 transition-all whitespace-nowrap">
+                        View all journeys
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Package cards grid -->
+                <div class="grid md:grid-cols-3 gap-7">
+
+                    <!-- Package 1: Colonial Tea Trail (Featured) -->
+                    <a href="package-detail.html"
+                       class="group relative bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+
+                        <!-- Image -->
+                        <div class="relative h-52 overflow-hidden">
+                            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/30104e3c-5eea-4b93-93e9-5313698a7156_1600w.webp"
+                                 alt="Colonial Tea Trail"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+
+                            <!-- Featured badge -->
+                            <div class="absolute top-4 left-4 bg-amber-500 text-white text-[10px] font-semibold uppercase tracking-widest px-3 py-1 rounded-full">
+                                Best Match
+                            </div>
+
+                            <!-- Duration + type pills -->
+                            <div class="absolute bottom-4 left-4 flex gap-2">
+                                <span class="bg-white/15 backdrop-blur-sm border border-white/25 text-white text-[10px] font-medium uppercase tracking-wide px-2.5 py-1 rounded-full">10 Days</span>
+                                <span class="bg-white/15 backdrop-blur-sm border border-white/25 text-white text-[10px] font-medium uppercase tracking-wide px-2.5 py-1 rounded-full">Cultural</span>
+                            </div>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="flex flex-col flex-1 p-6 space-y-4">
+                            <div>
+                                <h3 class="text-xl font-serif text-stone-900 group-hover:text-amber-700 transition-colors leading-snug">The Colonial Tea Trail</h3>
+                                <p class="text-stone-500 text-xs font-light mt-1.5 leading-relaxed line-clamp-2">Misty highlands, planters' bungalows, private tea tastings, and the world's most scenic railway through Ella.</p>
+                            </div>
+
+                            <!-- Highlights -->
+                            <ul class="space-y-1.5">
+                                <li class="flex items-center gap-2 text-xs text-stone-600 font-light">
+                                    <svg class="w-3.5 h-3.5 text-amber-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                                    </svg>
+                                    Scenic Kandy–Ella train journey
+                                </li>
+                                <li class="flex items-center gap-2 text-xs text-stone-600 font-light">
+                                    <svg class="w-3.5 h-3.5 text-amber-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                                    </svg>
+                                    High Tea at The Grand Hotel, Nuwara Eliya
+                                </li>
+                                <li class="flex items-center gap-2 text-xs text-stone-600 font-light">
+                                    <svg class="w-3.5 h-3.5 text-amber-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                                    </svg>
+                                    Private planter's bungalow stays
+                                </li>
+                            </ul>
+
+                            <!-- Price + CTA -->
+                            <div class="flex items-center justify-between pt-4 border-t border-stone-100 mt-auto">
+                                <div>
+                                    <p class="text-[10px] text-stone-400 uppercase tracking-widest">From</p>
+                                    <p class="text-lg font-serif text-stone-900">$3,200 <span class="text-xs text-stone-400 font-normal font-sans">/ person</span></p>
+                                </div>
+                                <span class="flex items-center gap-1.5 text-amber-600 text-xs font-medium group-hover:gap-3 transition-all duration-300">
+                                    View itinerary
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Package 2: Highland Wilderness -->
+                    <a href="package-detail.html"
+                       class="group relative bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+
+                        <div class="relative h-52 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1582650625119-3a31f8fa2699?q=80&w=1600&auto=format&fit=crop"
+                                 alt="Highland Wilderness"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 flex gap-2">
+                                <span class="bg-white/15 backdrop-blur-sm border border-white/25 text-white text-[10px] font-medium uppercase tracking-wide px-2.5 py-1 rounded-full">7 Days</span>
+                                <span class="bg-white/15 backdrop-blur-sm border border-white/25 text-white text-[10px] font-medium uppercase tracking-wide px-2.5 py-1 rounded-full">Nature</span>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col flex-1 p-6 space-y-4">
+                            <div>
+                                <h3 class="text-xl font-serif text-stone-900 group-hover:text-amber-700 transition-colors leading-snug">Highland Wilderness Escape</h3>
+                                <p class="text-stone-500 text-xs font-light mt-1.5 leading-relaxed line-clamp-2">From Horton Plains to Knuckles, trek through untouched cloud forest with expert naturalist guides by your side.</p>
+                            </div>
+
+                            <ul class="space-y-1.5">
+                                <li class="flex items-center gap-2 text-xs text-stone-600 font-light">
+                                    <svg class="w-3.5 h-3.5 text-amber-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                                    </svg>
+                                    Sunrise trek to World's End, Horton Plains
+                                </li>
+                                <li class="flex items-center gap-2 text-xs text-stone-600 font-light">
+                                    <svg class="w-3.5 h-3.5 text-amber-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                                    </svg>
+                                    Guided Knuckles Range hike
+                                </li>
+                                <li class="flex items-center gap-2 text-xs text-stone-600 font-light">
+                                    <svg class="w-3.5 h-3.5 text-amber-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                                    </svg>
+                                    Eco-lodge stays with forest views
+                                </li>
+                            </ul>
+
+                            <div class="flex items-center justify-between pt-4 border-t border-stone-100 mt-auto">
+                                <div>
+                                    <p class="text-[10px] text-stone-400 uppercase tracking-widest">From</p>
+                                    <p class="text-lg font-serif text-stone-900">$2,450 <span class="text-xs text-stone-400 font-normal font-sans">/ person</span></p>
+                                </div>
+                                <span class="flex items-center gap-1.5 text-amber-600 text-xs font-medium group-hover:gap-3 transition-all duration-300">
+                                    View itinerary
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Package 3: Island Complete -->
+                    <a href="package-detail.html"
+                       class="group relative bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+
+                        <div class="relative h-52 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1600&auto=format&fit=crop"
+                                 alt="Island Complete"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                            <!-- Popular badge -->
+                            <div class="absolute top-4 left-4 bg-white/15 backdrop-blur-sm border border-white/30 text-white text-[10px] font-semibold uppercase tracking-widest px-3 py-1 rounded-full">
+                                Most Popular
+                            </div>
+                            <div class="absolute bottom-4 left-4 flex gap-2">
+                                <span class="bg-white/15 backdrop-blur-sm border border-white/25 text-white text-[10px] font-medium uppercase tracking-wide px-2.5 py-1 rounded-full">14 Days</span>
+                                <span class="bg-white/15 backdrop-blur-sm border border-white/25 text-white text-[10px] font-medium uppercase tracking-wide px-2.5 py-1 rounded-full">Grand Tour</span>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col flex-1 p-6 space-y-4">
+                            <div>
+                                <h3 class="text-xl font-serif text-stone-900 group-hover:text-amber-700 transition-colors leading-snug">Island Complete: Highlands to Coast</h3>
+                                <p class="text-stone-500 text-xs font-light mt-1.5 leading-relaxed line-clamp-2">The ultimate Sri Lanka journey — from ancient temples and misty hills through to golden beaches and colonial forts.</p>
+                            </div>
+
+                            <ul class="space-y-1.5">
+                                <li class="flex items-center gap-2 text-xs text-stone-600 font-light">
+                                    <svg class="w-3.5 h-3.5 text-amber-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                                    </svg>
+                                    Ella · Kandy · Sigiriya · Galle
+                                </li>
+                                <li class="flex items-center gap-2 text-xs text-stone-600 font-light">
+                                    <svg class="w-3.5 h-3.5 text-amber-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                                    </svg>
+                                    Yala safari &amp; Mirissa whale watch
+                                </li>
+                                <li class="flex items-center gap-2 text-xs text-stone-600 font-light">
+                                    <svg class="w-3.5 h-3.5 text-amber-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                                    </svg>
+                                    Private chauffeur throughout
+                                </li>
+                            </ul>
+
+                            <div class="flex items-center justify-between pt-4 border-t border-stone-100 mt-auto">
+                                <div>
+                                    <p class="text-[10px] text-stone-400 uppercase tracking-widest">From</p>
+                                    <p class="text-lg font-serif text-stone-900">$5,800 <span class="text-xs text-stone-400 font-normal font-sans">/ person</span></p>
+                                </div>
+                                <span class="flex items-center gap-1.5 text-amber-600 text-xs font-medium group-hover:gap-3 transition-all duration-300">
+                                    View itinerary
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+
+                <!-- Custom trip nudge -->
+                <div class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-6 bg-white rounded-2xl border border-stone-200 px-8 py-6">
+                    <div class="space-y-1">
+                        <p class="text-stone-900 font-medium text-sm">None of these feel quite right?</p>
+                        <p class="text-stone-500 font-light text-sm">We'll build a journey around Ella that's designed entirely around you.</p>
+                    </div>
+                    <a href="contact.html"
+                       class="flex items-center gap-2 shrink-0 bg-amber-500 hover:bg-amber-400 text-stone-900 text-[11px] font-medium uppercase tracking-widest rounded-full px-7 py-3.5 transition-all duration-300 hover:scale-105 shadow-md">
+                        Build a Custom Trip
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+    <!-- FOOTER -->
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-stone-200 pt-20 pb-10 px-6 mt-auto">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+                <div class="md:col-span-1 space-y-6">
+                    <a href="home.html" data-logo="dark"></a>
+                    <p class="text-stone-500 text-xs font-light leading-relaxed max-w-xs">Crafting authentic, luxury travel experiences in Sri Lanka and beyond. We invite you to see the world differently.</p>
+                </div>
+                <div class="md:col-span-2 grid grid-cols-2 sm:grid-cols-3 gap-8">
+                    <div class="space-y-4">
+                        <h5 class="text-xs font-semibold uppercase tracking-widest text-stone-900">Discover</h5>
+                        <ul class="space-y-3 text-sm text-stone-500 font-light">
+                            <li><a href="destinations.html" class="hover:text-stone-900 transition-colors">Destinations</a></li>
+                            <li><a href="packages.html" class="hover:text-stone-900 transition-colors">Experiences</a></li>
+                            <li><a href="#" class="hover:text-stone-900 transition-colors">Villas &amp; Hotels</a></li>
+                        </ul>
+                    </div>
+                    <div class="space-y-4">
+                        <h5 class="text-xs font-semibold uppercase tracking-widest text-stone-900">Company</h5>
+                        <ul class="space-y-3 text-sm text-stone-500 font-light">
+                            <li><a href="about.html" class="hover:text-stone-900 transition-colors">About Us</a></li>
+                            <li><a href="#" class="hover:text-stone-900 transition-colors">Sustainability</a></li>
+                            <li><a href="#" class="hover:text-stone-900 transition-colors">Press</a></li>
+                        </ul>
+                    </div>
+                    <div class="space-y-4">
+                        <h5 class="text-xs font-semibold uppercase tracking-widest text-stone-900">Support</h5>
+                        <ul class="space-y-3 text-sm text-stone-500 font-light">
+                            <li><a href="contact.html" class="hover:text-stone-900 transition-colors">Contact</a></li>
+                            <li><a href="#" class="hover:text-stone-900 transition-colors">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="md:col-span-1 space-y-4">
+                    <h5 class="text-xs font-semibold uppercase tracking-widest text-stone-900">Newsletter</h5>
+                    <div class="flex flex-col gap-2">
+                        <input type="email" placeholder="Email address" class="bg-stone-50 border border-stone-200 text-stone-900 text-sm rounded-lg px-4 py-3 focus:outline-none placeholder:text-stone-400">
+                        <button type="button" class="bg-stone-900 text-white text-sm font-medium px-4 py-3 rounded-lg hover:bg-stone-800 transition-colors">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-stone-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-[10px] text-stone-400 uppercase tracking-widest">&copy; 2025 TravelSeek. All rights reserved.</p>
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                    <span class="text-xs text-stone-500 font-medium">Systems Operational</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+<script>
+(function () {
+  /* ─── Init Lucide ─── */
+  if (typeof lucide !== 'undefined') lucide.createIcons({ attrs: { strokeWidth: 1.5 } });
+
+  /* ─── Active link detection ─── */
+  const page  = document.getElementById('main-nav')?.dataset.page || '';
+  document.querySelectorAll('[data-nav]').forEach(a => {
+    if (a.dataset.nav === page || (page === 'blog-post' && a.dataset.nav === 'blog')) {
+      a.classList.add('ts-navlink--active');
+    }
+  });
+
+  /* ─── Desktop nav: transparent → solid on scroll ─── */
+  const nav  = document.getElementById('main-nav');
+  if (nav) {
+    const heroPx = () => {
+      const h = document.querySelector('[data-hero]') || document.querySelector('header.ts-hero');
+      return h ? h.offsetHeight * 0.72 : 90;
+    };
+    const tick = () => nav.classList.toggle('ts-nav--scrolled', window.scrollY > heroPx());
+    window.addEventListener('scroll', tick, { passive: true });
+    tick();
+  }
+
+  /* ─── Mobile sidebar ─── */
+  const btn     = document.getElementById('ts-menu-btn');
+  const closeBtn= document.getElementById('ts-close-btn');
+  const sidebar = document.getElementById('ts-sidebar');
+  const overlay = document.getElementById('ts-overlay');
+  if (!btn || !sidebar) return;
+
+  function openSidebar() {
+    sidebar.classList.add('ts-sidebar--open');
+    overlay.classList.add('ts-overlay--open');
+    btn.classList.add('ts-hamburger--open');
+    btn.setAttribute('aria-expanded', 'true');
+    sidebar.setAttribute('aria-hidden', 'false');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    /* stagger links */
+    sidebar.querySelectorAll('.ts-mob-link').forEach((el, i) => {
+      el.style.transitionDelay = (i * 55 + 80) + 'ms';
+      el.classList.add('ts-mob-link--visible');
+    });
+    /* stagger footer */
+    sidebar.querySelectorAll('.ts-sidebar-foot > *').forEach((el, i) => {
+      el.style.transitionDelay = (350 + i * 60) + 'ms';
+      el.classList.add('ts-mob-link--visible');
+    });
+  }
+
+  function closeSidebar() {
+    sidebar.querySelectorAll('.ts-mob-link, .ts-sidebar-foot > *').forEach(el => {
+      el.style.transitionDelay = '0ms';
+      el.classList.remove('ts-mob-link--visible');
+    });
+    sidebar.classList.remove('ts-sidebar--open');
+    overlay.classList.remove('ts-overlay--open');
+    btn.classList.remove('ts-hamburger--open');
+    btn.setAttribute('aria-expanded', 'false');
+    sidebar.setAttribute('aria-hidden', 'true');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  btn.addEventListener('click', openSidebar);
+  closeBtn?.addEventListener('click', closeSidebar);
+  overlay.addEventListener('click', closeSidebar);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
+  sidebar.querySelectorAll('a').forEach(a => a.addEventListener('click', closeSidebar));
+})();
+</script>
+<script src="travelseek-logo.js"></script>
+
+</body>
+</html>

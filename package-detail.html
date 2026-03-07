@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelSeek | The Colonial Tea Trail</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-stone-50 text-stone-800 antialiased flex flex-col min-h-screen">
+<!-- ══ TOPNAV ══════════════════════════════════════════════ -->
+<nav id="main-nav" class="ts-nav z-50 py-7 px-6 md:px-10" data-page="packages">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+
+        <!-- Logo -->
+        <a href="home.html" class="ts-logo-wrap hover:opacity-75 transition-opacity flex-shrink-0" data-logo aria-label="TravelSeek Home"></a>
+
+        <!-- Desktop links -->
+        <div class="hidden md:flex items-center gap-9 text-[13px] tracking-wide font-light">
+            <a href="home.html"         data-nav="home"        class="ts-navlink">Home</a>
+            <a href="about.html"        data-nav="about"       class="ts-navlink">About</a>
+            <a href="destinations.html" data-nav="destinations" class="ts-navlink">Destinations</a>
+            <a href="packages.html"     data-nav="packages"    class="ts-navlink">Experiences</a>
+            <a href="blog.html"         data-nav="blog"        class="ts-navlink">Journal</a>
+            <a href="gallery.html"      data-nav="gallery"     class="ts-navlink">Gallery</a>
+        </div>
+
+        <!-- Right side -->
+        <div class="flex items-center gap-3">
+            <a href="contact.html"
+               class="hidden md:flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-stone-900 text-[11px] font-medium uppercase tracking-[0.15em] rounded-full px-5 py-3 transition-all duration-300 shadow-lg hover:shadow-amber-500/40 hover:scale-105 whitespace-nowrap">
+                Let's Talk Travel
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </a>
+            <!-- Hamburger -->
+            <button id="ts-menu-btn" class="md:hidden ts-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="ts-sidebar">
+                <span class="ts-ham-bar ts-ham-top"></span>
+                <span class="ts-ham-bar ts-ham-mid"></span>
+                <span class="ts-ham-bar ts-ham-bot"></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- ══ MOBILE SIDEBAR ═══════════════════════════════════════ -->
+<div id="ts-overlay" class="ts-overlay" aria-hidden="true"></div>
+
+<aside id="ts-sidebar" class="ts-sidebar" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Navigation menu">
+    <div class="ts-sidebar-inner">
+
+        <!-- Sidebar Header -->
+        <div class="ts-sidebar-head">
+            <a href="home.html" class="ts-sidebar-logo" data-logo="dark" aria-label="TravelSeek Home"></a>
+            <button id="ts-close-btn" class="ts-close-btn" aria-label="Close menu">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <!-- Sidebar Links -->
+        <nav class="ts-sidebar-nav" aria-label="Mobile navigation">
+            <a href="home.html"         data-nav="home"         class="ts-mob-link" style="--i:0">
+                <span class="ts-mob-num">01</span>
+                <span class="ts-mob-label">Home</span>
+                <i data-lucide="arrow-right" class="ts-mob-arrow w-4 h-4"></i>
+            </a>
+            <a href="about.html"        data-nav="about"        class="ts-mob-link" style="--i:1">
+                <span class="ts-mob-num">02</span>
+                <span class="ts-mob-label">About</span>
+                <i data-lucide="arrow-right" class="ts-mob-arrow w-4 h-4"></i>
+            </a>
+            <a href="destinations.html" data-nav="destinations" class="ts-mob-link" style="--i:2">
+                <span class="ts-mob-num">03</span>
+                <span class="ts-mob-label">Destinations</span>
+                <i data-lucide="arrow-right" class="ts-mob-arrow w-4 h-4"></i>
+            </a>
+            <a href="packages.html"     data-nav="packages"     class="ts-mob-link" style="--i:3">
+                <span class="ts-mob-num">04</span>
+                <span class="ts-mob-label">Experiences</span>
+                <i data-lucide="arrow-right" class="ts-mob-arrow w-4 h-4"></i>
+            </a>
+            <a href="blog.html"         data-nav="blog"         class="ts-mob-link" style="--i:4">
+                <span class="ts-mob-num">05</span>
+                <span class="ts-mob-label">Journal</span>
+                <i data-lucide="arrow-right" class="ts-mob-arrow w-4 h-4"></i>
+            </a>
+            <a href="gallery.html"      data-nav="gallery"      class="ts-mob-link" style="--i:5">
+                <span class="ts-mob-num">06</span>
+                <span class="ts-mob-label">Gallery</span>
+                <i data-lucide="arrow-right" class="ts-mob-arrow w-4 h-4"></i>
+            </a>
+        </nav>
+
+        <!-- Sidebar Footer -->
+        <div class="ts-sidebar-foot">
+            <a href="contact.html" class="ts-mob-cta">
+                Let's Talk Travel
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+            <p class="ts-mob-tagline">Sri Lanka &amp; Beyond</p>
+        </div>
+    </div>
+</aside>
+<!-- ══════════════════════════════════════════════════════════ -->
+
+<main class="flex-grow page-fade">
+    <!-- ══ PACKAGE DETAIL HERO — editorial split ════════════════ -->
+    <header class="relative flex" style="height:92vh;min-height:600px;" data-hero>
+
+        <!-- LEFT: full-height photo (60%) -->
+        <div class="relative overflow-hidden" style="width:60%;flex-shrink:0;">
+            <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?q=88&w=2400&auto=format&fit=crop"
+                 alt="Misty tea estate at dawn, Sri Lanka highlands"
+                 class="hero-img absolute inset-0 w-full h-full object-cover"
+                 style="object-position:center 55%;animation:kenBurns 20s ease-in-out infinite alternate;"
+                 onerror="this.src='https://images.unsplash.com/photo-1564507592333-c60657eea523?q=85&w=2400&auto=format&fit=crop'">
+            <!-- Soft right-edge fade into the dark panel -->
+            <div class="absolute inset-0 pointer-events-none"
+                 style="background:linear-gradient(to right,transparent 50%,rgba(12,10,8,0.70) 100%);"></div>
+            <!-- Subtle bottom vignette -->
+            <div class="absolute inset-0 pointer-events-none"
+                 style="background:linear-gradient(to top,rgba(12,10,8,0.35) 0%,transparent 40%);"></div>
+
+            <!-- Floating coordinates watermark bottom-left -->
+            <div class="absolute bottom-8 left-8 pointer-events-none"
+                 style="font-size:0.62rem;letter-spacing:0.22em;color:rgba(255,255,255,0.20);font-family:'Inter',sans-serif;text-transform:uppercase;">
+                6.9271° N · 80.7718° E — Sri Lanka Highlands
+            </div>
+        </div>
+
+        <!-- RIGHT: dark editorial panel (40%) -->
+        <div class="relative flex flex-col justify-between px-10 py-0"
+             style="background:#0c0a08;flex:1;">
+
+            <!-- Top: breadcrumb + nav spacer -->
+            <div class="pt-28">
+                <div class="flex items-center gap-2 text-white/25 text-[9px] uppercase tracking-[0.32em] mb-12">
+                    <a href="packages.html" class="hover:text-white/50 transition-colors">Journeys</a>
+                    <span>/</span>
+                    <span class="text-white/40">The Colonial Tea Trail</span>
+                </div>
+
+                <!-- Eyebrow -->
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-5 h-px" style="background:#f59e0b;opacity:0.5;"></div>
+                    <span style="font-size:0.68rem;letter-spacing:0.32em;color:rgba(245,158,11,0.70);text-transform:uppercase;font-weight:500;">Cultural &amp; Heritage</span>
+                </div>
+
+                <!-- Title -->
+                <h1 class="font-serif font-normal text-white leading-[1.0] tracking-tight mb-6"
+                    style="font-size:clamp(2.2rem,3.8vw,3.8rem);">
+                    The Colonial<br>
+                    <em class="font-light italic" style="color:rgba(245,158,11,0.90);">Tea Trail</em>
+                </h1>
+
+                <!-- Tagline -->
+                <p class="font-light leading-relaxed mb-10" style="color:rgba(255,255,255,0.38);font-size:0.88rem;max-width:28ch;">
+                    Planters' bungalows, mist-wrapped peaks, and the timeless art of Ceylon tea.
+                </p>
+
+                <!-- Key stats — 2×2 grid -->
+                <div class="grid grid-cols-2 gap-px mb-10" style="border:1px solid rgba(255,255,255,0.06);border-radius:12px;overflow:hidden;">
+                    <div class="px-5 py-4" style="background:rgba(255,255,255,0.03);">
+                        <p style="font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:4px;">Duration</p>
+                        <p class="text-white font-medium text-sm">10 Days · 9 Nights</p>
+                    </div>
+                    <div class="px-5 py-4" style="background:rgba(255,255,255,0.03);">
+                        <p style="font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:4px;">From</p>
+                        <p class="text-white font-medium text-sm">$3,200 <span style="font-size:0.75rem;color:rgba(255,255,255,0.35);font-weight:300;">per person</span></p>
+                    </div>
+                    <div class="px-5 py-4" style="background:rgba(255,255,255,0.02);">
+                        <p style="font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:4px;">Rating</p>
+                        <p class="text-white font-medium text-sm">4.9 <span style="font-size:0.75rem;color:rgba(255,255,255,0.35);font-weight:300;">· 120 reviews</span></p>
+                    </div>
+                    <div class="px-5 py-4" style="background:rgba(255,255,255,0.02);">
+                        <p style="font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:4px;">Route</p>
+                        <p class="text-white font-medium text-sm">Colombo → Ella</p>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <a href="#full-enquiry"
+                   class="flex items-center justify-center gap-2.5 text-stone-900 font-semibold text-[11px] uppercase tracking-[0.2em] rounded-xl py-4 transition-all duration-300 hover:scale-[1.02] hover:shadow-amber-500/30 shadow-lg"
+                   style="background:#f59e0b;">
+                    Reserve This Journey
+                    <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                </a>
+
+                <!-- Ghost link -->
+                <div class="flex justify-center mt-5">
+                    <a href="#itinerary"
+                       class="text-[9px] uppercase tracking-widest transition-colors"
+                       style="color:rgba(255,255,255,0.28);border-bottom:1px solid rgba(255,255,255,0.12);padding-bottom:2px;">
+                        Scroll to itinerary
+                    </a>
+                </div>
+            </div>
+
+            <!-- Bottom: vertical rule + scroll pulse -->
+            <div class="pb-8 flex items-center gap-4">
+                <div class="w-px h-8" style="background:linear-gradient(to bottom,rgba(245,158,11,0.5),transparent);"></div>
+                <span style="font-size:0.62rem;letter-spacing:0.24em;text-transform:uppercase;color:rgba(255,255,255,0.20);">Scroll to explore</span>
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- Mobile hero (shown only < md) — stacked full-bleed -->
+    <style>
+        @media (max-width: 767px) {
+            header[data-hero] { flex-direction: column; height: auto !important; }
+            header[data-hero] > div:first-child { width: 100% !important; height: 55vw; min-height: 260px; position: relative; flex-shrink: 0; }
+            header[data-hero] > div:first-child img { position: absolute; }
+            header[data-hero] > div:last-child { padding-top: 2.5rem !important; padding-bottom: 2.5rem; }
+            header[data-hero] > div:last-child > div:first-child { padding-top: 0 !important; }
+            header[data-hero] > div:last-child > div:first-child > div:first-child { margin-bottom: 1.5rem; }
+        }
+    </style>
+
+    <div class="max-w-4xl mx-auto px-6 py-16">
+        <!-- Itinerary Timeline -->
+        <div>
+            <h3 id="itinerary" class="text-xl font-serif text-stone-900 mb-10">Your Itinerary</h3>
+
+            <div class="relative border-l border-stone-200 ml-3 space-y-12">
+                <!-- Day 1-2 -->
+                <div class="relative pl-8">
+                    <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-stone-900 ring-4 ring-white"></div>
+                    <span class="text-xs font-bold text-stone-400 uppercase tracking-widest mb-1 block">Day 1–2</span>
+                    <h4 class="text-lg font-medium text-stone-900 mb-2">Arrival &amp; The Wallawwa</h4>
+                    <p class="text-sm text-stone-600 font-light leading-relaxed">Arrive in Colombo. Private transfer to The Wallawwa, a restored 18th-century manor house. Unwind in the tropical gardens before your journey begins.</p>
+                </div>
+
+                <!-- Day 3-4 -->
+                <div class="relative pl-8">
+                    <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-stone-300 ring-4 ring-white"></div>
+                    <span class="text-xs font-bold text-stone-400 uppercase tracking-widest mb-1 block">Day 3–4</span>
+                    <h4 class="text-lg font-medium text-stone-900 mb-2">Kandy &amp; The Temple of the Tooth</h4>
+                    <p class="text-sm text-stone-600 font-light leading-relaxed">Travel to the royal city of Kandy. Visit the sacred Temple of the Tooth Relic at sunset. Stay at The Kandy House, enjoying authentic Kandyan cuisine.</p>
+                </div>
+
+                <!-- Day 5-7 -->
+                <div class="relative pl-8">
+                    <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-stone-300 ring-4 ring-white"></div>
+                    <span class="text-xs font-bold text-stone-400 uppercase tracking-widest mb-1 block">Day 5–7</span>
+                    <h4 class="text-lg font-medium text-stone-900 mb-2">The Scenic Train &amp; Nuwara Eliya</h4>
+                    <p class="text-sm text-stone-600 font-light leading-relaxed">Board the blue train for one of the world's most scenic rail journeys. Arrive in 'Little England'. High tea at the Grand Hotel and a private tour of a working tea factory.</p>
+                    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/30104e3c-5eea-4b93-93e9-5313698a7156_1600w.webp" class="mt-4 rounded-lg w-full h-48 object-cover shadow-sm" alt="Scenic Train">
+                </div>
+
+                <!-- Day 8-10 -->
+                <div class="relative pl-8">
+                    <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-stone-300 ring-4 ring-white"></div>
+                    <span class="text-xs font-bold text-stone-400 uppercase tracking-widest mb-1 block">Day 8–10</span>
+                    <h4 class="text-lg font-medium text-stone-900 mb-2">Ella &amp; Departure</h4>
+                    <p class="text-sm text-stone-600 font-light leading-relaxed">Hike to Little Adam's Peak for sunrise. Relax in a boutique mountain retreat. Private transfer back to Colombo for your departure flight.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <!-- ══ FULL ENQUIRY SECTION ════════════════════════════════════════ -->
+    <section id="full-enquiry" class="border-t border-stone-200 bg-stone-50">
+        <div class="max-w-5xl mx-auto px-6 py-20 lg:py-28">
+
+            <div class="grid lg:grid-cols-5 gap-14 items-start">
+
+                <!-- LEFT: form (wider) -->
+                <div class="lg:col-span-3">
+
+                    <!-- Section label -->
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-5 h-px bg-amber-500"></div>
+                        <span class="text-[10px] font-semibold uppercase tracking-[0.28em] text-amber-600">Book This Journey</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-serif text-stone-900 tracking-tight leading-snug mb-2">
+                        Tell us about<br>
+                        <em class="font-light italic text-stone-400">your trip</em>
+                    </h2>
+                    <p class="text-stone-500 font-light text-sm leading-relaxed mb-10 max-w-sm">
+                        The more detail you share, the more precisely we can tailor The Colonial Tea Trail to your pace, preferences and group.
+                    </p>
+
+                    <form class="space-y-5" id="full-enquiry-form" onsubmit="handleFullSubmit(event)">
+
+                        <!-- Hidden: journey pre-filled -->
+                        <input type="hidden" name="journey" value="The Colonial Tea Trail">
+
+                        <!-- Name row -->
+                        <div class="grid sm:grid-cols-2 gap-5">
+                            <div class="form-group">
+                                <label class="form-label">First Name</label>
+                                <input type="text" class="form-input" placeholder=" " required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" class="form-input" placeholder=" " required>
+                            </div>
+                        </div>
+
+                        <!-- Email + Phone -->
+                        <div class="grid sm:grid-cols-2 gap-5">
+                            <div class="form-group">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-input" placeholder=" " required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Phone (Optional)</label>
+                                <input type="tel" class="form-input" placeholder=" ">
+                            </div>
+                        </div>
+
+                        <!-- Nationality -->
+                        <div class="form-group">
+                            <label class="form-label">Country / Nationality</label>
+                            <input type="text" class="form-input" placeholder=" ">
+                        </div>
+
+                        <!-- Travel Period + Group Size -->
+                        <div class="grid sm:grid-cols-2 gap-5">
+                            <div class="form-group">
+                                <label class="form-label">Preferred Travel Period</label>
+                                <input type="month" class="form-input" placeholder=" ">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Number of Travellers</label>
+                                <select class="form-input appearance-none cursor-pointer">
+                                    <option value="" disabled selected></option>
+                                    <option>Solo</option>
+                                    <option>2 Adults</option>
+                                    <option>3–4 People</option>
+                                    <option>5–8 People</option>
+                                    <option>Group (9+)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Flexibility + Budget -->
+                        <div class="grid sm:grid-cols-2 gap-5">
+                            <div class="form-group">
+                                <label class="form-label">Date Flexibility</label>
+                                <select class="form-input appearance-none cursor-pointer">
+                                    <option value="" disabled selected></option>
+                                    <option>Exact dates fixed</option>
+                                    <option>± 1 week flexible</option>
+                                    <option>± 1 month flexible</option>
+                                    <option>Very flexible</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Budget (per person)</label>
+                                <select class="form-input appearance-none cursor-pointer">
+                                    <option value="" disabled selected></option>
+                                    <option>$2,000 – $4,000</option>
+                                    <option>$4,000 – $6,000</option>
+                                    <option>$6,000 – $10,000</option>
+                                    <option>$10,000+</option>
+                                    <option>Flexible — advise me</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Customisation -->
+                        <div class="form-group">
+                            <label class="form-label">Would you like to customise this itinerary?</label>
+                            <select class="form-input appearance-none cursor-pointer">
+                                <option value="" disabled selected></option>
+                                <option>Use it as-is</option>
+                                <option>Minor tweaks (accommodation / pace)</option>
+                                <option>Significant changes</option>
+                                <option>Use it only as inspiration — build fresh</option>
+                            </select>
+                        </div>
+
+                        <!-- Special requests -->
+                        <div class="form-group">
+                            <label class="form-label">Special Requests or Questions</label>
+                            <textarea rows="5" class="form-input" placeholder=" "></textarea>
+                        </div>
+
+                        <!-- How did you hear -->
+                        <div class="form-group">
+                            <label class="form-label">How Did You Hear About Us?</label>
+                            <select class="form-input appearance-none cursor-pointer">
+                                <option value="" disabled selected></option>
+                                <option>Google Search</option>
+                                <option>Instagram</option>
+                                <option>Friend / Word of Mouth</option>
+                                <option>Travel Agent</option>
+                                <option>Magazine / Press</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <div class="pt-2 space-y-5">
+                            <p class="text-[11px] text-stone-400 font-light leading-relaxed">
+                                By submitting this form you agree that TravelSeek may use your details to respond to your enquiry. We will never share your data with third parties.
+                            </p>
+                            <button type="submit"
+                                    class="w-full flex items-center justify-center gap-3 bg-amber-500 hover:bg-amber-400 text-stone-900 text-[11px] font-semibold uppercase tracking-[0.2em] rounded-xl py-4 transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-amber-500/30">
+                                Submit My Enquiry
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Full form success -->
+                    <div id="full-success" class="hidden mt-8 p-6 bg-amber-50 border border-amber-200 rounded-xl">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center shrink-0">
+                                <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="text-stone-900 font-serif text-lg mb-1">We've received your enquiry</h4>
+                                <p class="text-stone-600 text-sm font-light">One of our curators will reach out within 24 hours to begin tailoring The Colonial Tea Trail to your journey. In the meantime, explore our <a href="packages.html" class="text-amber-600 underline underline-offset-2">other journeys</a> for inspiration.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT: context panel -->
+                <div class="lg:col-span-2 space-y-6 lg:sticky lg:top-28">
+
+                    <!-- Journey summary card -->
+                    <div class="bg-stone-900 text-white rounded-2xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?q=80&w=800&auto=format&fit=crop"
+                             alt="Tea estate Sri Lanka"
+                             class="w-full h-40 object-cover opacity-70"
+                             style="object-position:center 55%;">
+                        <div class="p-6 space-y-4">
+                            <div>
+                                <p class="text-stone-400 text-[9px] uppercase tracking-widest mb-1">You are enquiring about</p>
+                                <h3 class="font-serif text-lg text-white leading-snug">The Colonial Tea Trail</h3>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3 text-xs">
+                                <div>
+                                    <p class="text-stone-500 uppercase tracking-wider text-[9px] mb-1">Duration</p>
+                                    <p class="text-stone-200">10 Days · 9 Nights</p>
+                                </div>
+                                <div>
+                                    <p class="text-stone-500 uppercase tracking-wider text-[9px] mb-1">From</p>
+                                    <p class="text-stone-200">$3,200 / person</p>
+                                </div>
+                                <div>
+                                    <p class="text-stone-500 uppercase tracking-wider text-[9px] mb-1">Style</p>
+                                    <p class="text-stone-200">Cultural & Heritage</p>
+                                </div>
+                                <div>
+                                    <p class="text-stone-500 uppercase tracking-wider text-[9px] mb-1">Rating</p>
+                                    <p class="text-stone-200">4.9 · 120 reviews</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- What happens next -->
+                    <div class="bg-white border border-stone-100 rounded-2xl p-6 space-y-5">
+                        <h4 class="text-xs font-semibold uppercase tracking-widest text-stone-500">What Happens Next</h4>
+                        <div class="space-y-4">
+                            <div class="flex gap-3.5">
+                                <div class="w-6 h-6 rounded-full bg-amber-50 border border-amber-200 flex items-center justify-center shrink-0 mt-0.5">
+                                    <span class="text-amber-600 text-[10px] font-semibold">1</span>
+                                </div>
+                                <div>
+                                    <p class="text-stone-800 text-sm font-medium">We receive your enquiry</p>
+                                    <p class="text-stone-500 text-xs font-light mt-0.5">A curator reviews your details personally — no automated replies.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-3.5">
+                                <div class="w-6 h-6 rounded-full bg-amber-50 border border-amber-200 flex items-center justify-center shrink-0 mt-0.5">
+                                    <span class="text-amber-600 text-[10px] font-semibold">2</span>
+                                </div>
+                                <div>
+                                    <p class="text-stone-800 text-sm font-medium">We respond within 24 hours</p>
+                                    <p class="text-stone-500 text-xs font-light mt-0.5">With a tailored proposal or follow-up questions to refine your trip.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-3.5">
+                                <div class="w-6 h-6 rounded-full bg-amber-50 border border-amber-200 flex items-center justify-center shrink-0 mt-0.5">
+                                    <span class="text-amber-600 text-[10px] font-semibold">3</span>
+                                </div>
+                                <div>
+                                    <p class="text-stone-800 text-sm font-medium">We shape your journey together</p>
+                                    <p class="text-stone-500 text-xs font-light mt-0.5">No payment until you are fully satisfied with the itinerary.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Direct contact -->
+                    <div class="space-y-2">
+                        <p class="text-[10px] uppercase tracking-widest text-stone-400 font-medium">Prefer to talk directly?</p>
+                        <a href="https://wa.me/94771234567" target="_blank"
+                           class="flex items-center gap-3 p-3.5 bg-white border border-stone-100 rounded-xl hover:border-amber-300 transition-all duration-300 group">
+                            <div class="w-8 h-8 bg-stone-100 rounded-full flex items-center justify-center shrink-0 group-hover:bg-amber-50 transition-colors">
+                                <svg class="w-4 h-4 text-stone-600" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                            </div>
+                            <div>
+                                <p class="text-[9px] text-stone-400 uppercase tracking-widest">WhatsApp</p>
+                                <p class="text-sm text-stone-800 font-medium">+94 77 123 4567</p>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</main>
+<!-- FOOTER -->
+<!-- FOOTER -->
+<footer class="bg-white border-t border-stone-200 pt-20 pb-10 px-6 mt-auto">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+            <div class="md:col-span-1 space-y-6">
+                <a href="home.html" data-logo="dark"></a>
+                <p class="text-stone-500 text-xs font-light leading-relaxed max-w-xs">Crafting authentic, luxury travel experiences in Sri Lanka and beyond. We invite you to see the world differently.</p>
+            </div>
+            <div class="md:col-span-2 grid grid-cols-2 sm:grid-cols-3 gap-8">
+                <div class="space-y-4">
+                    <h5 class="text-xs font-semibold uppercase tracking-widest text-stone-900">Discover</h5>
+                    <ul class="space-y-3 text-sm text-stone-500 font-light">
+                        <li><a href="destinations.html" class="hover:text-stone-900 transition-colors">Destinations</a></li>
+                        <li><a href="packages.html" class="hover:text-stone-900 transition-colors">Experiences</a></li>
+                        <li><a href="#" class="hover:text-stone-900 transition-colors">Villas &amp; Hotels</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h5 class="text-xs font-semibold uppercase tracking-widest text-stone-900">Company</h5>
+                    <ul class="space-y-3 text-sm text-stone-500 font-light">
+                        <li><a href="about.html" class="hover:text-stone-900 transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-stone-900 transition-colors">Sustainability</a></li>
+                        <li><a href="#" class="hover:text-stone-900 transition-colors">Press</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h5 class="text-xs font-semibold uppercase tracking-widest text-stone-900">Support</h5>
+                    <ul class="space-y-3 text-sm text-stone-500 font-light">
+                        <li><a href="contact.html" class="hover:text-stone-900 transition-colors">Contact</a></li>
+                        <li><a href="#" class="hover:text-stone-900 transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="md:col-span-1 space-y-4">
+                <h5 class="text-xs font-semibold uppercase tracking-widest text-stone-900">Newsletter</h5>
+                <div class="flex flex-col gap-2">
+                    <input type="email" placeholder="Email address" class="bg-stone-50 border border-stone-200 text-stone-900 text-sm rounded-lg px-4 py-3 focus:outline-none placeholder:text-stone-400">
+                    <button type="button" class="bg-stone-900 text-white text-sm font-medium px-4 py-3 rounded-lg hover:bg-stone-800 transition-colors">Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-stone-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-[10px] text-stone-400 uppercase tracking-widest">&copy; 2025 TravelSeek. All rights reserved.</p>
+            <div class="flex items-center gap-2">
+                <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                <span class="text-xs text-stone-500 font-medium">Systems Operational</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script>
+    // ── Full enquiry form ────────────────────────────────────────────────
+    function handleFullSubmit(e) {
+        e.preventDefault();
+        const form = document.getElementById('full-enquiry-form');
+        const msg  = document.getElementById('full-success');
+        form.style.display = 'none';
+        msg.classList.remove('hidden');
+        window.scrollTo({ top: msg.offsetTop - 120, behavior: 'smooth' });
+    }
+</script>
+
+<script>
+    (function () {
+        /* ─── Init Lucide ─── */
+        if (typeof lucide !== 'undefined') lucide.createIcons({ attrs: { strokeWidth: 1.5 } });
+
+        /* ─── Active link detection ─── */
+        const page  = document.getElementById('main-nav')?.dataset.page || '';
+        document.querySelectorAll('[data-nav]').forEach(a => {
+            if (a.dataset.nav === page || (page === 'blog-post' && a.dataset.nav === 'blog')) {
+                a.classList.add('ts-navlink--active');
+            }
+        });
+
+        /* ─── Desktop nav: transparent → solid on scroll ─── */
+        const nav  = document.getElementById('main-nav');
+        if (nav) {
+            const heroPx = () => {
+                const h = document.querySelector('[data-hero]') || document.querySelector('header.ts-hero');
+                return h ? h.offsetHeight * 0.72 : 90;
+            };
+            const tick = () => nav.classList.toggle('ts-nav--scrolled', window.scrollY > heroPx());
+            window.addEventListener('scroll', tick, { passive: true });
+            tick();
+        }
+
+        /* ─── Mobile sidebar ─── */
+        const btn     = document.getElementById('ts-menu-btn');
+        const closeBtn= document.getElementById('ts-close-btn');
+        const sidebar = document.getElementById('ts-sidebar');
+        const overlay = document.getElementById('ts-overlay');
+        if (!btn || !sidebar) return;
+
+        function openSidebar() {
+            sidebar.classList.add('ts-sidebar--open');
+            overlay.classList.add('ts-overlay--open');
+            btn.classList.add('ts-hamburger--open');
+            btn.setAttribute('aria-expanded', 'true');
+            sidebar.setAttribute('aria-hidden', 'false');
+            overlay.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            /* stagger links */
+            sidebar.querySelectorAll('.ts-mob-link').forEach((el, i) => {
+                el.style.transitionDelay = (i * 55 + 80) + 'ms';
+                el.classList.add('ts-mob-link--visible');
+            });
+            /* stagger footer */
+            sidebar.querySelectorAll('.ts-sidebar-foot > *').forEach((el, i) => {
+                el.style.transitionDelay = (350 + i * 60) + 'ms';
+                el.classList.add('ts-mob-link--visible');
+            });
+        }
+
+        function closeSidebar() {
+            sidebar.querySelectorAll('.ts-mob-link, .ts-sidebar-foot > *').forEach(el => {
+                el.style.transitionDelay = '0ms';
+                el.classList.remove('ts-mob-link--visible');
+            });
+            sidebar.classList.remove('ts-sidebar--open');
+            overlay.classList.remove('ts-overlay--open');
+            btn.classList.remove('ts-hamburger--open');
+            btn.setAttribute('aria-expanded', 'false');
+            sidebar.setAttribute('aria-hidden', 'true');
+            overlay.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+
+        btn.addEventListener('click', openSidebar);
+        closeBtn?.addEventListener('click', closeSidebar);
+        overlay.addEventListener('click', closeSidebar);
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
+        sidebar.querySelectorAll('a').forEach(a => a.addEventListener('click', closeSidebar));
+    })();
+</script>
+<script src="travelseek-logo.js"></script>
+
+</body>
+</html>
