@@ -147,95 +147,132 @@
 </section>
 
 
-<!-- ══ WHERE WE TAKE YOU — destinations mosaic ════════════════ -->
-<!-- ═══════════════════════════════════════════════════════════════
-     DESTINATIONS — Asymmetric mosaic, no container
-═══════════════════════════════════════════════════════════════════ -->
-<section style="background:#f8f6f3;padding:6rem 2rem 5rem;">
-    <div style="max-width:90rem;margin:0 auto;">
+<section class="bg-[#f8f6f3] py-20 px-5 md:py-24 md:px-8">
+    <div class="max-w-[90rem] mx-auto">
 
-        <!-- Header row with sticky effect on desktop -->
-        <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2.5rem;" class="reveal-up">
+        <!-- Header -->
+        <div class="flex items-end justify-between mb-8 md:mb-10">
             <div>
-                <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;">
-                    <div style="width:1.5rem;height:1px;background:#f59e0b;"></div>
-                    <span style="font-size:0.6rem;font-weight:600;letter-spacing:0.28em;color:#d97706;text-transform:uppercase;">Where We Take You</span>
+                <div class="flex items-center gap-3 mb-2.5">
+                    <div class="w-6 h-px bg-amber-500 shrink-0"></div>
+                    <span class="text-[0.6rem] font-semibold uppercase tracking-[0.28em] text-amber-600">Where We Take You</span>
                 </div>
-                <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,3rem);color:#1c1917;letter-spacing:-0.02em;line-height:1.1;">
-                    Six corners of <em style="font-weight:300;font-style:italic;color:#a8a29e;">the island</em>
+                <h2 class="font-serif text-[clamp(1.8rem,3.5vw,3rem)] text-stone-900 tracking-tight leading-tight">
+                    Six corners of <em class="font-light italic text-stone-400">the island</em>
                 </h2>
             </div>
-            <a href="destinations.html" style="display:flex;align-items:center;gap:0.5rem;font-size:0.65rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#57534e;text-decoration:none;border-bottom:1px solid #d6d3d1;padding-bottom:0.2rem;transition:color 0.2s,border-color 0.2s;" class="hidden md:flex" onmouseover="this.style.color='#1c1917';this.style.borderColor='#1c1917'" onmouseout="this.style.color='#57534e';this.style.borderColor='#d6d3d1'">
+            <a href="destinations.html"
+               class="hidden md:flex items-center gap-2 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-stone-500 border-b border-stone-300 pb-0.5 hover:text-stone-900 hover:border-stone-900 transition-colors no-underline">
                 Explore All
-                <i data-lucide="arrow-right" style="width:0.8rem;height:0.8rem;"></i>
+                <i data-lucide="arrow-right" class="w-3 h-3"></i>
             </a>
         </div>
 
-        <!-- MOSAIC GRID — asymmetric, varied sizes -->
-        <div style="display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:280px 280px;gap:0.75rem;">
+        <!-- Mosaic Grid -->
+        <div class="grid grid-cols-2 lg:grid-cols-12 lg:[grid-template-rows:285px_285px] gap-2.5">
 
-            <!-- Sigiriya — LARGE, spans 5 cols × 2 rows -->
-            <a href="destinations.html" class="dest-tile reveal-up" style="grid-column:1/6;grid-row:1/3;position:relative;overflow:hidden;border-radius:1.25rem;display:block;text-decoration:none;">
-                <img src="https://images.unsplash.com/photo-1751247026229-518bfec9b5e6?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Sigiriya" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.9s cubic-bezier(.16,1,.3,1);">
-                <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,7,4,0.88) 0%,rgba(10,7,4,0.1) 50%,transparent 100%);"></div>
-                <div class="dest-info" style="position:absolute;bottom:0;left:0;right:0;padding:2rem;">
-                    <div class="dest-tag" style="font-size:0.6rem;text-transform:uppercase;letter-spacing:0.22em;color:rgba(245,158,11,0.8);margin-bottom:0.4rem;">Cultural Triangle</div>
-                    <p style="font-family:'Playfair Display',serif;font-size:1.6rem;color:white;">Sigiriya</p>
+            <!-- Sigiriya — full width mobile · col 1–5 row 1–2 desktop -->
+            <a href="destinations.html"
+               class="group relative overflow-hidden rounded-2xl block no-underline
+                col-span-2 h-[250px] sm:h-[300px]
+                lg:col-span-5 lg:row-span-2 lg:h-auto">
+                <img src="https://images.unsplash.com/photo-1751247026229-518bfec9b5e6?q=80&w=1400&auto=format&fit=crop"
+                     alt="Sigiriya"
+                     class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-[rgba(10,7,4,0.88)] via-[rgba(10,7,4,0.1)] to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+                    <div class="text-[0.6rem] uppercase tracking-[0.22em] text-amber-400/80 mb-1.5">Cultural Triangle</div>
+                    <p class="font-serif text-2xl lg:text-[1.6rem] text-white">Sigiriya</p>
                 </div>
-                <!-- "Trending" badge -->
-                <div style="position:absolute;top:1.25rem;right:1.25rem;background:rgba(12,10,8,0.6);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.1);border-radius:999px;padding:0.3rem 0.85rem;font-size:0.55rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.7);">Trending</div>
-            </a>
-
-            <!-- Ella — top-right, spans 4 cols -->
-            <a href="destinations.html" class="dest-tile reveal-up reveal-d1" style="grid-column:6/10;grid-row:1/2;position:relative;overflow:hidden;border-radius:1.25rem;display:block;text-decoration:none;">
-                <img src="https://images.unsplash.com/photo-1578519050142-afb511e518de?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Ella" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.9s cubic-bezier(.16,1,.3,1);">
-                <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,7,4,0.85) 0%,transparent 60%);"></div>
-                <div class="dest-info" style="position:absolute;bottom:0;left:0;right:0;padding:1.5rem;">
-                    <div class="dest-tag" style="font-size:0.6rem;text-transform:uppercase;letter-spacing:0.22em;color:rgba(245,158,11,0.8);margin-bottom:0.3rem;">Hill Country</div>
-                    <p style="font-family:'Playfair Display',serif;font-size:1.3rem;color:white;">Ella</p>
+                <div class="absolute top-4 right-4 bg-[rgba(12,10,8,0.6)] backdrop-blur-md border border-white/10 rounded-full px-3 py-1 text-[0.52rem] font-semibold uppercase tracking-[0.18em] text-white/70">
+                    Trending
                 </div>
             </a>
 
-            <!-- Galle — bottom-mid, spans 4 cols -->
-            <a href="destinations.html" class="dest-tile reveal-up reveal-d2" style="grid-column:6/10;grid-row:2/3;position:relative;overflow:hidden;border-radius:1.25rem;display:block;text-decoration:none;">
-                <img src="https://images.unsplash.com/photo-1579989197111-928f586796a3?q=80&w=1168&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Galle" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.9s cubic-bezier(.16,1,.3,1);">
-                <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,7,4,0.85) 0%,transparent 60%);"></div>
-                <div class="dest-info" style="position:absolute;bottom:0;left:0;right:0;padding:1.5rem;">
-                    <div class="dest-tag" style="font-size:0.6rem;text-transform:uppercase;letter-spacing:0.22em;color:rgba(245,158,11,0.8);margin-bottom:0.3rem;">Southern Coast</div>
-                    <p style="font-family:'Playfair Display',serif;font-size:1.3rem;color:white;">Galle</p>
+            <!-- Ella — right col mobile · col 6–9 row 1 desktop -->
+            <a href="destinations.html"
+               class="group relative overflow-hidden rounded-2xl block no-underline
+                col-span-1 h-[175px] sm:h-[210px]
+                lg:col-start-6 lg:col-end-10 lg:row-start-1 lg:h-auto">
+                <img src="https://images.unsplash.com/photo-1578519050142-afb511e518de?q=80&w=900&auto=format&fit=crop"
+                     alt="Ella"
+                     class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-[rgba(10,7,4,0.85)] to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-4 lg:p-6">
+                    <div class="text-[0.58rem] uppercase tracking-[0.2em] text-amber-400/80 mb-1">Hill Country</div>
+                    <p class="font-serif text-lg lg:text-[1.3rem] text-white">Ella</p>
                 </div>
             </a>
 
-            <!-- Yala — top-far right, 4 cols -->
-            <a href="destinations.html" class="dest-tile reveal-up reveal-d1" style="grid-column:10/13;grid-row:1/2;position:relative;overflow:hidden;border-radius:1.25rem;display:block;text-decoration:none;">
-                <img src="https://images.unsplash.com/photo-1603789764099-52b21a871336?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Yala" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.9s cubic-bezier(.16,1,.3,1);">
-                <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,7,4,0.85) 0%,transparent 60%);"></div>
-                <div class="dest-info" style="position:absolute;bottom:0;left:0;right:0;padding:1.5rem;">
-                    <div class="dest-tag" style="font-size:0.6rem;text-transform:uppercase;letter-spacing:0.22em;color:rgba(245,158,11,0.8);margin-bottom:0.3rem;">Wildlife Reserve</div>
-                    <p style="font-family:'Playfair Display',serif;font-size:1.3rem;color:white;">Yala</p>
+            <!-- Galle — left col mobile · col 6–9 row 2 desktop -->
+            <a href="destinations.html"
+               class="group relative overflow-hidden rounded-2xl block no-underline
+                col-span-1 h-[175px] sm:h-[210px]
+                lg:col-start-6 lg:col-end-10 lg:row-start-2 lg:h-auto">
+                <img src="https://images.unsplash.com/photo-1579989197111-928f586796a3?q=80&w=1168&auto=format&fit=crop"
+                     alt="Galle"
+                     class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-[rgba(10,7,4,0.85)] to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-4 lg:p-6">
+                    <div class="text-[0.58rem] uppercase tracking-[0.2em] text-amber-400/80 mb-1">Southern Coast</div>
+                    <p class="font-serif text-lg lg:text-[1.3rem] text-white">Galle</p>
                 </div>
             </a>
 
-            <!-- Kandy — bottom-far right, 2 cols -->
-            <a href="destinations.html" class="dest-tile reveal-up reveal-d3" style="grid-column:10/12;grid-row:2/3;position:relative;overflow:hidden;border-radius:1.25rem;display:block;text-decoration:none;">
-                <img src="https://images.unsplash.com/photo-1665849050332-8d5d7e59afb6?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Kandy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.9s cubic-bezier(.16,1,.3,1);">
-                <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,7,4,0.85) 0%,transparent 60%);"></div>
-                <div class="dest-info" style="position:absolute;bottom:0;left:0;right:0;padding:1.25rem;">
-                    <div class="dest-tag" style="font-size:0.55rem;text-transform:uppercase;letter-spacing:0.2em;color:rgba(245,158,11,0.8);margin-bottom:0.25rem;">Royal City</div>
-                    <p style="font-family:'Playfair Display',serif;font-size:1.1rem;color:white;">Kandy</p>
+            <!-- Yala — right col mobile · col 10–12 row 1 desktop -->
+            <a href="destinations.html"
+               class="group relative overflow-hidden rounded-2xl block no-underline
+                col-span-1 h-[175px] sm:h-[210px]
+                lg:col-start-10 lg:col-end-13 lg:row-start-1 lg:h-auto">
+                <img src="https://images.unsplash.com/photo-1603789764099-52b21a871336?q=80&w=1170&auto=format&fit=crop"
+                     alt="Yala"
+                     class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-[rgba(10,7,4,0.85)] to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-4 lg:p-6">
+                    <div class="text-[0.58rem] uppercase tracking-[0.2em] text-amber-400/80 mb-1">Wildlife Reserve</div>
+                    <p class="font-serif text-lg lg:text-[1.3rem] text-white">Yala</p>
                 </div>
             </a>
 
-            <!-- Trincomalee — far-right bottom tiny -->
-            <a href="destinations.html" class="dest-tile reveal-up reveal-d4" style="grid-column:12/13;grid-row:2/3;position:relative;overflow:hidden;border-radius:1.25rem;display:block;text-decoration:none;">
-                <img src="https://images.unsplash.com/photo-1693112118583-7006a44ea44e?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Trincomalee" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.9s cubic-bezier(.16,1,.3,1);">
-                <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,7,4,0.9) 0%,transparent 70%);"></div>
-                <div class="dest-info" style="position:absolute;bottom:0;left:0;right:0;padding:1rem;">
-                    <p style="font-family:'Playfair Display',serif;font-size:0.9rem;color:white;line-height:1.2;">Trinco</p>
+            <!-- Kandy — left col mobile · col 10–11 row 2 desktop -->
+            <a href="destinations.html"
+               class="group relative overflow-hidden rounded-2xl block no-underline
+                col-span-1 h-[175px] sm:h-[210px]
+                lg:col-start-10 lg:col-end-12 lg:row-start-2 lg:h-auto">
+                <img src="https://images.unsplash.com/photo-1665849050332-8d5d7e59afb6?q=80&w=1170&auto=format&fit=crop"
+                     alt="Kandy"
+                     class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-[rgba(10,7,4,0.85)] to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-4 lg:p-5">
+                    <div class="text-[0.55rem] uppercase tracking-[0.18em] text-amber-400/80 mb-1">Royal City</div>
+                    <p class="font-serif text-base lg:text-[1.1rem] text-white">Kandy</p>
+                </div>
+            </a>
+
+            <!-- Trinco — hidden mobile/tablet · col 12 row 2 desktop only -->
+            <a href="destinations.html"
+               class="group relative overflow-hidden rounded-2xl no-underline
+                hidden lg:block lg:col-start-12 lg:col-end-13 lg:row-start-2">
+                <img src="https://images.unsplash.com/photo-1693112118583-7006a44ea44e?q=80&w=735&auto=format&fit=crop"
+                     alt="Trincomalee"
+                     class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-[rgba(10,7,4,0.9)] to-transparent"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-3 lg:p-4">
+                    <p class="font-serif text-[0.9rem] text-white leading-tight">Trinco</p>
                 </div>
             </a>
 
         </div>
+
+        <!-- Mobile "Explore All" link -->
+        <div class="flex justify-center mt-6 md:hidden">
+            <a href="destinations.html"
+               class="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-stone-600 border-b border-stone-300 pb-0.5 no-underline">
+                Explore All Destinations
+                <i data-lucide="arrow-right" class="w-3 h-3"></i>
+            </a>
+        </div>
+
     </div>
 </section>
 
