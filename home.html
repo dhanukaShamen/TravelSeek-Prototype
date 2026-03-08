@@ -10,208 +10,153 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <!-- ── Philosophy section: full-section image takeover animation ── -->
     <style>
-        .video-bg { position: absolute; inset: 0; overflow: hidden; z-index: 0; scale: 1.2; }
-        .youtube-bg {
-            position: absolute; top: 50%; left: 50%;
-            width: 177.78vh; min-width: 100%;
-            height: 56.25vw; min-height: 100%;
-            transform: translate(-50%, -50%);
-            pointer-events: none; border: none;
-        }
-        .video-fallback {
-            position: absolute; inset: 0; z-index: -1;
-            background-image: url('https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=90&w=2800&auto=format&fit=crop');
-            background-size: cover; background-position: center;
-        }
-        .vignette       { background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.50) 100%); }
-        .letterbox-top  { background: linear-gradient(to bottom, rgba(0,0,0,0.50) 0%, transparent 100%); }
-        .letterbox-bottom { background: linear-gradient(to top, rgba(0,0,0,0.38) 0%, transparent 70%); }
-        @keyframes dotDrop {
-            0%   { transform: translateY(0); opacity: 0.8; }
-            60%  { transform: translateY(8px); opacity: 0.2; }
-            100% { transform: translateY(0); opacity: 0.8; }
-        }
-        .dot-drop { animation: dotDrop 2s ease-in-out infinite; }
+        /*
+         * PHILOSOPHY — Full-section image takeover
+         *
+         * Architecture:
+         *   #ts-phil-overlay   — position:absolute; inset:0 inside the section.
+         *                        clip-path is computed by JS to match the image
+         *                        column's exact bounding rect. On scroll trigger,
+         *                        clip-path opens to inset(0%) — image floods section.
+         *
+         *   #ts-phil-scrim     — gradient overlay fades in for cinematic quality.
+         *
+         *   #ts-phil-content   — the grid (text + image column) fades out as the
+         *                        overlay expands over it.
+         *
+         * Only GPU-composited properties are animated: clip-path, transform, opacity.
+         * No layout properties (width/height/padding) are touched.
+         */
 
-        /* ── HERO PREMIUM LAYERS ────────────────────────── */
-
-        /* Film grain */
-        .hero-grain {
-            position: absolute; inset: 0; z-index: 11;
-            pointer-events: none; overflow: hidden;
-        }
-        .hero-grain svg {
-            position: absolute;
-            width: 112%; height: 112%;
-            top: -6%; left: -6%;
-            animation: grainShift .65s steps(1) infinite;
-        }
-        @keyframes grainShift {
-            0%   { transform: translate(  0px,  0px); }
-            16%  { transform: translate( -4px, -3px); }
-            32%  { transform: translate(  3px, -2px); }
-            48%  { transform: translate( -2px,  4px); }
-            64%  { transform: translate(  4px,  2px); }
-            80%  { transform: translate( -3px, -4px); }
-            100% { transform: translate(  0px,  0px); }
-        }
-
-        /* Slow scan-line sweep */
-        .hero-scanline {
-            position: absolute; left: 0; right: 0;
-            height: 140px; z-index: 12;
-            pointer-events: none;
-            background: linear-gradient(to bottom,
-            transparent 0%,
-            rgba(255,255,255,0.028) 50%,
-            transparent 100%);
-            animation: scanSweep 22s linear infinite;
-        }
-        @keyframes scanSweep {
-            0%   { top: -10%; opacity: 0; }
-            4%   { opacity: 1; }
-            96%  { opacity: 1; }
-            100% { top: 108%; opacity: 0; }
-        }
-
-        /* Cinematic corner brackets */
-        .hero-corners {
-            position: absolute;
-            inset: clamp(28px, 5.5vw, 58px);
-            z-index: 13; pointer-events: none;
-        }
-        .hero-corner {
-            position: absolute;
-            width: clamp(28px, 3.8vw, 50px);
-            height: clamp(28px, 3.8vw, 50px);
-        }
-        .hero-corner--tl {
-            top: 0; left: 0;
-            border-top: 1px solid rgba(255,255,255,0.22);
-            border-left: 1px solid rgba(255,255,255,0.22);
-            animation: cBreathe 7s ease-in-out 0s infinite;
-        }
-        .hero-corner--tr {
-            top: 0; right: 0;
-            border-top: 1px solid rgba(255,255,255,0.22);
-            border-right: 1px solid rgba(255,255,255,0.22);
-            animation: cBreathe 7s ease-in-out 1.75s infinite;
-        }
-        .hero-corner--bl {
-            bottom: 0; left: 0;
-            border-bottom: 1px solid rgba(255,255,255,0.22);
-            border-left: 1px solid rgba(255,255,255,0.22);
-            animation: cBreathe 7s ease-in-out 3.5s infinite;
-        }
-        .hero-corner--br {
-            bottom: 0; right: 0;
-            border-bottom: 1px solid rgba(255,255,255,0.22);
-            border-right: 1px solid rgba(255,255,255,0.22);
-            animation: cBreathe 7s ease-in-out 5.25s infinite;
-        }
-        @keyframes cBreathe {
-            0%, 100% { opacity: 0.35; }
-            50%       { opacity: 0.9; }
-        }
-
-        /* Vignette slow breath for depth */
-        @keyframes vigBreathe {
-            0%, 100% { opacity: 0.75; }
-            50%       { opacity: 1; }
-        }
-        .ts-hero .vignette { animation: vigBreathe 12s ease-in-out infinite; }
-
-        /* ── AMBIENT LIGHT LEAK ───────────────────────────── */
-        .hero-lightleak {
-            position: absolute;
-            z-index: 9;
-            pointer-events: none;
-            border-radius: 50%;
-            background: radial-gradient(ellipse at center,
-            rgba(237,174,73,0.22) 0%,
-            rgba(180,90,20,0.09)  40%,
-            transparent 70%);
-            width: 70vw; height: 70vw;
-            max-width: 800px; max-height: 800px;
-            top: -25%; left: -18%;
-            animation: leakDrift 28s ease-in-out infinite;
-            mix-blend-mode: screen;
-        }
-        @keyframes leakDrift {
-            0%   { transform: translate(  0%,   0%) scale(1.00); opacity: 0.65; }
-            25%  { transform: translate( 12%,   8%) scale(1.07); opacity: 0.85; }
-            50%  { transform: translate( 22%,   3%) scale(0.95); opacity: 0.55; }
-            75%  { transform: translate( 10%,  -5%) scale(1.04); opacity: 0.78; }
-            100% { transform: translate(  0%,   0%) scale(1.00); opacity: 0.65; }
-        }
-        .hero-lightleak-cold {
-            position: absolute;
-            z-index: 9;
-            pointer-events: none;
-            border-radius: 50%;
-            background: radial-gradient(ellipse at center,
-            rgba(13,148,136,0.13) 0%,
-            transparent 65%);
-            width: 55vw; height: 55vw;
-            max-width: 600px; max-height: 600px;
-            bottom: -20%; right: -12%;
-            animation: leakDrift 36s ease-in-out 6s infinite reverse;
-            mix-blend-mode: screen;
-        }
-
-        /* ── YOUTUBE END CARD BLOCKER ─────────────────────── */
-        .yt-endcard-block {
-            position: absolute;
-            right: 0; bottom: 0;
-            width: 34%; height: 50%;
-            z-index: 5;
-            background: transparent;
-            pointer-events: all;
-        }
-
-        /* ── HERO MARQUEE ─────────────────────────────────── */
-        .hero-marquee-wrap {
-            position: absolute;
-            bottom: 34%;
-            left: 0; right: 0;
+        /* ── Section: stacking context ── */
+        #ts-phil-section {
+            position: relative;
             overflow: hidden;
-            z-index: 12;
+        }
+
+        /* ── Full-bleed overlay, hidden until JS initialises ── */
+        #ts-phil-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 10;
+            /* Starts fully hidden; JS replaces this with the computed rect clip */
+            clip-path: inset(100% 100% 100% 100%);
+            will-change: clip-path;
+            /* Transition is off until JS adds .ts-phil-ready — prevents flash */
+        }
+
+        #ts-phil-overlay.ts-phil-ready {
+            transition: clip-path 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        #ts-phil-overlay img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            /* Slight inner zoom; resolves to 1 once fully open */
+            transform: scale(1.06);
+            transition: transform 2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        #ts-phil-section.ts-phil--revealed #ts-phil-overlay img {
+            transform: scale(1);
+        }
+
+        /* ── Gradient scrim: fades in after clip starts opening ── */
+        #ts-phil-scrim {
+            position: absolute;
+            inset: 0;
+            /* Left-heavy gradient so text would remain readable; pure cinematic otherwise */
+            background:
+                    linear-gradient(105deg,
+                    rgba(8, 5, 2, 0.72) 0%,
+                    rgba(8, 5, 2, 0.28) 45%,
+                    rgba(8, 5, 2, 0.18) 100%),
+                    linear-gradient(to bottom,
+                    rgba(8, 5, 2, 0.25) 0%,
+                    transparent        25%,
+                    transparent        75%,
+                    rgba(8, 5, 2, 0.40) 100%);
+            opacity: 0;
+            /* Delay so scrim fades in only after image starts to expand */
+            transition: opacity 1s ease 0.5s;
+        }
+
+        #ts-phil-section.ts-phil--revealed #ts-phil-scrim {
+            opacity: 1;
+        }
+
+        /* ── Grid content fades out as overlay sweeps in ── */
+        #ts-phil-content {
+            position: relative;
+            z-index: 1;
+            transition: opacity 0.7s ease 0.2s;
+        }
+
+        #ts-phil-section.ts-phil--revealed #ts-phil-content {
+            opacity: 0;
             pointer-events: none;
-            /* mask edges so it softly fades in/out */
-            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-            mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
         }
-        .hero-marquee-track {
-            display: flex;
-            white-space: nowrap;
-            animation: heroMarquee 38s linear infinite;
-            width: max-content;
+
+        /* ── Reduced-motion: skip to final state instantly ── */
+        @media (prefers-reduced-motion: reduce) {
+            #ts-phil-overlay,
+            #ts-phil-overlay.ts-phil-ready,
+            #ts-phil-overlay img,
+            #ts-phil-scrim,
+            #ts-phil-content {
+                transition: none !important;
+            }
         }
-        .hero-marquee-track:hover { animation-play-state: paused; }
-        @keyframes heroMarquee {
-            from { transform: translateX(0); }
-            to   { transform: translateX(-50%); }
-        }
-        .hero-marquee-text {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: clamp(4.5rem, 11vw, 10rem);
-            font-weight: 500;
-            letter-spacing: -0.01em;
-            line-height: 1;
-            color: rgba(255,255,255,0.045);
-            padding-right: 3rem;
-            user-select: none;
-        }
-        .hero-marquee-dot {
-            font-style: normal;
-            color: rgba(237,174,73,0.07);
-            padding-right: 3rem;
-            font-size: 0.5em;
-            vertical-align: middle;
+
+        /* ── Mobile (< 768px): card-level reveal, no overlay ── */
+        /*
+         * The full-section overlay depends on getBoundingClientRect() measurements
+         * that are unreliable in single-column stacked layouts.
+         * On mobile we animate the card directly instead:
+         *   - Starts: clipped from the bottom (curtain down), slightly scaled
+         *   - Revealed: clip opens upward, scale normalises
+         */
+        @media (max-width: 767px) {
+            #ts-phil-overlay { display: none !important; }
+
+            /* Card starts invisible via opacity + translate (layout space preserved,
+               so parent can be observed reliably) */
+            #ts-phil-img-wrap {
+                opacity: 0;
+                transform: translateY(28px) scale(0.97);
+                will-change: transform, opacity;
+                transition:
+                        opacity    0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform  0.85s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            #ts-phil-img-wrap.ts-phil-card--revealed {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+            /* Content stays fully visible on mobile */
+            #ts-phil-section.ts-phil--revealed #ts-phil-content {
+                opacity: 1 !important;
+                pointer-events: auto !important;
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                #ts-phil-img-wrap {
+                    transition: none !important;
+                    opacity: 1 !important;
+                    transform: none !important;
+                }
+            }
         }
     </style>
+    <!-- Lenis smooth scroll -->
+    <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
 </head>
 <body class="bg-stone-50 text-stone-800 antialiased">
 
@@ -302,13 +247,9 @@
     <!-- Slow cinematic scan-line sweep -->
     <div class="hero-scanline" aria-hidden="true"></div>
 
-    <!-- Cinematic corner brackets (sit inside crop bars) -->
-    <div class="hero-corners" aria-hidden="true">
-        <span class="hero-corner hero-corner--tl"></span>
-        <span class="hero-corner hero-corner--tr"></span>
-        <span class="hero-corner hero-corner--bl"></span>
-        <span class="hero-corner hero-corner--br"></span>
-    </div>
+    <!-- Side curtain lines -->
+    <div class="hero-curtain hero-curtain--left"  aria-hidden="true"></div>
+    <div class="hero-curtain hero-curtain--right" aria-hidden="true"></div>
 
     <!-- Barely-visible large marquee -->
     <div class="hero-marquee-wrap" aria-hidden="true">
@@ -344,8 +285,17 @@
 </header>
 
 <!-- ══ PHILOSOPHY ════════════════════════════════════════════ -->
-<section class="py-24 md:py-32 px-6 bg-stone-50">
-    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+<section id="ts-phil-section" class="py-24 md:py-32 px-6 bg-stone-50">
+
+    <!-- Full-bleed overlay — clip-path initialised by JS to match image column rect -->
+    <div id="ts-phil-overlay" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1663471984093-5925e87e72d5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+             alt="">
+        <div id="ts-phil-scrim"></div>
+    </div>
+
+    <!-- Grid content (z-index:1, fades out as overlay sweeps in) -->
+    <div id="ts-phil-content" class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
         <div class="space-y-8">
             <h2 class="text-3xl md:text-5xl text-stone-900 tracking-tight leading-tight">
                 Travel isn't just movement.<br>
@@ -362,9 +312,10 @@
             </a>
         </div>
         <div class="relative">
-            <div class="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
+            <!-- This element's bounding rect is the clip-path starting point -->
+            <div id="ts-phil-img-wrap" class="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
                 <img src="https://images.unsplash.com/photo-1663471984093-5925e87e72d5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                     alt="Local Culture" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                     alt="Local Culture" id="ts-phil-img" class="w-full h-full object-cover" style="transform-origin:center center">
             </div>
         </div>
     </div>
@@ -418,7 +369,7 @@
                class="group relative overflow-hidden rounded-2xl block no-underline
                 col-span-1 h-[175px] sm:h-[210px]
                 lg:col-start-6 lg:col-end-10 lg:row-start-1 lg:h-auto">
-                <img src="https://images.unsplash.com/photo-1578519050142-afb511e518de?q=80&w=900&auto=format&fit=crop"
+                <img src="https://images.unsplash.com/photo-1574611122955-5baa61496637?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                      alt="Ella"
                      class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                 <div class="absolute inset-0 bg-gradient-to-t from-[rgba(10,7,4,0.85)] to-transparent"></div>
@@ -550,7 +501,7 @@
             <a href="blog-post.html" class="group cursor-pointer space-y-6 block">
                 <div class="aspect-[16/10] overflow-hidden rounded-xl">
                     <img src="https://images.unsplash.com/photo-1743014118271-415197f9b0ef?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Leopard">
+                         class="w-full h-full object-cover" data-sp alt="Leopard">
                 </div>
                 <div class="space-y-3">
                     <div class="flex items-center gap-3 text-xs text-stone-400 uppercase tracking-widest">
@@ -600,6 +551,113 @@
 </section>
 
 
+<!-- ══ GALLERY PREVIEW ═══════════════════════════════════════ -->
+<section class="bg-[#0e0d0b] py-24 md:py-32 px-6 md:px-10 overflow-hidden" id="gallery-preview">
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Header — matches site hierarchy exactly -->
+        <div class="flex items-end justify-between mb-12 md:mb-16">
+            <div class="space-y-3">
+                <div class="flex items-center gap-3">
+                    <div class="w-6 h-px bg-amber-500 shrink-0"></div>
+                    <span class="text-[0.6rem] font-semibold uppercase tracking-[0.28em] text-amber-500">Visual Stories</span>
+                </div>
+                <h2 class="font-serif text-3xl md:text-5xl text-white/90 tracking-tight leading-tight">
+                    Through the <em class="font-normal italic text-white/40">Lens</em>
+                </h2>
+            </div>
+            <a href="gallery.html"
+               class="hidden md:flex items-center gap-2 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-white/30 border-b border-white/15 pb-0.5 hover:text-amber-400 hover:border-amber-400/40 transition-colors no-underline">
+                View Gallery
+                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Staggered 3-col grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 items-start">
+
+            <!-- Col 1 -->
+            <div class="flex flex-col gap-3 md:gap-4">
+                <a href="gallery.html" class="ts-gal-card group" data-gal style="--delay:0s">
+                    <div class="relative overflow-hidden rounded-xl" style="aspect-ratio:3/4">
+                        <img src="https://images.unsplash.com/photo-1711797750174-c3750dd9d7c9?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                             alt="Sigiriya" class="ts-gal-img w-full h-full object-cover" data-parallax>
+                        <div class="ts-gal-overlay absolute inset-0 flex items-end p-5">
+                            <span class="ts-gal-loc text-[0.58rem] font-medium uppercase tracking-[0.2em] text-white/70">Sigiriya &nbsp;·&nbsp; Cultural Triangle</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="gallery.html" class="ts-gal-card group" data-gal style="--delay:0.1s">
+                    <div class="relative overflow-hidden rounded-xl" style="aspect-ratio:4/3">
+                        <img src="https://images.unsplash.com/photo-1585929598074-c4f2c62b4a36?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                             alt="Southern Coast" class="ts-gal-img w-full h-full object-cover" data-parallax>
+                        <div class="ts-gal-overlay absolute inset-0 flex items-end p-5">
+                            <span class="ts-gal-loc text-[0.58rem] font-medium uppercase tracking-[0.2em] text-white/70">Southern Coast</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Col 2 — pushed down on desktop -->
+            <div class="flex flex-col gap-3 md:gap-4 lg:mt-16">
+                <a href="gallery.html" class="ts-gal-card group" data-gal style="--delay:0.08s">
+                    <div class="relative overflow-hidden rounded-xl" style="aspect-ratio:3/4">
+                        <img src="https://images.unsplash.com/photo-1754557178524-11e3ee0bdb7c?q=80&w=1333&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                             alt="Tea Plantations" class="ts-gal-img w-full h-full object-cover" data-parallax>
+                        <div class="ts-gal-overlay absolute inset-0 flex items-end p-5">
+                            <span class="ts-gal-loc text-[0.58rem] font-medium uppercase tracking-[0.2em] text-white/70">Nuwara Eliya &nbsp;·&nbsp; Hill Country</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="gallery.html" class="ts-gal-card group" data-gal style="--delay:0.18s">
+                    <div class="relative overflow-hidden rounded-xl" style="aspect-ratio:3/2">
+                        <img src="https://images.unsplash.com/photo-1627401099591-4772d63b86a4?q=80&w=1201&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                             alt="Yala Wildlife" class="ts-gal-img w-full h-full object-cover" data-parallax>
+                        <div class="ts-gal-overlay absolute inset-0 flex items-end p-5">
+                            <span class="ts-gal-loc text-[0.58rem] font-medium uppercase tracking-[0.2em] text-white/70">Yala &nbsp;·&nbsp; Wildlife Reserve</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Col 3 — pushed down more, hidden on mobile/tablet -->
+            <div class="hidden lg:flex flex-col gap-4 lg:mt-32">
+                <a href="gallery.html" class="ts-gal-card group" data-gal style="--delay:0.16s">
+                    <div class="relative overflow-hidden rounded-xl" style="aspect-ratio:3/4">
+                        <img src="https://images.unsplash.com/photo-1592905169881-eff95fe441ed?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                             alt="Galle Fort" class="ts-gal-img w-full h-full object-cover" data-parallax>
+                        <div class="ts-gal-overlay absolute inset-0 flex items-end p-5">
+                            <span class="ts-gal-loc text-[0.58rem] font-medium uppercase tracking-[0.2em] text-white/70">Galle &nbsp;·&nbsp; Fort District</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="gallery.html" class="ts-gal-card group" data-gal style="--delay:0.26s">
+                    <div class="relative overflow-hidden rounded-xl" style="aspect-ratio:4/3">
+                        <img src="https://images.unsplash.com/photo-1574611122955-5baa61496637?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                             alt="Nine Arch Bridge" class="ts-gal-img w-full h-full object-cover" data-parallax>
+                        <div class="ts-gal-overlay absolute inset-0 flex items-end p-5">
+                            <span class="ts-gal-loc text-[0.58rem] font-medium uppercase tracking-[0.2em] text-white/70">Ella &nbsp;·&nbsp; Nine Arch Bridge</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Mobile CTA -->
+        <div class="flex justify-center mt-10 md:hidden">
+            <a href="gallery.html" class="flex items-center gap-2 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-white/30 border-b border-white/15 pb-0.5 hover:text-amber-400 transition-colors">
+                View Full Gallery
+                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                </svg>
+            </a>
+        </div>
+
+    </div>
+</section>
 <!-- ══ TESTIMONIAL ═══════════════════════════════════════════ -->
 <section class="py-32 px-6 bg-stone-900 text-white">
     <div class="max-w-4xl mx-auto text-center space-y-8">
@@ -792,7 +850,9 @@
     }
 </script>
 <script src="travelseek-logo.js"></script>
-<script src="travelseek-logo.js"></script>
+
+<!-- ── Core JS (smooth scroll + parallax + gallery reveal) ── -->
+<script src="travelseek-core.js"></script>
 
 </body>
 </html>
