@@ -10,28 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <style>
-      /* ── FAQ card expand indicator ── */
-      .faq-icon::before,
-      .faq-icon::after {
-        content: '';
-        position: absolute;
-        background: #78716c;
-        border-radius: 2px;
-        transition: transform 0.3s ease, opacity 0.2s ease;
-      }
-      .faq-icon { position: relative; }
-      .faq-icon::before { width: 9px; height: 1.5px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
-      .faq-icon::after  { width: 1.5px; height: 9px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
 
-      /* When open: vertical bar disappears (becomes × shape with just —) */
-      .faq-card.faq-open .faq-icon::after  { transform: translate(-50%,-50%) rotate(90deg); opacity: 0; }
-      .faq-card.faq-open .faq-icon::before { transform: translate(-50%,-50%) rotate(0deg); background: #d97706; }
-      .faq-card.faq-open .faq-icon { border-color: #f59e0b; background: rgba(245,158,11,0.08); }
-
-      /* FAQ body transition */
-      .faq-body { transition: max-height 0.38s cubic-bezier(0.4,0,0.2,1); }
-    </style>
+    <!-- Lenis smooth scroll -->
+    <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
 </head>
 <body class="bg-stone-50 text-stone-800 antialiased flex flex-col min-h-screen">
 <!-- ══ TOPNAV ══════════════════════════════════════════════ -->
@@ -820,6 +801,6 @@
     })();
     </script>
     <script src="travelseek-logo.js"></script>
-
+    <script src="travelseek-core.js"></script>
     </body>
     </html>
