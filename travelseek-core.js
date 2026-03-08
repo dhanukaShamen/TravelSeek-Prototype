@@ -122,55 +122,89 @@
     /* ── DESKTOP path ────────────────────────────────────────── */
     if (!philOverlay) return;
 
-    function computeClip() {
-        const sr = philSection.getBoundingClientRect();
-        const wr = philImgWrap.getBoundingClientRect();
-        const T = Math.max(0, (wr.top    - sr.top)    / sr.height * 100);
-        const R = Math.max(0, (sr.right  - wr.right)  / sr.width  * 100);
-        const B = Math.max(0, (sr.bottom - wr.bottom) / sr.height * 100);
-        const L = Math.max(0, (wr.left   - sr.left)   / sr.width  * 100);
-        return `inset(${T.toFixed(3)}% ${R.toFixed(3)}% ${B.toFixed(3)}% ${L.toFixed(3)}% round 1rem)`;
-    }
-
-    function setRevealed(on) {
-        if (on) {
-            philSection.classList.add('ts-phil--revealed');
-            philOverlay.style.clipPath = 'inset(0% 0% 0% 0% round 0px)';
-        } else {
-            philSection.classList.remove('ts-phil--revealed');
-            philOverlay.style.clipPath = computeClip();
-        }
-    }
-
     if (reduced) {
         philOverlay.style.clipPath = 'inset(0% round 0px)';
-        setRevealed(true);
+        philSection.classList.add('ts-phil--revealed');
     } else {
-        const REVEAL_AT  = 1;
-        const RESTORE_AT = 0.90;
-        let   revealed   = false;
+        /*
+         * SCROLL_START → SCROLL_END defines the progress window over which
+         * the clip-path interpolates from card-rect percentages → 0%.
+         *
+         * progress formula:  (vh - section.bottom) / (vh + section.height) + 1
+         *   ≈ 0  when section bottom enters viewport bottom
+         *   ≈ 1  when section bottom reaches viewport top
+         *
+         * SCROLL_START (0.70): begin expanding
+         * SCROLL_END   (0.95): fully open — 0.25 range = smooth travel window
+         *
+         * Scrim + content-fade are CSS transitions triggered by .ts-phil--revealed
+         * which fires once the clip reaches 50% open.
+         */
+        const SCROLL_START = 0.86;
+        const SCROLL_END   = 1.2;
+
+        /* Starting inset % values — set once after first measurement */
+        let startT, startR, startB, startL;
+        let cssRevealFired   = false;
+        let cssRestoreFired  = false;
+
+        function lerp(a, b, t) { return a + (b - a) * t; }
+        function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+
+        function measureStart() {
+            const sr = philSection.getBoundingClientRect();
+            const wr = philImgWrap.getBoundingClientRect();
+            startT = Math.max(0, (wr.top    - sr.top)    / sr.height * 100);
+            startR = Math.max(0, (sr.right  - wr.right)  / sr.width  * 100);
+            startB = Math.max(0, (sr.bottom - wr.bottom) / sr.height * 100);
+            startL = Math.max(0, (wr.left   - sr.left)   / sr.width  * 100);
+        }
 
         function onScroll() {
             const sr       = philSection.getBoundingClientRect();
             const vh       = window.innerHeight;
             const progress = (vh - sr.bottom) / (vh + sr.height) + 1;
 
-            if (!revealed && progress >= REVEAL_AT) {
-                revealed = true;
-                setRevealed(true);
-            } else if (revealed && progress < RESTORE_AT) {
-                revealed = false;
-                setRevealed(false);
+            /* Normalise progress into 0→1 within our scroll window */
+            const t = clamp((progress - SCROLL_START) / (SCROLL_END - SCROLL_START), 0, 1);
+
+            /* Ease: smoothstep for organic feel */
+            const ease = t * t * (3 - 2 * t);
+
+            const T = lerp(startT, 0, ease);
+            const R = lerp(startR, 0, ease);
+            const B = lerp(startB, 0, ease);
+            const L = lerp(startL, 0, ease);
+
+            philOverlay.style.clipPath =
+                `inset(${T.toFixed(3)}% ${R.toFixed(3)}% ${B.toFixed(3)}% ${L.toFixed(3)}% round ${lerp(16, 0, ease).toFixed(1)}px)`;
+
+            /* Fire CSS class at 50% open for scrim + content fade */
+            if (ease >= 0.5 && !cssRevealFired) {
+                cssRevealFired  = true;
+                cssRestoreFired = false;
+                philSection.classList.add('ts-phil--revealed');
+            } else if (ease < 0.5 && !cssRestoreFired) {
+                cssRestoreFired = true;
+                cssRevealFired  = false;
+                philSection.classList.remove('ts-phil--revealed');
             }
         }
 
         function initOverlay() {
-            philOverlay.style.clipPath = computeClip();
+            measureStart();
+            philOverlay.style.clipPath =
+                `inset(${startT.toFixed(3)}% ${startR.toFixed(3)}% ${startB.toFixed(3)}% ${startL.toFixed(3)}% round 1rem)`;
+
             requestAnimationFrame(() => {
                 philOverlay.classList.add('ts-phil-ready');
+
                 window.addEventListener('resize', () => {
-                    if (!revealed) philOverlay.style.clipPath = computeClip();
+                    measureStart();
+                    /* Re-sync clip to current scroll position immediately */
+                    onScroll();
                 }, { passive: true });
+
                 lenis.on('scroll', onScroll);
                 onScroll();
             });
