@@ -33,6 +33,184 @@
             100% { transform: translateY(0); opacity: 0.8; }
         }
         .dot-drop { animation: dotDrop 2s ease-in-out infinite; }
+
+        /* ── HERO PREMIUM LAYERS ────────────────────────── */
+
+        /* Film grain */
+        .hero-grain {
+            position: absolute; inset: 0; z-index: 11;
+            pointer-events: none; overflow: hidden;
+        }
+        .hero-grain svg {
+            position: absolute;
+            width: 112%; height: 112%;
+            top: -6%; left: -6%;
+            animation: grainShift .65s steps(1) infinite;
+        }
+        @keyframes grainShift {
+            0%   { transform: translate(  0px,  0px); }
+            16%  { transform: translate( -4px, -3px); }
+            32%  { transform: translate(  3px, -2px); }
+            48%  { transform: translate( -2px,  4px); }
+            64%  { transform: translate(  4px,  2px); }
+            80%  { transform: translate( -3px, -4px); }
+            100% { transform: translate(  0px,  0px); }
+        }
+
+        /* Slow scan-line sweep */
+        .hero-scanline {
+            position: absolute; left: 0; right: 0;
+            height: 140px; z-index: 12;
+            pointer-events: none;
+            background: linear-gradient(to bottom,
+            transparent 0%,
+            rgba(255,255,255,0.028) 50%,
+            transparent 100%);
+            animation: scanSweep 22s linear infinite;
+        }
+        @keyframes scanSweep {
+            0%   { top: -10%; opacity: 0; }
+            4%   { opacity: 1; }
+            96%  { opacity: 1; }
+            100% { top: 108%; opacity: 0; }
+        }
+
+        /* Cinematic corner brackets */
+        .hero-corners {
+            position: absolute;
+            inset: clamp(28px, 5.5vw, 58px);
+            z-index: 13; pointer-events: none;
+        }
+        .hero-corner {
+            position: absolute;
+            width: clamp(28px, 3.8vw, 50px);
+            height: clamp(28px, 3.8vw, 50px);
+        }
+        .hero-corner--tl {
+            top: 0; left: 0;
+            border-top: 1px solid rgba(255,255,255,0.22);
+            border-left: 1px solid rgba(255,255,255,0.22);
+            animation: cBreathe 7s ease-in-out 0s infinite;
+        }
+        .hero-corner--tr {
+            top: 0; right: 0;
+            border-top: 1px solid rgba(255,255,255,0.22);
+            border-right: 1px solid rgba(255,255,255,0.22);
+            animation: cBreathe 7s ease-in-out 1.75s infinite;
+        }
+        .hero-corner--bl {
+            bottom: 0; left: 0;
+            border-bottom: 1px solid rgba(255,255,255,0.22);
+            border-left: 1px solid rgba(255,255,255,0.22);
+            animation: cBreathe 7s ease-in-out 3.5s infinite;
+        }
+        .hero-corner--br {
+            bottom: 0; right: 0;
+            border-bottom: 1px solid rgba(255,255,255,0.22);
+            border-right: 1px solid rgba(255,255,255,0.22);
+            animation: cBreathe 7s ease-in-out 5.25s infinite;
+        }
+        @keyframes cBreathe {
+            0%, 100% { opacity: 0.35; }
+            50%       { opacity: 0.9; }
+        }
+
+        /* Vignette slow breath for depth */
+        @keyframes vigBreathe {
+            0%, 100% { opacity: 0.75; }
+            50%       { opacity: 1; }
+        }
+        .ts-hero .vignette { animation: vigBreathe 12s ease-in-out infinite; }
+
+        /* ── AMBIENT LIGHT LEAK ───────────────────────────── */
+        .hero-lightleak {
+            position: absolute;
+            z-index: 9;
+            pointer-events: none;
+            border-radius: 50%;
+            background: radial-gradient(ellipse at center,
+            rgba(237,174,73,0.22) 0%,
+            rgba(180,90,20,0.09)  40%,
+            transparent 70%);
+            width: 70vw; height: 70vw;
+            max-width: 800px; max-height: 800px;
+            top: -25%; left: -18%;
+            animation: leakDrift 28s ease-in-out infinite;
+            mix-blend-mode: screen;
+        }
+        @keyframes leakDrift {
+            0%   { transform: translate(  0%,   0%) scale(1.00); opacity: 0.65; }
+            25%  { transform: translate( 12%,   8%) scale(1.07); opacity: 0.85; }
+            50%  { transform: translate( 22%,   3%) scale(0.95); opacity: 0.55; }
+            75%  { transform: translate( 10%,  -5%) scale(1.04); opacity: 0.78; }
+            100% { transform: translate(  0%,   0%) scale(1.00); opacity: 0.65; }
+        }
+        .hero-lightleak-cold {
+            position: absolute;
+            z-index: 9;
+            pointer-events: none;
+            border-radius: 50%;
+            background: radial-gradient(ellipse at center,
+            rgba(13,148,136,0.13) 0%,
+            transparent 65%);
+            width: 55vw; height: 55vw;
+            max-width: 600px; max-height: 600px;
+            bottom: -20%; right: -12%;
+            animation: leakDrift 36s ease-in-out 6s infinite reverse;
+            mix-blend-mode: screen;
+        }
+
+        /* ── YOUTUBE END CARD BLOCKER ─────────────────────── */
+        .yt-endcard-block {
+            position: absolute;
+            right: 0; bottom: 0;
+            width: 34%; height: 50%;
+            z-index: 5;
+            background: transparent;
+            pointer-events: all;
+        }
+
+        /* ── HERO MARQUEE ─────────────────────────────────── */
+        .hero-marquee-wrap {
+            position: absolute;
+            bottom: 34%;
+            left: 0; right: 0;
+            overflow: hidden;
+            z-index: 12;
+            pointer-events: none;
+            /* mask edges so it softly fades in/out */
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+        }
+        .hero-marquee-track {
+            display: flex;
+            white-space: nowrap;
+            animation: heroMarquee 38s linear infinite;
+            width: max-content;
+        }
+        .hero-marquee-track:hover { animation-play-state: paused; }
+        @keyframes heroMarquee {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+        .hero-marquee-text {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: clamp(4.5rem, 11vw, 10rem);
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            line-height: 1;
+            color: rgba(255,255,255,0.045);
+            padding-right: 3rem;
+            user-select: none;
+        }
+        .hero-marquee-dot {
+            font-style: normal;
+            color: rgba(237,174,73,0.07);
+            padding-right: 3rem;
+            font-size: 0.5em;
+            vertical-align: middle;
+        }
     </style>
 </head>
 <body class="bg-stone-50 text-stone-800 antialiased">
@@ -94,24 +272,70 @@
     <div class="video-bg">
         <div class="video-fallback"></div>
         <iframe class="youtube-bg"
-                src="https://www.youtube.com/embed/8g9ccCkT-u0?autoplay=1&mute=1&loop=1&playlist=8g9ccCkT-u0&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1"
+                src="https://www.youtube.com/embed/8g9ccCkT-u0?autoplay=1&mute=1&loop=1&playlist=8g9ccCkT-u0&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&iv_load_policy=3&disablekb=1&fs=0&color=white"
                 allow="autoplay; fullscreen" title="Sri Lanka cinematic landscape"></iframe>
+        <!-- Blocks YouTube end-card click targets -->
+        <div class="yt-endcard-block" aria-hidden="true"></div>
     </div>
+
+    <!-- Ambient light leaks — warm amber + cool teal -->
+    <div class="hero-lightleak" aria-hidden="true"></div>
+    <div class="hero-lightleak-cold" aria-hidden="true"></div>
+
     <div class="letterbox-top absolute top-0 left-0 w-full h-40 z-10 pointer-events-none"></div>
     <div class="vignette absolute inset-0 z-10 pointer-events-none"></div>
     <div class="letterbox-bottom absolute bottom-0 left-0 w-full h-56 z-10 pointer-events-none"></div>
     <div class="absolute inset-0 z-10 pointer-events-none"
          style="background:linear-gradient(135deg,rgba(120,70,20,0.12) 0%,transparent 60%,rgba(13,148,136,0.06) 100%)"></div>
-    <div class="absolute bottom-10 left-6 md:left-12 z-20 hidden md:block">
+
+    <!-- Film grain texture -->
+    <div class="hero-grain" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+            <filter id="hero-noise" color-interpolation-filters="linearRGB">
+                <feTurbulence type="fractalNoise" baseFrequency="0.72 0.68"
+                              numOctaves="4" stitchTiles="stitch"/>
+            </filter>
+            <rect width="100%" height="100%" filter="url(#hero-noise)" opacity="0.055"/>
+        </svg>
+    </div>
+
+    <!-- Slow cinematic scan-line sweep -->
+    <div class="hero-scanline" aria-hidden="true"></div>
+
+    <!-- Cinematic corner brackets (sit inside crop bars) -->
+    <div class="hero-corners" aria-hidden="true">
+        <span class="hero-corner hero-corner--tl"></span>
+        <span class="hero-corner hero-corner--tr"></span>
+        <span class="hero-corner hero-corner--bl"></span>
+        <span class="hero-corner hero-corner--br"></span>
+    </div>
+
+    <!-- Barely-visible large marquee -->
+    <div class="hero-marquee-wrap" aria-hidden="true">
+        <div class="hero-marquee-track">
+            <span class="hero-marquee-text">Sri Lanka</span><span class="hero-marquee-dot">✦</span>
+            <span class="hero-marquee-text">Beyond the Ordinary</span><span class="hero-marquee-dot">✦</span>
+            <span class="hero-marquee-text">Discover</span><span class="hero-marquee-dot">✦</span>
+            <span class="hero-marquee-text">Sri Lanka</span><span class="hero-marquee-dot">✦</span>
+            <span class="hero-marquee-text">Beyond the Ordinary</span><span class="hero-marquee-dot">✦</span>
+            <span class="hero-marquee-text">Discover</span><span class="hero-marquee-dot">✦</span>
+        </div>
+    </div>
+
+    <div class="absolute z-20 hidden md:block"
+         style="bottom: clamp(46px, 9.5vh, 84px); left: clamp(1.5rem, 3vw, 3rem);">
         <span class="text-white/25 text-[10px] font-light tracking-[0.22em]">6.9271° N, 79.8612° E &nbsp;·&nbsp; Sri Lanka</span>
     </div>
-    <div class="absolute bottom-9 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2">
+    <div class="absolute left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2"
+         style="bottom: clamp(46px, 9vh, 82px);">
         <svg class="w-5 h-7 text-white/30" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 18 28">
             <rect x="1" y="1" width="16" height="26" rx="8"/>
             <circle class="dot-drop" cx="9" cy="9" r="2.5" fill="currentColor" stroke="none"/>
         </svg>
     </div>
-    <div class="absolute bottom-9 right-6 md:right-10 z-20 hidden md:flex items-center gap-2 cursor-pointer group" onclick="toggleMute(this)">
+    <div class="absolute z-20 hidden md:flex items-center gap-2 cursor-pointer group"
+         style="bottom: clamp(46px, 9vh, 82px); right: clamp(1.5rem, 2.5vw, 2.5rem);"
+         onclick="toggleMute(this)">
         <span id="vol-label" class="text-white/20 text-[9px] uppercase tracking-[0.3em] group-hover:text-white/50 transition-colors">Muted</span>
         <svg id="vol-icon" class="w-4 h-4 text-white/20 group-hover:text-white/50 transition-colors" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 9.75L19.5 12m0 0l2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z"/>
@@ -543,6 +767,29 @@
         document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
         sidebar.querySelectorAll('a').forEach(a => a.addEventListener('click', closeSidebar));
     })();
+
+    /* ─── Mute / Unmute via YouTube iframe postMessage ─── */
+    let _heroMuted = true;
+    function toggleMute(btn) {
+        const iframe = document.querySelector('.youtube-bg');
+        if (!iframe) return;
+        _heroMuted = !_heroMuted;
+        const cmd = _heroMuted
+            ? '{"event":"command","func":"mute","args":""}'
+            : '{"event":"command","func":"unMute","args":""}';
+        iframe.contentWindow.postMessage(cmd, '*');
+
+        const label = document.getElementById('vol-label');
+        const icon  = document.getElementById('vol-icon');
+        if (label) label.textContent = _heroMuted ? 'Muted' : 'Sound';
+
+        /* Swap icon: X-speaker (muted) ↔ speaker-waves (live) */
+        if (icon) {
+            icon.innerHTML = _heroMuted
+                ? `<path stroke-linecap="round" stroke-linejoin="round" d="M17.25 9.75L19.5 12m0 0l2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z"/>`
+                : `<path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z"/>`;
+        }
+    }
 </script>
 <script src="travelseek-logo.js"></script>
 <script src="travelseek-logo.js"></script>
