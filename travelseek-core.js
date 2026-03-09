@@ -44,7 +44,15 @@
             el.style.transform = `scale(${baseScale}) translateY(${prog * maxShift}px)`;
         }
 
+        /* Skip parallax on mobile — reduces jank and excessive image cropping.
+         * Re-evaluated on resize so orientation changes are handled.            */
+        let parallaxEnabled = window.innerWidth >= 768;
+        window.addEventListener('resize', () => {
+            parallaxEnabled = window.innerWidth >= 768;
+        }, { passive: true });
+
         lenis.on('scroll', () => {
+            if (!parallaxEnabled) return;
             galImgs.forEach(img => {
                 if (img.closest('.ts-gal-card')?.matches(':hover')) return;
                 shift(img, 52, 1.14);

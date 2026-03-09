@@ -1431,6 +1431,32 @@ html.lenis { height: auto; }
 }
 .ts-gal-card:hover .ts-gal-loc { transform: translateY(0); }
 
+/* ── Gallery: touch / no-hover devices — show labels by default ── */
+@media (hover: none) {
+    .ts-gal-overlay { opacity: 1; }
+    .ts-gal-loc     { transform: translateY(0); }
+}
+
+/* ── Gallery: mobile single-column (< 640px) ── */
+@media (max-width: 639px) {
+    /* Normalize all portrait cards to a consistent landscape ratio
+       — overrides inline aspect-ratio styles with !important          */
+    .ts-gal-card .relative {
+        aspect-ratio: 16 / 10 !important;
+    }
+    /* Reduce the default parallax over-scale so images aren't cropped */
+    .ts-gal-img { transform: scale(1.06) !important; }
+    .ts-gal-card:hover .ts-gal-img { transform: scale(1.09) !important; }
+}
+
+/* ── Gallery: col-3 shown as side-by-side row on sm/md tablets ── */
+@media (min-width: 640px) and (max-width: 1023px) {
+    /* When col-3 is in flex-row mode, normalize its card heights */
+    .ts-gal-col3 .relative {
+        aspect-ratio: 4 / 3 !important;
+    }
+}
+
 /* ── FAQ card expand indicator ── */
 .faq-icon::before,
 .faq-icon::after {
