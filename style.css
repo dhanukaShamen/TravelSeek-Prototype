@@ -1397,6 +1397,54 @@ html.lenis { height: auto; }
 
 
 /* ══════════════════════════════════════════════════════════
+   DESTINATIONS — "Where We Take You" stagger entrance
+   ══════════════════════════════════════════════════════════ */
+
+/* Header — eyebrow line + h2 + Explore All link */
+[data-dest-header] {
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+            opacity   0.72s cubic-bezier(0.16, 1, 0.3, 1) 0s,
+            transform 0.72s cubic-bezier(0.16, 1, 0.3, 1) 0s;
+}
+[data-dest-header].ts-dest-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/*
+ * Each mosaic card starts hidden and slides in.
+ * Sigiriya (index 0) gets a subtle x-shift for its large footprint;
+ * all other cards move purely on Y.
+ * --dest-delay is set via JS.
+ */
+[data-dest] {
+    opacity: 0;
+    transform: translateY(40px);
+    transition:
+            opacity   0.78s cubic-bezier(0.16, 1, 0.3, 1) var(--dest-delay, 0s),
+            transform 0.78s cubic-bezier(0.16, 1, 0.3, 1) var(--dest-delay, 0s);
+}
+[data-dest="0"] {
+    /* large hero card gets a gentle left-to-right nudge too */
+    transform: translateX(-18px) translateY(30px);
+}
+[data-dest].ts-dest-visible {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+}
+
+/* Respect reduced-motion: skip transforms, only fade */
+@media (prefers-reduced-motion: reduce) {
+    [data-dest-header],
+    [data-dest] {
+        transform: none !important;
+        transition: opacity 0.4s ease var(--dest-delay, 0s) !important;
+    }
+}
+
+/* ══════════════════════════════════════════════════════════
    GALLERY SECTION
    ══════════════════════════════════════════════════════════ */
 
@@ -1430,32 +1478,6 @@ html.lenis { height: auto; }
     display: block;
 }
 .ts-gal-card:hover .ts-gal-loc { transform: translateY(0); }
-
-/* ── Gallery: touch / no-hover devices — show labels by default ── */
-@media (hover: none) {
-    .ts-gal-overlay { opacity: 1; }
-    .ts-gal-loc     { transform: translateY(0); }
-}
-
-/* ── Gallery: mobile single-column (< 640px) ── */
-@media (max-width: 639px) {
-    /* Normalize all portrait cards to a consistent landscape ratio
-       — overrides inline aspect-ratio styles with !important          */
-    .ts-gal-card .relative {
-        aspect-ratio: 16 / 10 !important;
-    }
-    /* Reduce the default parallax over-scale so images aren't cropped */
-    .ts-gal-img { transform: scale(1.06) !important; }
-    .ts-gal-card:hover .ts-gal-img { transform: scale(1.09) !important; }
-}
-
-/* ── Gallery: col-3 shown as side-by-side row on sm/md tablets ── */
-@media (min-width: 640px) and (max-width: 1023px) {
-    /* When col-3 is in flex-row mode, normalize its card heights */
-    .ts-gal-col3 .relative {
-        aspect-ratio: 4 / 3 !important;
-    }
-}
 
 /* ── FAQ card expand indicator ── */
 .faq-icon::before,

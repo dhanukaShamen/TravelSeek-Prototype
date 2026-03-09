@@ -44,15 +44,7 @@
             el.style.transform = `scale(${baseScale}) translateY(${prog * maxShift}px)`;
         }
 
-        /* Skip parallax on mobile — reduces jank and excessive image cropping.
-         * Re-evaluated on resize so orientation changes are handled.            */
-        let parallaxEnabled = window.innerWidth >= 768;
-        window.addEventListener('resize', () => {
-            parallaxEnabled = window.innerWidth >= 768;
-        }, { passive: true });
-
         lenis.on('scroll', () => {
-            if (!parallaxEnabled) return;
             galImgs.forEach(img => {
                 if (img.closest('.ts-gal-card')?.matches(':hover')) return;
                 shift(img, 52, 1.14);
@@ -73,6 +65,47 @@
             });
         }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
         galCards.forEach(c => io.observe(c));
+    }
+
+    /* ── 3b. Destinations "Where We Take You" stagger reveal ── */
+    /*
+     * One observer fires on the section wrapper entering the viewport.
+     * On trigger: header animates first; each card fires with a
+     * progressively longer --dest-delay so they cascade in order.
+     *
+     * Stagger map (matches visual reading order across all breakpoints):
+     *   0 → Sigiriya  (hero)
+     *   1 → Ella      (top-right group)
+     *   2 → Galle     (bottom-right group)
+     *   3 → Yala      (far-right row 1)
+     *   4 → Kandy     (far-right row 2)
+     *   5 → Trinco    (desktop-only sliver)
+     */
+    const destSection = document.querySelector('[data-dest-header]')?.closest('section');
+    if (destSection) {
+        const destHeader = destSection.querySelector('[data-dest-header]');
+        const destCards  = destSection.querySelectorAll('[data-dest]');
+
+        /* Base delays — feel fast but clearly sequential */
+        const DELAYS = [0.08, 0.20, 0.32, 0.22, 0.34, 0.44];
+
+        destCards.forEach(card => {
+            const idx = parseInt(card.dataset.dest, 10);
+            card.style.setProperty('--dest-delay', (DELAYS[idx] ?? 0.1) + 's');
+        });
+
+        const destIO = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                /* Header first — no extra delay needed (CSS default is 0s) */
+                destHeader?.classList.add('ts-dest-visible');
+                /* Cards cascade in */
+                destCards.forEach(card => card.classList.add('ts-dest-visible'));
+                destIO.disconnect();
+            });
+        }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+
+        destIO.observe(destSection);
     }
 
     /* ── 4. Philosophy section — responsive scroll animation ─── */

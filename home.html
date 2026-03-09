@@ -181,7 +181,7 @@
     <div class="max-w-[90rem] mx-auto">
 
         <!-- Header -->
-        <div class="flex items-end justify-between mb-8 md:mb-10">
+        <div class="flex items-end justify-between mb-8 md:mb-10" data-dest-header>
             <div>
                 <div class="flex items-center gap-3 mb-2.5">
                     <div class="w-6 h-px bg-amber-500 shrink-0"></div>
@@ -202,7 +202,7 @@
         <div class="grid grid-cols-2 lg:grid-cols-12 lg:[grid-template-rows:285px_285px] gap-2.5">
 
             <!-- Sigiriya — full width mobile · col 1–5 row 1–2 desktop -->
-            <a href="destinations.html"
+            <a href="destinations.html" data-dest="0"
                class="group relative overflow-hidden rounded-2xl block no-underline
                 col-span-2 h-[250px] sm:h-[300px]
                 lg:col-span-5 lg:row-span-2 lg:h-auto">
@@ -220,7 +220,7 @@
             </a>
 
             <!-- Ella — right col mobile · col 6–9 row 1 desktop -->
-            <a href="destinations.html"
+            <a href="destinations.html" data-dest="1"
                class="group relative overflow-hidden rounded-2xl block no-underline
                 col-span-1 h-[175px] sm:h-[210px]
                 lg:col-start-6 lg:col-end-10 lg:row-start-1 lg:h-auto">
@@ -235,7 +235,7 @@
             </a>
 
             <!-- Galle — left col mobile · col 6–9 row 2 desktop -->
-            <a href="destinations.html"
+            <a href="destinations.html" data-dest="2"
                class="group relative overflow-hidden rounded-2xl block no-underline
                 col-span-1 h-[175px] sm:h-[210px]
                 lg:col-start-6 lg:col-end-10 lg:row-start-2 lg:h-auto">
@@ -250,7 +250,7 @@
             </a>
 
             <!-- Yala — right col mobile · col 10–12 row 1 desktop -->
-            <a href="destinations.html"
+            <a href="destinations.html" data-dest="3"
                class="group relative overflow-hidden rounded-2xl block no-underline
                 col-span-1 h-[175px] sm:h-[210px]
                 lg:col-start-10 lg:col-end-13 lg:row-start-1 lg:h-auto">
@@ -265,7 +265,7 @@
             </a>
 
             <!-- Kandy — left col mobile · col 10–11 row 2 desktop -->
-            <a href="destinations.html"
+            <a href="destinations.html" data-dest="4"
                class="group relative overflow-hidden rounded-2xl block no-underline
                 col-span-1 h-[175px] sm:h-[210px]
                 lg:col-start-10 lg:col-end-12 lg:row-start-2 lg:h-auto">
@@ -280,7 +280,7 @@
             </a>
 
             <!-- Trinco — hidden mobile/tablet · col 12 row 2 desktop only -->
-            <a href="destinations.html"
+            <a href="destinations.html" data-dest="5"
                class="group relative overflow-hidden rounded-2xl no-underline
                 hidden lg:block lg:col-start-12 lg:col-end-13 lg:row-start-2">
                 <img src="https://images.unsplash.com/photo-1693112118583-7006a44ea44e?q=80&w=735&auto=format&fit=crop"
@@ -477,8 +477,8 @@
                 </a>
             </div>
 
-            <!-- Col 3 — pushed down more on desktop; shown as full-width row on tablet -->
-            <div class="hidden sm:flex flex-col sm:flex-row lg:flex-col ts-gal-col3 gap-3 md:gap-4 sm:col-span-2 lg:col-span-1 lg:mt-32">
+            <!-- Col 3 — pushed down more, hidden on mobile/tablet -->
+            <div class="hidden lg:flex flex-col gap-4 lg:mt-32">
                 <a href="gallery.html" class="ts-gal-card group" data-gal style="--delay:0.16s">
                     <div class="relative overflow-hidden rounded-xl" style="aspect-ratio:3/4">
                         <img src="https://images.unsplash.com/photo-1592905169881-eff95fe441ed?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
