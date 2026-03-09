@@ -1413,12 +1413,7 @@ html.lenis { height: auto; }
     transform: translateY(0);
 }
 
-/*
- * Each mosaic card starts hidden and slides in.
- * Sigiriya (index 0) gets a subtle x-shift for its large footprint;
- * all other cards move purely on Y.
- * --dest-delay is set via JS.
- */
+/* Each mosaic card starts hidden and fades up — --dest-delay set via JS */
 [data-dest] {
     opacity: 0;
     transform: translateY(40px);
@@ -1426,13 +1421,9 @@ html.lenis { height: auto; }
             opacity   0.78s cubic-bezier(0.16, 1, 0.3, 1) var(--dest-delay, 0s),
             transform 0.78s cubic-bezier(0.16, 1, 0.3, 1) var(--dest-delay, 0s);
 }
-[data-dest="0"] {
-    /* large hero card gets a gentle left-to-right nudge too */
-    transform: translateX(-18px) translateY(30px);
-}
 [data-dest].ts-dest-visible {
     opacity: 1;
-    transform: translateX(0) translateY(0);
+    transform: translateY(0);
 }
 
 /* Respect reduced-motion: skip transforms, only fade */
