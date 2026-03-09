@@ -69,26 +69,20 @@
 
     /* ── 3b. Destinations "Where We Take You" stagger reveal ── */
     /*
-     * One observer fires on the section wrapper entering the viewport.
-     * On trigger: header animates first; each card fires with a
-     * progressively longer --dest-delay so they cascade in order.
+     * threshold: 0.18 + rootMargin -120px bottom means the section must be
+     * well inside the viewport before the animations fire — feels intentional
+     * rather than popping in as soon as the edge enters the screen.
      *
-     * Stagger map (matches visual reading order across all breakpoints):
-     *   0 → Sigiriya  (hero)
-     *   1 → Ella      (top-right group)
-     *   2 → Galle     (bottom-right group)
-     *   3 → Yala      (far-right row 1)
-     *   4 → Kandy     (far-right row 2)
-     *   5 → Trinco    (desktop-only sliver)
+     * Stagger order matches visual reading order across all breakpoints:
+     *   0 → Sigiriya  (hero)   1 → Ella   2 → Galle
+     *   3 → Yala               4 → Kandy  5 → Trinco
      */
     const destSection = document.querySelector('[data-dest-header]')?.closest('section');
     if (destSection) {
         const destHeader = destSection.querySelector('[data-dest-header]');
         const destCards  = destSection.querySelectorAll('[data-dest]');
 
-        /* Base delays — feel fast but clearly sequential */
         const DELAYS = [0.08, 0.20, 0.32, 0.22, 0.34, 0.44];
-
         destCards.forEach(card => {
             const idx = parseInt(card.dataset.dest, 10);
             card.style.setProperty('--dest-delay', (DELAYS[idx] ?? 0.1) + 's');
@@ -97,13 +91,11 @@
         const destIO = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (!entry.isIntersecting) return;
-                /* Header first — no extra delay needed (CSS default is 0s) */
                 destHeader?.classList.add('ts-dest-visible');
-                /* Cards cascade in */
                 destCards.forEach(card => card.classList.add('ts-dest-visible'));
                 destIO.disconnect();
             });
-        }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+        }, { threshold: 0.18, rootMargin: '0px 0px -120px 0px' });
 
         destIO.observe(destSection);
     }
